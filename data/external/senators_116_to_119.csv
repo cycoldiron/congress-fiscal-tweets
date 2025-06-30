@@ -1,0 +1,412 @@
+full_name,party,state,congress_number
+Doug Jones,Democratic,Alabama,116
+Richard Shelby,Republican,Alabama,116
+Dan Sullivan,Republican,Alaska,116
+Lisa Murkowski,Republican,Alaska,116
+Kyrsten Sinema,Democratic,Arizona,116
+Mark Kelly[c],Democratic,Arizona,116
+Martha McSally[c],Republican,Arizona,116
+John Boozman,Republican,Arkansas,116
+Tom Cotton,Republican,Arkansas,116
+Dianne Feinstein,Democratic,California,116
+Kamala Harris,Democratic,California,116
+Cory Gardner,Republican,Colorado,116
+Michael Bennet,Democratic,Colorado,116
+Chris Murphy,Democratic,Connecticut,116
+Richard Blumenthal,Democratic,Connecticut,116
+Chris Coons,Democratic,Delaware,116
+Tom Carper,Democratic,Delaware,116
+Marco Rubio,Republican,Florida,116
+Rick Scott,Republican,Florida,116
+David Perdue,Republican,Georgia,116
+Johnny Isakson[a],Republican,Georgia,116
+Kelly Loeffler[a],Republican,Georgia,116
+Brian Schatz,Democratic,Hawaii,116
+Mazie Hirono,Democratic,Hawaii,116
+Jim Risch,Republican,Idaho,116
+Mike Crapo,Republican,Idaho,116
+Dick Durbin,Democratic,Illinois,116
+Tammy Duckworth,Democratic,Illinois,116
+Mike Braun,Republican,Indiana,116
+Todd Young,Republican,Indiana,116
+Chuck Grassley,Republican,Iowa,116
+Joni Ernst,Republican,Iowa,116
+Jerry Moran,Republican,Kansas,116
+Pat Roberts,Republican,Kansas,116
+Mitch McConnell,Republican,Kentucky,116
+Rand Paul,Republican,Kentucky,116
+Bill Cassidy,Republican,Louisiana,116
+John Neely Kennedy,Republican,Louisiana,116
+Angus King,Independent,Maine,116
+Susan Collins,Republican,Maine,116
+Ben Cardin,Democratic,Maryland,116
+Chris Van Hollen,Democratic,Maryland,116
+Ed Markey,Democratic,Massachusetts,116
+Elizabeth Warren,Democratic,Massachusetts,116
+Debbie Stabenow,Democratic,Michigan,116
+Gary Peters,Democratic,Michigan,116
+Amy Klobuchar,Democratic,Minnesota,116
+Tina Smith,Democratic,Minnesota,116
+Cindy Hyde-Smith,Republican,Mississippi,116
+Roger Wicker,Republican,Mississippi,116
+Josh Hawley,Republican,Missouri,116
+Roy Blunt,Republican,Missouri,116
+Jon Tester,Democratic,Montana,116
+Steve Daines,Republican,Montana,116
+Ben Sasse,Republican,Nebraska,116
+Deb Fischer,Republican,Nebraska,116
+Catherine Cortez Masto,Democratic,Nevada,116
+Jacky Rosen,Democratic,Nevada,116
+Jeanne Shaheen,Democratic,New Hampshire,116
+Maggie Hassan,Democratic,New Hampshire,116
+Bob Menendez,Democratic,New Jersey,116
+Cory Booker,Democratic,New Jersey,116
+Martin Heinrich,Democratic,New Mexico,116
+Tom Udall,Democratic,New Mexico,116
+Chuck Schumer,Democratic,New York,116
+Kirsten Gillibrand,Democratic,New York,116
+Richard Burr,Republican,North Carolina,116
+Thom Tillis,Republican,North Carolina,116
+John Hoeven,Republican,North Dakota,116
+Kevin Cramer,Republican,North Dakota,116
+Rob Portman,Republican,Ohio,116
+Sherrod Brown,Democratic,Ohio,116
+James Lankford,Republican,Oklahoma,116
+Jim Inhofe,Republican,Oklahoma,116
+Jeff Merkley,Democratic,Oregon,116
+Ron Wyden,Democratic,Oregon,116
+Bob Casey Jr.,Democratic,Pennsylvania,116
+Pat Toomey,Republican,Pennsylvania,116
+Jack Reed,Democratic,Rhode Island,116
+Sheldon Whitehouse,Democratic,Rhode Island,116
+Lindsey Graham,Republican,South Carolina,116
+Tim Scott,Republican,South Carolina,116
+John Thune,Republican,South Dakota,116
+Mike Rounds,Republican,South Dakota,116
+Lamar Alexander,Republican,Tennessee,116
+Marsha Blackburn,Republican,Tennessee,116
+John Cornyn,Republican,Texas,116
+Ted Cruz,Republican,Texas,116
+Mike Lee,Republican,Utah,116
+Mitt Romney,Republican,Utah,116
+Bernie Sanders,Independent,Vermont,116
+Patrick Leahy,Democratic,Vermont,116
+Mark Warner,Democratic,Virginia,116
+Tim Kaine,Democratic,Virginia,116
+Maria Cantwell,Democratic,Washington,116
+Patty Murray,Democratic,Washington,116
+Joe Manchin,Democratic,West Virginia,116
+Shelley Moore Capito,Republican,West Virginia,116
+Ron Johnson,Republican,Wisconsin,116
+Tammy Baldwin,Democratic,Wisconsin,116
+John Barrasso,Republican,Wyoming,116
+Mike Enzi,Republican,Wyoming,116
+Richard Shelby,Republican,Alabama,117
+Tommy Tuberville,Republican,Alabama,117
+Dan Sullivan,Republican,Alaska,117
+Lisa Murkowski,Republican,Alaska,117
+Kyrsten Sinema,Democratic,Arizona,117
+Mark Kelly,Democratic,Arizona,117
+John Boozman,Republican,Arkansas,117
+Tom Cotton,Republican,Arkansas,117
+Alex Padilla[a],Democratic,California,117
+Dianne Feinstein,Democratic,California,117
+Kamala Harris[a],Democratic,California,117
+John Hickenlooper,Democratic,Colorado,117
+Michael Bennet,Democratic,Colorado,117
+Chris Murphy,Democratic,Connecticut,117
+Richard Blumenthal,Democratic,Connecticut,117
+Chris Coons,Democratic,Delaware,117
+Tom Carper,Democratic,Delaware,117
+Marco Rubio,Republican,Florida,117
+Rick Scott,Republican,Florida,117
+Jon Ossoff[c],Democratic,Georgia,117
+Kelly Loeffler[b],Republican,Georgia,117
+Raphael Warnock[b],Democratic,Georgia,117
+Brian Schatz,Democratic,Hawaii,117
+Mazie Hirono,Democratic,Hawaii,117
+Jim Risch,Republican,Idaho,117
+Mike Crapo,Republican,Idaho,117
+Dick Durbin,Democratic,Illinois,117
+Tammy Duckworth,Democratic,Illinois,117
+Mike Braun,Republican,Indiana,117
+Todd Young,Republican,Indiana,117
+Chuck Grassley,Republican,Iowa,117
+Joni Ernst,Republican,Iowa,117
+Jerry Moran,Republican,Kansas,117
+Roger Marshall,Republican,Kansas,117
+Mitch McConnell,Republican,Kentucky,117
+Rand Paul,Republican,Kentucky,117
+Bill Cassidy,Republican,Louisiana,117
+John Neely Kennedy,Republican,Louisiana,117
+Angus King,Independent,Maine,117
+Susan Collins,Republican,Maine,117
+Ben Cardin,Democratic,Maryland,117
+Chris Van Hollen,Democratic,Maryland,117
+Ed Markey,Democratic,Massachusetts,117
+Elizabeth Warren,Democratic,Massachusetts,117
+Debbie Stabenow,Democratic,Michigan,117
+Gary Peters,Democratic,Michigan,117
+Amy Klobuchar,Democratic,Minnesota,117
+Tina Smith,Democratic,Minnesota,117
+Cindy Hyde-Smith,Republican,Mississippi,117
+Roger Wicker,Republican,Mississippi,117
+Josh Hawley,Republican,Missouri,117
+Roy Blunt,Republican,Missouri,117
+Jon Tester,Democratic,Montana,117
+Steve Daines,Republican,Montana,117
+Ben Sasse,Republican,Nebraska,117
+Deb Fischer,Republican,Nebraska,117
+Catherine Cortez Masto,Democratic,Nevada,117
+Jacky Rosen,Democratic,Nevada,117
+Jeanne Shaheen,Democratic,New Hampshire,117
+Maggie Hassan,Democratic,New Hampshire,117
+Bob Menendez,Democratic,New Jersey,117
+Cory Booker,Democratic,New Jersey,117
+Ben Ray Luján,Democratic,New Mexico,117
+Martin Heinrich,Democratic,New Mexico,117
+Chuck Schumer,Democratic,New York,117
+Kirsten Gillibrand,Democratic,New York,117
+Richard Burr,Republican,North Carolina,117
+Thom Tillis,Republican,North Carolina,117
+John Hoeven,Republican,North Dakota,117
+Kevin Cramer,Republican,North Dakota,117
+Rob Portman,Republican,Ohio,117
+Sherrod Brown,Democratic,Ohio,117
+James Lankford,Republican,Oklahoma,117
+Jim Inhofe,Republican,Oklahoma,117
+Jeff Merkley,Democratic,Oregon,117
+Ron Wyden,Democratic,Oregon,117
+"Bob Casey, Jr.",Democratic,Pennsylvania,117
+Pat Toomey,Republican,Pennsylvania,117
+Jack Reed,Democratic,Rhode Island,117
+Sheldon Whitehouse,Democratic,Rhode Island,117
+Lindsey Graham,Republican,South Carolina,117
+Tim Scott,Republican,South Carolina,117
+John Thune,Republican,South Dakota,117
+Mike Rounds,Republican,South Dakota,117
+Bill Hagerty,Republican,Tennessee,117
+Marsha Blackburn,Republican,Tennessee,117
+John Cornyn,Republican,Texas,117
+Ted Cruz,Republican,Texas,117
+Mike Lee,Republican,Utah,117
+Mitt Romney,Republican,Utah,117
+Bernie Sanders,Independent[10],Vermont,117
+Patrick Leahy,Democratic,Vermont,117
+Mark Warner,Democratic,Virginia,117
+Tim Kaine,Democratic,Virginia,117
+Maria Cantwell[9],Democratic,Washington,117
+Patty Murray,Democratic,Washington,117
+Joe Manchin,Democratic,West Virginia,117
+Shelley Moore Capito,Republican,West Virginia,117
+Ron Johnson,Republican,Wisconsin,117
+Tammy Baldwin,Democratic,Wisconsin,117
+Cynthia Lummis,Republican,Wyoming,117
+John Barrasso,Republican,Wyoming,117
+Katie Britt,Republican,Alabama,118
+Tommy Tuberville,Republican,Alabama,118
+Dan Sullivan,Republican,Alaska,118
+Lisa Murkowski,Republican,Alaska,118
+Kyrsten Sinema,Independent,Arizona,118
+Mark Kelly,Democratic,Arizona,118
+John Boozman,Republican,Arkansas,118
+Tom Cotton,Republican,Arkansas,118
+Adam Schiff,Democratic,California,118
+Alex Padilla,Democratic,California,118
+Dianne Feinstein[a],Democratic,California,118
+Laphonza Butler[a],Democratic,California,118
+John Hickenlooper,Democratic,Colorado,118
+Michael Bennet,Democratic,Colorado,118
+Chris Murphy,Democratic,Connecticut,118
+Richard Blumenthal,Democratic,Connecticut,118
+Chris Coons,Democratic,Delaware,118
+Tom Carper,Democratic,Delaware,118
+Marco Rubio,Republican,Florida,118
+Rick Scott,Republican,Florida,118
+Jon Ossoff,Democratic,Georgia,118
+Raphael Warnock,Democratic,Georgia,118
+Brian Schatz,Democratic,Hawaii,118
+Mazie Hirono,Democratic,Hawaii,118
+Jim Risch,Republican,Idaho,118
+Mike Crapo,Republican,Idaho,118
+Dick Durbin,Democratic,Illinois,118
+Tammy Duckworth,Democratic,Illinois,118
+Mike Braun,Republican,Indiana,118
+Todd Young,Republican,Indiana,118
+Chuck Grassley,Republican,Iowa,118
+Joni Ernst,Republican,Iowa,118
+Jerry Moran,Republican,Kansas,118
+Roger Marshall,Republican,Kansas,118
+Mitch McConnell,Republican,Kentucky,118
+Rand Paul,Republican,Kentucky,118
+Bill Cassidy,Republican,Louisiana,118
+John Kennedy,Republican,Louisiana,118
+Angus King,Independent,Maine,118
+Susan Collins,Republican,Maine,118
+Ben Cardin,Democratic,Maryland,118
+Chris Van Hollen,Democratic,Maryland,118
+Ed Markey,Democratic,Massachusetts,118
+Elizabeth Warren,Democratic,Massachusetts,118
+Debbie Stabenow,Democratic,Michigan,118
+Gary Peters,Democratic,Michigan,118
+Amy Klobuchar,Democratic,Minnesota,118
+Tina Smith,Democratic,Minnesota,118
+Cindy Hyde-Smith,Republican,Mississippi,118
+Roger Wicker,Republican,Mississippi,118
+Eric Schmitt,Republican,Missouri,118
+Josh Hawley,Republican,Missouri,118
+Jon Tester,Democratic,Montana,118
+Steve Daines,Republican,Montana,118
+Ben Sasse[c],Republican,Nebraska,118
+Deb Fischer,Republican,Nebraska,118
+Pete Ricketts[c],Republican,Nebraska,118
+Catherine Cortez Masto,Democratic,Nevada,118
+Jacky Rosen,Democratic,Nevada,118
+Jeanne Shaheen,Democratic,New Hampshire,118
+Maggie Hassan,Democratic,New Hampshire,118
+Andy Kim,Democratic,New Jersey,118
+Bob Menendez[b],Democratic,New Jersey,118
+Cory Booker,Democratic,New Jersey,118
+George Helmy[b],Democratic,New Jersey,118
+Ben Ray Luján,Democratic,New Mexico,118
+Martin Heinrich,Democratic,New Mexico,118
+Chuck Schumer,Democratic,New York,118
+Kirsten Gillibrand,Democratic,New York,118
+Ted Budd,Republican,North Carolina,118
+Thom Tillis,Republican,North Carolina,118
+John Hoeven,Republican,North Dakota,118
+Kevin Cramer,Republican,North Dakota,118
+JD Vance,Republican,Ohio,118
+Sherrod Brown,Democratic,Ohio,118
+James Lankford,Republican,Oklahoma,118
+Markwayne Mullin,Republican,Oklahoma,118
+Jeff Merkley,Democratic,Oregon,118
+Ron Wyden,Democratic,Oregon,118
+Bob Casey Jr.,Democratic,Pennsylvania,118
+John Fetterman,Democratic,Pennsylvania,118
+Jack Reed,Democratic,Rhode Island,118
+Sheldon Whitehouse,Democratic,Rhode Island,118
+Lindsey Graham,Republican,South Carolina,118
+Tim Scott,Republican,South Carolina,118
+John Thune,Republican,South Dakota,118
+Mike Rounds,Republican,South Dakota,118
+Bill Hagerty,Republican,Tennessee,118
+Marsha Blackburn,Republican,Tennessee,118
+John Cornyn,Republican,Texas,118
+Ted Cruz,Republican,Texas,118
+Mike Lee,Republican,Utah,118
+Mitt Romney,Republican,Utah,118
+Bernie Sanders,Independent,Vermont,118
+Peter Welch,Democratic,Vermont,118
+Mark Warner,Democratic,Virginia,118
+Tim Kaine,Democratic,Virginia,118
+Maria Cantwell,Democratic,Washington,118
+Patty Murray,Democratic,Washington,118
+Joe Manchin,Democratic,West Virginia,118
+Shelley Moore Capito,Republican,West Virginia,118
+Ron Johnson,Republican,Wisconsin,118
+Tammy Baldwin,Democratic,Wisconsin,118
+Cynthia Lummis,Republican,Wyoming,118
+John Barrasso,Republican,Wyoming,118
+Katie Britt,Republican,Alabama,119
+Tommy Tuberville,Republican,Alabama,119
+Dan Sullivan,Republican,Alaska,119
+Lisa Murkowski,Republican,Alaska,119
+Mark Kelly,Democratic,Arizona,119
+Ruben Gallego,Democratic,Arizona,119
+John Boozman,Republican,Arkansas,119
+Tom Cotton,Republican,Arkansas,119
+Adam Schiff,Democratic,California,119
+Alex Padilla,Democratic,California,119
+John Hickenlooper,Democratic,Colorado,119
+Michael Bennet,Democratic,Colorado,119
+Chris Murphy,Democratic,Connecticut,119
+Richard Blumenthal,Democratic,Connecticut,119
+Chris Coons,Democratic,Delaware,119
+Lisa Blunt Rochester,Democratic,Delaware,119
+Ashley Moody[a],Republican,Florida,119
+Marco Rubio[a],Republican,Florida,119
+Rick Scott,Republican,Florida,119
+Jon Ossoff,Democratic,Georgia,119
+Raphael Warnock,Democratic,Georgia,119
+Brian Schatz,Democratic,Hawaii,119
+Mazie Hirono,Democratic,Hawaii,119
+Jim Risch,Republican,Idaho,119
+Mike Crapo,Republican,Idaho,119
+Dick Durbin,Democratic,Illinois,119
+Tammy Duckworth,Democratic,Illinois,119
+Jim Banks,Republican,Indiana,119
+Todd Young,Republican,Indiana,119
+Chuck Grassley,Republican,Iowa,119
+Joni Ernst,Republican,Iowa,119
+Jerry Moran,Republican,Kansas,119
+Roger Marshall,Republican,Kansas,119
+Mitch McConnell,Republican,Kentucky,119
+Rand Paul,Republican,Kentucky,119
+Bill Cassidy,Republican,Louisiana,119
+John Kennedy,Republican,Louisiana,119
+Angus King,Independent,Maine,119
+Susan Collins,Republican,Maine,119
+Angela Alsobrooks,Democratic,Maryland,119
+Chris Van Hollen,Democratic,Maryland,119
+Ed Markey,Democratic,Massachusetts,119
+Elizabeth Warren,Democratic,Massachusetts,119
+Elissa Slotkin,Democratic,Michigan,119
+Gary Peters,Democratic,Michigan,119
+Amy Klobuchar,Democratic,Minnesota,119
+Tina Smith,Democratic,Minnesota,119
+Cindy Hyde-Smith,Republican,Mississippi,119
+Roger Wicker,Republican,Mississippi,119
+Eric Schmitt,Republican,Missouri,119
+Josh Hawley,Republican,Missouri,119
+Steve Daines,Republican,Montana,119
+Tim Sheehy,Republican,Montana,119
+Deb Fischer,Republican,Nebraska,119
+Pete Ricketts,Republican,Nebraska,119
+Catherine Cortez Masto,Democratic,Nevada,119
+Jacky Rosen,Democratic,Nevada,119
+Jeanne Shaheen,Democratic,New Hampshire,119
+Maggie Hassan,Democratic,New Hampshire,119
+Andy Kim,Democratic,New Jersey,119
+Cory Booker,Democratic,New Jersey,119
+Ben Ray Luján,Democratic,New Mexico,119
+Martin Heinrich,Democratic,New Mexico,119
+Chuck Schumer,Democratic,New York,119
+Kirsten Gillibrand,Democratic,New York,119
+Ted Budd,Republican,North Carolina,119
+Thom Tillis,Republican,North Carolina,119
+John Hoeven,Republican,North Dakota,119
+Kevin Cramer,Republican,North Dakota,119
+Bernie Moreno,Republican,Ohio,119
+JD Vance[b],Republican,Ohio,119
+Jon Husted[b],Republican,Ohio,119
+James Lankford,Republican,Oklahoma,119
+Markwayne Mullin,Republican,Oklahoma,119
+Jeff Merkley,Democratic,Oregon,119
+Ron Wyden,Democratic,Oregon,119
+David McCormick,Republican,Pennsylvania,119
+John Fetterman,Democratic,Pennsylvania,119
+Jack Reed,Democratic,Rhode Island,119
+Sheldon Whitehouse,Democratic,Rhode Island,119
+Lindsey Graham,Republican,South Carolina,119
+Tim Scott,Republican,South Carolina,119
+John Thune,Republican,South Dakota,119
+Mike Rounds,Republican,South Dakota,119
+Bill Hagerty,Republican,Tennessee,119
+Marsha Blackburn,Republican,Tennessee,119
+John Cornyn,Republican,Texas,119
+Ted Cruz,Republican,Texas,119
+John Curtis,Republican,Utah,119
+Mike Lee,Republican,Utah,119
+Bernie Sanders,Independent,Vermont,119
+Peter Welch,Democratic,Vermont,119
+Mark Warner,Democratic,Virginia,119
+Tim Kaine,Democratic,Virginia,119
+Maria Cantwell,Democratic,Washington,119
+Patty Murray,Democratic,Washington,119
+Jim Justice[c],Republican,West Virginia,119
+Shelley Moore Capito,Republican,West Virginia,119
+Ron Johnson,Republican,Wisconsin,119
+Tammy Baldwin,Democratic,Wisconsin,119
+Cynthia Lummis,Republican,Wyoming,119
+John Barrasso,Republican,Wyoming,119
