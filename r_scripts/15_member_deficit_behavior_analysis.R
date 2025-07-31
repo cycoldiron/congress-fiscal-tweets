@@ -139,8 +139,56 @@ top_inout_shifters %>%
     source_note = md("<span style='display:block; text-align:center'><strong>Bolded names indicate members who tweeted <em>less</em> about the deficit while in power.</strong></span>")
   )
 
+# === Build gt table ===
+top_inout_shifters_table <- top_inout_shifters %>%
+  select(
+    full_name,
+    party,
+    pct_debt_tweets_in_power,
+    pct_debt_tweets_out_power,
+    pct_debt_diff_inout,
+    less_when_in_power
+  ) %>%
+  gt() %>%
+  tab_header(
+    title = md("**Top 15 Members with Largest Shift in Deficit Tweeting (In vs. Out of Power)**"),
+    subtitle = md("*‘In power’ refers to when a member’s party held the presidency.*")
+  ) %>%
+  cols_label(
+    full_name = md("**Member**"),
+    pct_debt_tweets_in_power = md("**% In Power**"),
+    pct_debt_tweets_out_power = md("**% Out of Power**"),
+    pct_debt_diff_inout = md("**In–Out Difference**")
+  ) %>%
+  fmt_percent(
+    columns = c(pct_debt_tweets_in_power, pct_debt_tweets_out_power, pct_debt_diff_inout),
+    decimals = 2
+  ) %>%
+  data_color(
+    columns = c(pct_debt_tweets_in_power, pct_debt_tweets_out_power, pct_debt_diff_inout),
+    fn = scales::col_numeric(c("white", "gold"), domain = NULL)
+  ) %>%
+  cols_align("left", columns = full_name) %>%
+  cols_align("center", columns = everything()) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      columns = full_name,
+      rows = less_when_in_power == TRUE
+    )
+  ) %>%
+  add_party_row_color() %>%
+  cols_hide(columns = c(party, less_when_in_power)) %>%
+  tab_source_note(
+    source_note = md("<span style='display:block; text-align:center'><strong>Bolded names indicate members who tweeted <em>less</em> about the deficit while in power.</strong></span>")
+  )
+
+# === Save table as PNG ===
+gtsave(top_inout_shifters_table, filename = "figures/individuals/t3_top_inout_shifters.png")
+
+
 
 # === Save Output ===
-gtsave(top_total_deficit_tweeters, filename = "figures/individuals/top_total_deficit_tweeters.png")
-gtsave(top_pct_deficit_tweeters, filename = "figures/individuals/top_pct_deficit_tweeters.png")
-gtsave(top_inout_shifters, filename = "figures/individuals/top_inout_shifters.png")
+gtsave(top_total_deficit_tweeters, filename = "figures/individuals/t1_top_total_deficit_tweeters.png")
+gtsave(top_pct_deficit_tweeters, filename = "figures/individuals/t2_top_pct_deficit_tweeters.png")
+gtsave(top_inout_shifters, filename = "figures/individuals/t3_top_inout_shifters.png")

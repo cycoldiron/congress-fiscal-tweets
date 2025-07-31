@@ -75,5 +75,5 @@ all_tweets_final_index <- all_tweets_final_index %>%
   )
 
 # === Save Final Dataset ===
-save(all_tweets_final_index,
+save(all_tweets_final_index, tweets_monthly,
      file = "data/processed/05_full_tweets_with_indices.RData")

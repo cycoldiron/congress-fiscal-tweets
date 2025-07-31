@@ -83,13 +83,6 @@ wrapped_table <- modelsummary(
 # === Save as PNG ===
 gtsave(
   wrapped_table,
-  filename = "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/p3_deficit_power_comparison_condensed_final.png"
+  filename = "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/deficit_power_comparison_condensed_final.png"
 )
 
-
-
-# === Save it as PNG ===
-gtsave(
-  wrapped_table,
-  filename = "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/p3_deficit_power_comparison_condensed.png"
-)

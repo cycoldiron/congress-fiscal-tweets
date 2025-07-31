@@ -58,5 +58,5 @@ summary_table_block <- summary_df_block %>%
 # === STEP 3: Save as PNG ===
 gtsave(
   summary_table_block,
-  filename = "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/p3_deficit_summary_grouped_block_fixed.png"
+  filename = "/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/t1_deficit_summary_grouped_block_fixed.png"
 )
