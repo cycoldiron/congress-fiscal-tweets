@@ -11,10 +11,9 @@ load("data/processed/04_econ_indicators_historical.Rdata")  # loads: congress_ap
 # === Prepare and Clean Tweet Dates ===
 all_tweets_final_index <- all_tweets_final %>%
   mutate(
-    tweet_date = ym(tweet_date),                     # FIX: parse "YYYY-MM" safely
-    tweet_month = floor_date(tweet_date, "month")    # safe for joins
+    tweet_date = ym(tweet_date),
+    tweet_month = floor_date(tweet_date, "month")
   )
-
 
 # === Process power_status and define gov_type ===
 power_status_date <- power_status %>%
@@ -73,6 +72,23 @@ all_tweets_final_index <- all_tweets_final_index %>%
         (party == senate_control)
     ) >= 2
   )
+
+# === Assign Leadership Role Based on Name and Time ===
+all_tweets_final_index <- all_tweets_final_index %>%
+  mutate(
+    leadership_role = case_when(
+      full_name == "Mitch McConnell" & tweet_date >= as.Date("2017-01-03") & tweet_date < as.Date("2021-01-20") ~ "Senate Majority Leader",
+      full_name == "Mitch McConnell" & tweet_date >= as.Date("2021-01-20") & tweet_date < as.Date("2023-01-03") ~ "Senate Minority Leader",
+      full_name == "Chuck Schumer" & tweet_date >= as.Date("2017-01-03") & tweet_date < as.Date("2021-01-20") ~ "Senate Minority Leader",
+      full_name == "Chuck Schumer" & tweet_date >= as.Date("2021-01-20") & tweet_date < as.Date("2023-01-03") ~ "Senate Majority Leader",
+      full_name == "Nancy Pelosi" & tweet_date >= as.Date("2017-01-03") & tweet_date < as.Date("2019-01-03") ~ "House Minority Leader",
+      full_name == "Nancy Pelosi" & tweet_date >= as.Date("2019-01-03") & tweet_date < as.Date("2023-01-03") ~ "House Majority Leader",
+      full_name == "Paul Ryan" & tweet_date >= as.Date("2017-01-03") & tweet_date < as.Date("2019-01-03") ~ "House Majority Leader",
+      full_name == "Kevin McCarthy" & tweet_date >= as.Date("2019-01-03") & tweet_date < as.Date("2023-01-03") ~ "House Minority Leader",
+      TRUE ~ "Rank-and-File"
+    )
+  )
+
 
 # === Save Final Dataset ===
 save(all_tweets_final_index, tweets_monthly,
