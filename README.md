@@ -20,7 +20,6 @@ It explores how deficit-related rhetoric shifts with partisan control, major leg
 
 ## Author
 
-Cy Coldiron 
-UC Santa Barbara
+Cy Coldiron, UC Santa Barbara
 Statistics and Data Science & Economics 
 Undergraduate Student
