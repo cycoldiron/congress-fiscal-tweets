@@ -28,10 +28,13 @@ This research investigates:
 
 ```text
 data/
-├── raw/                # Raw JSON files (2017–2023 daily tweets)
-├── processed/          # Cleaned and merged .RData files
+├── raw/                          # Raw economic data (e.g., deficit, interest rates, congressional approval)
+├── processed/                    # Cleaned and merged .RData files used for analysis
+├── external/                     # Metadata on congressional Twitter accounts
+│   ├── congress_115_116_117/     # Session-specific metadata (e.g., handles, parties, chamber)
+│   └── congress_aggregated/      # Combined metadata across congressional sessions
 
-scripts/
+r_scripts/
 ├── R scripts for cleaning, analysis, and plotting
 
 python_scripts/
