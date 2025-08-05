@@ -25,8 +25,25 @@ This research investigates:
 ---
 
 ## 📁 Project Structure
+
+```text
 data/
-<pre> ```text data/ ├── raw/ # Raw JSON files (2017–2023 daily tweets) ├── processed/ # Cleaned and merged .RData files scripts/ ├── R scripts for cleaning, analysis, and plotting python_scripts/ ├── Python scripts for tweet labeling and preprocessing figures/ ├── Final visualizations and charts results/ ├── Summary tables, regression outputs, publication material ``` </pre>
+├── raw/                # Raw JSON files (2017–2023 daily tweets)
+├── processed/          # Cleaned and merged .RData files
+
+scripts/
+├── R scripts for cleaning, analysis, and plotting
+
+python_scripts/
+├── Python scripts for tweet labeling and preprocessing
+
+figures/
+├── Final visualizations and charts
+
+results/
+├── Summary tables, regression outputs, publication material
+```
+
 
 ---
 
