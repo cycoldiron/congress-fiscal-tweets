@@ -84,7 +84,7 @@ Please cite both this project and the original repositories if reusing or extend
 
 ---
 
-## 👤 Author
+## 👤 Author 
 
 **Cy Coldiron**  
 UC Santa Barbara — Statistics & Data Science / Economics  
