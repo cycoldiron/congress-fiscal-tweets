@@ -7,3 +7,9 @@ data/external/tweet_summary_raw_python.csv
 .DS_Store
 .DS_Store
 .DS_Store
+
+# OS cruft
+.DS_Store
+# Derived artifacts
+models/
+data/processed/*.rds
