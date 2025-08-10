@@ -1,5 +1,7 @@
 source("r_scripts/03a_setup.R")
 source("r_scripts/utils_gt.R")
+source("r_scripts/14b_member_month_join.R")
+
 
 m_mm_main  <- readRDS("models/m_mm_main.rds")
 m_mm_phase <- readRDS("models/m_mm_phase.rds")

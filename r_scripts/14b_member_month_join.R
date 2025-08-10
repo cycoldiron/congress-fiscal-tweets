@@ -52,7 +52,10 @@ tweets_monthly_with_leg <- tweets_monthly %>%
 
 tweets_monthly_with_leg <- tweets_monthly_with_leg %>%
   mutate(
-    covid_window = as.integer(any_CARES == 1L | any_PPP_HCE == 1L)
+    covid_window = as.integer(any_CARES == 1L | any_PPP_HCE == 1L),
+    deficit_reducing = as.integer(sum_deficit_bil > 0)   # <-- add here
   )
+saveRDS(tweets_monthly_with_leg, "data/processed/tweets_monthly_with_leg.rds")
+
 
 saveRDS(tweets_monthly_with_leg, "data/processed/tweets_monthly_with_leg.rds")
