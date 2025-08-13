@@ -1,103 +1,78 @@
 # Congress Fiscal Tweets
 
-This project analyzes how U.S. members of Congress discuss the **federal deficit** on Twitter from June 2017 to January 2023.  
-It explores how deficit-related rhetoric shifts with **partisan control**, **major legislation**, and **macroeconomic conditions**.
+This project analyzes how members of the U.S. Congress talk about the **federal deficit** on Twitter (Jun 2017–Jan 2023).
+It tracks how rhetoric shifts with **party control**, **major legislation**, **macroeconomic conditions**, and
+**leadership status** (e.g., Majority/Minority Leaders).
 
 ---
 
 ## 🔍 Overview
 
-This research investigates:
-
-- How fiscal rhetoric changes based on **party affiliation** and **power status** (majority/minority)
-- Whether messaging aligns with shifts in the **deficit**, **CBO projections**, and **economic policy**
-- Patterns in **tweet volume**, **language**, and **messaging strategies** around key legislative events (TCJA, IRA etc)
-
----
-
-## ⚙️ Features
-
-- 🐍 Python-based classification of ~3.6M congressional tweets for deficit-related content  
-- 📊 R-based data analysis and visualization pipeline  
-- 🏛️ Integration of congressional metadata (party, chamber, leadership, power status)  
-- 📈 Merged with external economic data (CBO estimates, interest rates, CPI, approval data)
+- Party differences in deficit tweeting and how gaps evolve during **legislative windows** (e.g., TCJA, IRA).
+- How gaps change with **relative power** (presidency/chambers; trifectas; control combos).
+- Whether **bill partisanship** and **fiscal scale** matter more **inside** legislative windows.
+- How **party leaders** (Majority/Minority leaders) compare to the rest of their caucus over time.
 
 ---
 
-## 📁 Project Structure
+## ⚙️ What’s in this repo
 
-```text
-data/
-├── raw/                          # Raw economic data (e.g., deficit, interest rates, congressional approval)
-├── processed/                    # Cleaned and merged .RData files used for analysis
-├── external/                     # Metadata on congressional Twitter accounts
-│   ├── congress_115_116_117/     # Session-specific metadata (e.g., handles, parties, chamber)
-│   └── congress_aggregated/      # Combined metadata across congressional sessions
+**R scripts (`/r_scripts`)** – 20+ scripts grouped as:
+- **00–12: data build & joins** (cleaning tweets, merging congressional & macro data, monthly panels).
+- **13–15: legislative windows pipeline** (constructs bill/window flags and member–month dataset).
+- **18–21: descriptive analyses** (leadership, time trends, party summaries).
+- **22b & 22c: modeling & tables** (governance-context models and publication tables).
 
-r_scripts/
-├── R scripts for cleaning, analysis, and plotting
+**Python scripts (`/python_scripts`)** – pre-processing and deficit classifiers for ~3.5M tweets.
 
-python_scripts/
-├── Python scripts for tweet labeling and preprocessing
-
-figures/
-├── Final visualizations and charts
-
-results/
-├── Summary tables, regression outputs, publication material
-```
-
+**Figures & results**:
+- `results/` – regression tables **r3–r14** (e.g., majority context, mechanisms, scenario matrices).
+- `figures/summary/` – paper-ready figures;
+- `figures/economic_indicators/` – CPI, rates, CBO, and tweet-volume overlays;
+- `figures/leadership/` – Majority/Minority leader comparisons;
+- `figures/individuals/` – member-level profiles.
 
 ---
 
-## 📚 Data Provenance
+## 🧪 Key analyses (high level)
 
-This project uses tweet data originally collected by the open-source [**Tweets of Congress**](https://github.com/alexlitel/congresstweets) repository by Alex Litel.
-
-- The source repo includes one JSON file per day from June 2017 through early 2023
-- Tweets were posted by official, campaign, party, and committee accounts
-- Original data collected via the [Congressional Tweet Automator](https://github.com/alexlitel/congressional-tweet-automator)
-- Congressional metadata (e.g., account type, office status, name) sourced from the Automator’s `historical-users-filtered.json`
-
-**Note**: This project filters and modifies the original data to include only members of Congress and applies additional labels and transformations for research use.
+- **Majority context**: GOP–Dem gaps vary sharply with who governs. Trifecta & control-combo models
+  show opposite patterns in legislative vs. non-legislative months.
+- **Mechanisms**: Bill **partisanship** amplifies the GOP–Dem gap during legislative windows; **scale** is weaker.
+- **Leadership**: Leadership accounts show distinct, more strategic timing relative to rank-and-file.
 
 ---
 
-## 📅 Data Coverage
+## 📚 Data
 
-- **Time period**: June 21, 2017 – January 31, 2023  
-- **Accounts monitored**: 1,000+ congressional and affiliated Twitter accounts  
-- **Total tweets**: ~3.5 million  
-- **Granularity**: Daily JSON files  
+- Tweets from **Tweets of Congress** by Alex Litel; congressional metadata from the
+  Congressional Tweet Automator. See links below.
+- Time coverage: **2017-06-21 → 2023-01-31**; ~**3.5M** tweets; 1k+ accounts.
 
 ---
 
-## 🛠️ Data Pipeline Summary
+## 🛠️ Repro (abridged)
 
-1. Extract and clean JSON files from `/data/`
-2. Filter to member accounts using metadata from the Automator repo
-3. Classify tweets as deficit-related using keyword and regex matching (Python)
-4. Merge tweets with congressional and macroeconomic metadata (R)
-5. Aggregate and visualize results using `ggplot2` and `gt`
+1. Run `r_scripts/03a_setup.R` to load packages/paths.
+2. Build legislative windows & panel: `13b_legislative_windows_build.R`, then `14b_member_month_join.R`.
+3. Fit models: `22b_legislative_models.R`.
+4. Export tables/figures: `22c_legislation_tables.R`.
 
 ---
 
 ## ⚖️ License & Attribution
 
-- This project is open-source and available under the MIT License.
-- Tweet data and congressional metadata are sourced from:
-  - [`congresstweets`](https://github.com/alexlitel/congresstweets) (MIT License)
-  - [`congressional-tweet-automator`](https://github.com/alexlitel/congressional-tweet-automator)
-
-Portions of this repository are derived from the above sources in compliance with their open-source licenses.  
-Please cite both this project and the original repositories if reusing or extending the analysis.
+- MIT License.
+- Data & metadata from:
+  - **Tweets of Congress**: https://github.com/alexlitel/congresstweets
+  - **Congressional Tweet Automator**: https://github.com/alexlitel/congressional-tweet-automator
+  
+Please cite this repo and the originals when reusing the data or code.
 
 ---
 
-## 👤 Author 
+## 👤 Author
 
-**Cy Coldiron**  
-UC Santa Barbara — Statistics & Data Science / Economics  
-[LinkedIn](https://www.linkedin.com/in/cycoldiron/) |[Email](coldiron@ucsb.edu)
+**Cy Coldiron** · UC Santa Barbara — Statistics & Data Science / Economics
 
-
+[LinkedIn](https://www.linkedin.com/in/cycoldiron/) · [Email](mailto:coldiron@ucsb.edu)
