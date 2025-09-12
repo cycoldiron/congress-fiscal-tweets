@@ -1,0 +1,214 @@
+---
+title: "Regression Specifications & Interpretations"
+format:
+  html:
+    toc: true
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+## Conventions
+
+- Outcome \(Y_{it}\): share of member \(i\)'s tweets in month \(t\) that are deficit-related (r3–r12).  
+  Extensive-margin models (r13–r14) use \(1\{Y_{it}>0\}\).
+- All models are member–month **logits** with **member fixed effects** \(\alpha_i\) and **month fixed effects** \(\gamma_t\); SEs two-way clustered by **member** and **month**.
+- Indicators & covariates: GOP\(_i\), LegWin\(_t\), PartisanWin\(_t\), COVID\(_t\), IRA\(_t\), TweetPart\(_t\) (z), DefMag\(_t\) (z), control\_combo\(_t\), gop\_trifecta\(_t\).
+
+---
+
+## r3 — Deficit Tweeting: Legislative Windows, Partisanship & Power
+
+**Baseline:** Democrats, outside legislative windows.
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{LegWin}_t 
++ \beta_3 \,\text{PartisanWin}_t \\
+&+ \beta_4 \,\text{COVID}_t 
++ \beta_5 \,\text{IRA}_t 
++ \beta_6 \,\text{TweetPart}_t 
++ \beta_7 \,\text{DefMag}_t \\
+&+ \beta_8 (\text{GOP}_i \times \text{LegWin}_t) 
++ \beta_9 (\text{GOP}_i \times \text{PartisanWin}_t) \\
+&+ \beta_{10} (\text{GOP}_i \times \text{COVID}_t) 
++ \beta_{11} (\text{GOP}_i \times \text{IRA}_t) \\
+&+ \beta_{12} (\text{GOP}_i \times \text{TweetPart}_t) 
++ \beta_{13} (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r4 — Pre/Post/Passage Effects
+
+**Baseline:** Democrats, outside legislative windows.
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{PreWin}_t 
++ \beta_3 \,\text{PassageWin}_t 
++ \beta_4 \,\text{PostWin}_t \\
+&+ \beta_5 \,\text{PartisanWin}_t 
++ \beta_6 \,\text{TweetPart}_t 
++ \beta_7 \,\text{DefMag}_t \\
+&+ \beta_8 (\text{GOP}_i \times \text{PreWin}_t) 
++ \beta_9 (\text{GOP}_i \times \text{PassageWin}_t) \\
+&+ \beta_{10} (\text{GOP}_i \times \text{PostWin}_t) 
++ \beta_{11} (\text{GOP}_i \times \text{PartisanWin}_t) \\
+&+ \beta_{12} (\text{GOP}_i \times \text{TweetPart}_t) 
++ \beta_{13} (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r5 — Majority Context: Presidency (LegWin × GOP)
+
+**Baseline:** Democrats, presidency majority, outside legislative windows.
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{LegWin}_t 
++ \beta_3 \,\text{MinorityPres}_t \\
+&+ \beta_4 (\text{GOP}_i \times \text{LegWin}_t) 
++ \beta_5 (\text{GOP}_i \times \text{LegWin}_t \times \text{MinorityPres}_t) \\
+&+ \beta_6 (\text{GOP}_i \times \text{PartisanWin}_t) 
++ \beta_7 (\text{GOP}_i \times \text{COVID}_t) \\
+&+ \beta_8 (\text{GOP}_i \times \text{IRA}_t) 
++ \beta_9 (\text{GOP}_i \times \text{TweetPart}_t) \\
+&+ \beta_{10} (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r6 — Majority Context: Chamber + Presidency
+
+**Baseline:** Democrats, no control, outside legislative windows.  
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{control\_combo}_t \\
+&+ \beta_3 (\text{GOP}_i \times \text{LegWin}_t) 
++ \beta_4 (\text{LegWin}_t \times \text{control\_combo}_t) \\
+&+ \beta_5 (\text{GOP}_i \times \text{PartisanWin}_t) 
++ \beta_6 (\text{GOP}_i \times \text{COVID}_t) \\
+&+ \beta_7 (\text{GOP}_i \times \text{IRA}_t) 
++ \beta_8 (\text{GOP}_i \times \text{TweetPart}_t) \\
+&+ \beta_9 (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r7 — Mechanism: Partisanship × Legislative Windows
+
+**Baseline:** Democrats, outside legislative windows, mean bill partisanship.
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{LegWin}_t 
++ \beta_3 \,\text{TweetPart}_t \\
+&+ \beta_4 (\text{GOP}_i \times \text{TweetPart}_t) 
++ \beta_5 (\text{GOP}_i \times \text{LegWin}_t) \\
+&+ \beta_6 (\text{GOP}_i \times \text{LegWin}_t \times \text{TweetPart}_t) \\
+&+ \beta_7 (\text{GOP}_i \times \text{PartisanWin}_t) 
++ \beta_8 (\text{GOP}_i \times \text{COVID}_t) \\
+&+ \beta_9 (\text{GOP}_i \times \text{IRA}_t) 
++ \beta_{10} (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r8 — Mechanism: Fiscal Scale × Legislative Windows
+
+**Baseline:** Democrats, outside legislative windows, mean deficit magnitude.
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{LegWin}_t 
++ \beta_3 \,\text{DefMag}_t \\
+&+ \beta_4 (\text{GOP}_i \times \text{DefMag}_t) 
++ \beta_5 (\text{GOP}_i \times \text{LegWin}_t) \\
+&+ \beta_6 (\text{GOP}_i \times \text{LegWin}_t \times \text{DefMag}_t) \\
+&+ \beta_7 (\text{GOP}_i \times \text{PartisanWin}_t) 
++ \beta_8 (\text{GOP}_i \times \text{COVID}_t) \\
+&+ \beta_9 (\text{GOP}_i \times \text{IRA}_t) 
++ \beta_{10} (\text{GOP}_i \times \text{TweetPart}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r9 — Who Governs? GOP vs Dem Under Trifectas
+
+**Baseline:** Democratic trifecta, outside legislative windows.  
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t
+&+ \beta_1 \,\text{GOP}_i 
++ \beta_2 \,\text{LegWin}_t 
++ \beta_3 \,\text{gop\_trifecta}_t \\
+&+ \beta_4 (\text{GOP}_i \times \text{LegWin}_t) 
++ \beta_5 (\text{GOP}_i \times \text{gop\_trifecta}_t) \\
+&+ \beta_6 (\text{GOP}_i \times \text{LegWin}_t \times \text{gop\_trifecta}_t) \\
+&+ \beta_7 (\text{GOP}_i \times \text{PartisanWin}_t) 
++ \beta_8 (\text{GOP}_i \times \text{IRA}_t) \\
+&+ \beta_9 (\text{GOP}_i \times \text{TweetPart}_t) 
++ \beta_{10} (\text{GOP}_i \times \text{DefMag}_t) 
++ \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r13 — Extensive Margin (Binary, from r9)
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(1\{Y_{it} > 0\}) = \alpha_i + \gamma_t
+&+ \text{[same covariates as r9 with corresponding betas]} + \varepsilon_{it}
+\end{aligned}
+$$
+
+---
+
+## r14 — Extensive Margin (Binary, from r6)
+
+**Model**
+$$
+\begin{aligned}
+\operatorname{logit}(1\{Y_{it} > 0\}) = \alpha_i + \gamma_t
+&+ \text{[same covariates as r6 with corresponding betas]} + \varepsilon_{it}
+\end{aligned}
+$$

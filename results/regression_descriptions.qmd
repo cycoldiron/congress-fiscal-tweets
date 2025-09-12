@@ -1,0 +1,142 @@
+---
+title: "Regression Specifications & Interpretations"
+format:
+  html:
+    toc: true
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+editor: source
+---
+
+\`\`\`{=latex} \newcommand{\logit}{\operatorname{logit}}
+
+## r3 — Deficit Tweeting: Legislative Windows, Partisanship & Power
+
+**Baseline:** Democrats, outside legislative windows.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+β1GOPi+β2LegWint+β3PartisanWint+β4COVIDt+β5IRAt+β6TweetPartt+β7DefMagt+β8(GOPi ⁣× ⁣LegWint)+β9(GOPi ⁣× ⁣PartisanWint)+β10(GOPi ⁣× ⁣COVIDt)+β11(GOPi ⁣× ⁣IRAt)+β12(GOPi ⁣× ⁣TweetPartt)+β13(GOPi ⁣× ⁣DefMagt)+εit.\\logit(Yit​)=αi​+γt​+β1​GOPi​+β2​LegWint​+β3​PartisanWint​+β4​COVIDt​+β5​IRAt​+β6​TweetPartt​+β7​DefMagt​+β8​(GOPi​×LegWint​)+β9​(GOPi​×PartisanWint​)+β10​(GOPi​×COVIDt​)+β11​(GOPi​×IRAt​)+β12​(GOPi​×TweetPartt​)+β13​(GOPi​×DefMagt​)+εit​.
+
+**Notes (ORs):** GOP×LegWin ≈ 1.18 n.s.; GOP×PartisanWin ≈ 0.18\*\*; GOP×TweetPart ≈ 1.67\*\*.
+
+------------------------------------------------------------------------
+
+## r4 — Pre/Post/Passage Effects
+
+**Baseline:** Democrats, outside legislative windows.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+PreWint+PassageWint+PostWint+PartisanWint+TweetPartt+DefMagt+(GOPi ⁣× ⁣each of the above)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+PreWint​+PassageWint​+PostWint​+PartisanWint​+TweetPartt​+DefMagt​+(GOPi​×each of the above)+εit​.
+
+**Notes:** GOP×(pre/passage/post) ≈ 0.6–1.1 n.s.; GOP×PartisanWin ≈ 0.19\*\*; GOP×TweetPart ≈ 1.72\*\*.
+
+------------------------------------------------------------------------
+
+## r5 — Majority Context: Presidency (LegWin × GOP)
+
+**Baseline:** Democrats, **presidency majority**, outside legislative windows.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+LegWint+MinorityPrest+(GOP ⁣× ⁣LegWin)+(GOP ⁣× ⁣LegWin ⁣× ⁣MinorityPres)+(GOP ⁣× ⁣PartisanWin)+(GOP ⁣× ⁣COVID)+(GOP ⁣× ⁣IRA)+(GOP ⁣× ⁣TweetPart)+(GOP ⁣× ⁣DefMag)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+LegWint​+MinorityPrest​+(GOP×LegWin)+(GOP×LegWin×MinorityPres)+(GOP×PartisanWin)+(GOP×COVID)+(GOP×IRA)+(GOP×TweetPart)+(GOP×DefMag)+εit​.
+
+**Notes:** MinorityPres ≈ 1.37\*; GOP×LegWin ≈ 0.24\*\*\*; triple with MinorityPres ≈ 7.43\*\*\* (net in Dem-pres months ≈ 1.8); GOP×PartisanWin ≈ 2.31\*; GOP×TweetPart ≈ 0.31\*\*\*.
+
+------------------------------------------------------------------------
+
+## r6 — Majority Context: Chamber + Presidency (LegWin × GOP)
+
+**Baseline:** Democrats, **no control**, outside legislative windows.\
+control_combo∈{none,H only,H+S+P (trifecta)}control_combo∈{none,H only,H+S+P (trifecta)}.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+control_combot+(GOP ⁣× ⁣LegWin)+(LegWin ⁣× ⁣control_combo)+(GOP ⁣× ⁣PartisanWin)+(GOP ⁣× ⁣COVID)+(GOP ⁣× ⁣IRA)+(GOP ⁣× ⁣TweetPart)+(GOP ⁣× ⁣DefMag)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+control_combot​+(GOP×LegWin)+(LegWin×control_combo)+(GOP×PartisanWin)+(GOP×COVID)+(GOP×IRA)+(GOP×TweetPart)+(GOP×DefMag)+εit​.
+
+**Notes:** Outside windows GOP(no control) ≈ 1.99\*\*\*; LegWin×H only ≈ 5.79\*\*\*; LegWin×trifecta ≈ 0.45\*\*\*; GOP×PartisanWin ≈ 2.42\*; GOP×TweetPart ≈ 0.29\*\*\*.
+
+------------------------------------------------------------------------
+
+## r7 — Mechanism: Does Partisanship Bite Only in Legislative Windows?
+
+**Baseline:** Democrats, outside legislative windows, mean bill partisanship.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+LegWint+TweetPartt+(GOP ⁣× ⁣TweetPart)+(GOP ⁣× ⁣LegWin)+(GOP ⁣× ⁣LegWin ⁣× ⁣TweetPart)+(GOP ⁣× ⁣PartisanWin)+(GOP ⁣× ⁣COVID)+(GOP ⁣× ⁣IRA)+(GOP ⁣× ⁣DefMag)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+LegWint​+TweetPartt​+(GOP×TweetPart)+(GOP×LegWin)+(GOP×LegWin×TweetPart)+(GOP×PartisanWin)+(GOP×COVID)+(GOP×IRA)+(GOP×DefMag)+εit​.
+
+**Notes:** GOP×TweetPart ≈ 1.67\*\*; GOP×PartisanWin ≈ 0.18\*\*; GOP×LegWin ≈ 1.18 n.s.
+
+------------------------------------------------------------------------
+
+## r8 — Mechanism: Does Fiscal Scale Matter Only in Legislative Windows?
+
+**Baseline:** Democrats, outside legislative windows, mean deficit magnitude.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+LegWint+DefMagt+(GOP ⁣× ⁣DefMag)+(GOP ⁣× ⁣LegWin)+(GOP ⁣× ⁣LegWin ⁣× ⁣DefMag)+(GOP ⁣× ⁣PartisanWin)+(GOP ⁣× ⁣COVID)+(GOP ⁣× ⁣IRA)+(GOP ⁣× ⁣TweetPart)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+LegWint​+DefMagt​+(GOP×DefMag)+(GOP×LegWin)+(GOP×LegWin×DefMag)+(GOP×PartisanWin)+(GOP×COVID)+(GOP×IRA)+(GOP×TweetPart)+εit​.
+
+**Notes:** GOP×DefMag ≈ 0.97 n.s.; GOP×PartisanWin ≈ 0.16\*\*.
+
+------------------------------------------------------------------------
+
+## r9 — Who Governs? GOP vs Dem Under Trifectas
+
+**Baseline:** **Democratic trifecta**, outside legislative windows.\
+gop_trifecta=1gop_trifecta=1 if GOP holds Presidency+House+Senate.
+
+**Model**
+
+\operatorname{logit}(Yit)=αi+γt+GOPi+LegWint+gop_trifectat+(GOP ⁣× ⁣LegWin)+(GOP ⁣× ⁣gop_trifecta)+(GOP ⁣× ⁣LegWin ⁣× ⁣gop_trifecta)+(GOP ⁣× ⁣PartisanWin)+(GOP ⁣× ⁣IRA)+(GOP ⁣× ⁣TweetPart)+(GOP ⁣× ⁣DefMag)+εit.\\logit(Yit​)=αi​+γt​+GOPi​+LegWint​+gop_trifectat​+(GOP×LegWin)+(GOP×gop_trifecta)+(GOP×LegWin×gop_trifecta)+(GOP×PartisanWin)+(GOP×IRA)+(GOP×TweetPart)+(GOP×DefMag)+εit​.
+
+**Notes:** GOP (Dem trifecta, non-leg) ≈ 3.99\*\*\*; GOP×LegWin (Dem trifecta) ≈ 1.85\*\*; GOP×gop_trifecta ≈ 0.28\*\*\*; GOP×LegWin×gop_trifecta ≈ 0.21\*\*\*.
+
+------------------------------------------------------------------------
+
+## r11 — Scenario ORs (post-estimates from r9)
+
+Computed contrasts from r9:
+
+-   Dem trifecta: non-leg 3.99\*; leg 7.38\*
+
+-   GOP trifecta: non-leg 1.12 (n.s.); leg 0.44\*
+
+------------------------------------------------------------------------
+
+## r12 — Scenario ORs (post-estimates from r6)
+
+Computed contrasts from r6 (shown for “No control”):
+
+-   No control: non-leg 1.99\*; leg 1.66\*
+
+------------------------------------------------------------------------
+
+## r13 — Extensive Margin (Binary, from r9)
+
+**Outcome:** 1{Yit\>0}1{Yit​\>0}.
+
+**Model**
+
+\operatorname{logit}(1{Yit\>0})=αi+γt+\[same covariates as r9\]+εit.\\logit(1{Yit​\>0})=αi​+γt​+\[same covariates as r9\]+εit​.
+
+**Scenario ORs:**\
+Dem trifecta: non-leg 13.64\*; leg 37.62\*\
+GOP trifecta: non-leg 1.07; leg 0.22\*
+
+------------------------------------------------------------------------
+
+## r14 — Extensive Margin (Binary, from r6)
+
+**Outcome:** 1{Yit\>0}1{Yit​\>0}.
+
+**Model**
+
+\operatorname{logit}(1{Yit\>0})=αi+γt+\[same covariates as r6\]+εit.\\logit(1{Yit​\>0})=αi​+γt​+\[same covariates as r6\]+εit​.
+
+**Scenario ORs:**\
+No control: non-leg 3.53\*; leg 2.57
