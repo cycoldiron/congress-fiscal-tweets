@@ -10,3 +10,11 @@ data/external/tweet_summary_raw_python.csv
 models/
 data/processed/*.rds
 **/.DS_Store
+
+# macOS
+.DS_Store
+results/.DS_Store
+
+# R session history
+.Rapp.history
+results/good_tables/.Rapp.history
