@@ -8,25 +8,33 @@ suppressPackageStartupMessages({
 })
 
 # ---- Pretty labels used in tables ----
+# ---- Pretty labels used in tables ----
 label_map <- c(
-  # add this entry to label_map (anywhere in the block)
+  # r5 keys
   "rep:minority_pres"                    = "GOP × Minority presidency",
-  "rep:leg_period"                        = "GOP × Legislative window",
-  "rep:covid_window"                      = "GOP × COVID window",
-  "rep:any_IRA_CHIPS"                     = "GOP × IRA/CHIPS window",
-  "rep:mp_z"                              = "GOP × Bill partisanship (z)",
-  "rep:def_z"                             = "GOP × Fiscal magnitude (z)",
-  "rep:deficit_reducing"                  = "GOP × Deficit-reducing month",
-  "rep:leg_period:minority_pres"          = "GOP × Legislative window × Minority presidency",
-  "rep:leg_period:control_combo::H only"  = "GOP × Legislative window × House-only",
-  "rep:leg_period:control_combo::S only"  = "GOP × Legislative window × Senate-only",
-  "rep:leg_period:control_combo::P only"  = "GOP × Legislative window × Presidency-only",
-  "rep:leg_period:control_combo::H+S"     = "GOP × Legislative window × House+Senate",
-  "rep:leg_period:control_combo::H+P"     = "GOP × Legislative window × House+Presidency",
-  "rep:leg_period:control_combo::S+P"     = "GOP × Legislative window × Senate+Presidency",
-  "rep:leg_period:control_combo::H+S+P"   = "GOP × Legislative window × Trifecta",
-  "rep:leg_period:gop_trifecta::1"        = "GOP × Legislative window × GOP trifecta"
+  "rep:leg_period:minority_pres"         = "GOP × Legislative window × Minority presidency",
+  
+  # common keys
+  "rep:leg_period"                       = "GOP × Legislative window",
+  "rep:covid_window"                     = "GOP × COVID window",
+  "rep:any_IRA_CHIPS"                    = "GOP × IRA/CHIPS window",
+  "rep:mp_z"                             = "GOP × Bill partisanship (z)",
+  "rep:def_z"                            = "GOP × Fiscal magnitude (z)",
+  "rep:deficit_reducing"                 = "GOP × Deficit-reducing month",
+  
+  # r6 NEW: government-centric modifiers (gov_combo)
+  "rep:leg_period:gov_combo::Dem trifecta" = "GOP × Legislative window × Dem trifecta",
+  "rep:leg_period:gov_combo::GOP S+P"      = "GOP × Legislative window × GOP Senate+Presidency",
+  "rep:leg_period:gov_combo::GOP H+P"      = "GOP × Legislative window × GOP House+Presidency",
+  "rep:leg_period:gov_combo::GOP H+S"      = "GOP × Legislative window × GOP House+Senate",
+  "rep:leg_period:gov_combo::Dem S+P"      = "GOP × Legislative window × Dem Senate+Presidency",
+  "rep:leg_period:gov_combo::Dem H+P"      = "GOP × Legislative window × Dem House+Presidency",
+  "rep:leg_period:gov_combo::Dem H+S"      = "GOP × Legislative window × Dem House+Senate",
+  
+  # r9 keys
+  "rep:leg_period:gop_trifecta::1"       = "GOP × Legislative window × GOP trifecta"
 )
+
 
 pretty_term <- function(x){
   out <- label_map[x]

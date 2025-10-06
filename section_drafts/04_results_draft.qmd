@@ -1,0 +1,264 @@
+---
+title: "Twitter and the Politics of the Federal Deficit"
+subtitle: "Results (Draft)"
+author:
+  - name: "Cy Coldiron"
+    affiliations:
+      - name: "University of California, Santa Barbara"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    geometry: margin=1in
+    number-sections: true
+    toc: true
+    keep-tex: true
+    default-image-extension: png
+
+# Where to find figures/assets
+resource-path:
+  - /Users/cycoldiron/Desktop/congress-fiscal-tweets
+  - .
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+header-includes: |
+  \usepackage{graphicx}
+  \DeclareGraphicsExtensions{.png,.pdf,.jpg}
+  \usepackage{float}
+  \usepackage[section]{placeins}
+---
+
+```{r}
+knitr::opts_chunk$set(out.width = "0.85\\linewidth")
+# REMOVE any here::here() / root.dir tinkering
+
+
+```
+
+::: callout-important
+**Writing sample disclaimer.** This PDF contains a draft of the *Results* section from the working paper  
+**Twitter and the Politics of the Federal Deficit**. The abstract is included below for context.  
+:::
+
+## Abstract (for context)
+
+A long-held belief in American politics is that elected officials’ concern about the federal deficit is mainly a function of who holds power. Amid deepening polarization, elevated public debt, and the shift of political communication online, it is vital—for voters, policymakers, and public-knowledge institutions—to understand empirically how deficit rhetoric operates in these spaces.  I analyze ~3.6 million tweets from official congressional accounts (June 2017–January 2023), identify deficit-related posts using a two-tier keyword approach, and estimate member–month logistic models linked to leadership roles and legislative windows. My research confirms that deficit rhetoric is rare but fluctuates greatly depending on two contexts: relative institutional power (ie, minority / majority party), and legislative periods (ie, Tax Cuts and Jobs Act, Inflation Reduction Act). These findings contribute to understanding the modern incentive structures and patterns of U.S. political communication strategies, illustrating that deficit rhetoric is less a barometer of underlying fiscal conditions than a tool used to serve political and partisan interests.
+
+\clearpage
+
+
+
+# Macro Trends {#sec-macro}
+
+```{r}
+#| label: fig-timeseries
+#| fig-cap: "Share of congressional tweets about the deficit"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/deficit_tweet_share_with_legislation.png")
+```
+
+@fig-timeseries shows the monthly share of congressional deficit tweets, by party, from June 2017 to January 2023. Consistent with best practices in political science, this paper will represent the Republican Party with red shading and the Democratic Party with blue. Shaded areas indicate legislative periods – defined as the month before, during, and after the passage of a fiscally significant bill. Legislative periods exclude small appropriations, procedural votes, and commemorations.
+
+The baseline deficit tweeting share for both parties is low, generally staying under 1% across the six years, with notable accelerations occurring around legislative periods. Democratic tweeting patterns remain relatively consistent across the six years, with three notable peaks, all during legislative periods: December 2017 (Tax Cuts and Jobs Act), October 2021 (Infrastructure Investment and Jobs Act), and August 2022 (Inflation Reduction Act, CHIPS & Science Act). Republicans, however, demonstrate consistently higher deficit tweeting rates as the minority party, as illustrated in the peaks (2022, 2023) compared to relatively low rates from 2017-2021.
+
+# Economic Indicators
+
+```{r}
+#| label: fig-deficit-vs-indicators
+#| fig-cap: "Deficit tweet share vs 10-year Treasury yield and congressional approval; rescaled."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/g1_deficit_vs_approval_int_panel.png")
+
+
+
+```
+
+```{r}
+#| label: fig-deficit-vs-cpi
+#| fig-cap: "Deficit tweet share vs. U.S. CPI inflation."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/deficit_share_vs_inflation_smoothed.png")
+
+```
+
+\FloatBarrier
+
+@fig-deficit-vs-indicators plots deficit tweet share against the 10-year Treasury yield and congressional approval, both rescaled for comparability. The small correlation coefficients (0.44,  -.07) suggest no discernible linear relationship. In contrast, @fig-deficit-vs-cpi – which plots deficit tweeting against US CPI inflation, reveals a relatively strong positive relationship, as indicated by its large r-value (.78). We will explore several plausible explanations for this correlation in the discussion section.
+
+# Member-Level Patterns
+
+```{r}
+#| label: fig-member-share-by-party
+#| fig-cap: "Share of deficit tweets by party (member-level distribution)."
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_pct_deficit_by_party.png")
+
+```
+
+\FloatBarrier
+
+Deficit tweeting is uncommon across both Deficit tweeting is uncommon across both parties, with the vast majority of members posting fewer than **(1.5%)** of their tweets on the deficit. Democrats display a compact distribution: most fall below **(0.6%)** with no Democratic member exceeding **(2.5%)**. Republicans show greater variability, as illustrated by their distribution's long right tail, which reaches **(4–8%).**
+
+\FloatBarrier
+
+```{r}
+#| label: fig-power-boxplot
+#| fig-cap: "Distribution of deficit tweets by power (boxplot)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/box_party_split_by_power.png")
+
+```
+
+```{r}
+#| label: fig-power-density
+#| fig-cap: "Distribution of deficit tweets by power (density plot)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_split_power.png")
+
+```
+
+```{r}
+#| label: fig-power-summary
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Distribution of deficit tweets by power (table)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/t_quartiles_by_party_power.png")
+
+```
+
+\FloatBarrier
+
+As illustrated by the three figures above, Republicans’ significant right skew stems largely from their tweeting while out of power. For instance, when moving between these contexts, the GOP median tweet share increases five-fold **(0.2% to 1.0%)** and the inter-quartile range from **(0.6%)** to **(1.8%)**. Democrats, by contrast, remain relatively stable across contexts, with only a modest increase in spread and averages when in power. \FloatBarrier
+
+```{r}
+#| label: fig-inout-shifts
+#| fig-cap: "In–out shifts in deficit tweeting (histogram)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_in_minus_out_overlay.png")
+
+
+```
+
+```{r}
+#| label: fig-inout-shifts-faceted
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Faceted in–out shifts in deficit tweeting (histograms by subgroup)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_in_minus_out_faceted.png")
+
+
+```
+
+\FloatBarrier
+
+Histograms of the change in deficit tweeting further highlight these asymmetries. Republicans’ distribution is skewed negative, meaning the party tweets at higher frequencies when out of power. Both figures highlight this trend as the bulk of the GOP falls between **(–5.0%)** and **(+1% )**. Democrats, however, are roughly distributed around zero, indicating consistent levels of deficit tweeting across power status contexts.
+
+These distributions demonstrate three points. First, deficit tweeting is relatively rare for both parties, with average levels rarely exceeding **(+1.5%)**. Second, most outliers – the members who commit **(4-8%)** of their tweets to deficits – are exclusively Republicans. Third, the GOP systematically increases its tweet share when out of power, whereas Democrats show little comparable shift.
+
+# Leadership Analysis
+
+```{r}
+#| label: fig-leadership
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Deficit tweeting by congressional leaders (House and Senate; majority vs. minority roles)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/leadership/leader_deficit_tweets.png")
+
+```
+
+\FloatBarrier
+
+@fig-leadership summarizes deficit tweeting among House and Senate leaders in both majority and minority roles. Tweeting patteerns vary by party and institutional position, with the sharpest contrasts appearing in the Senate. Senator Chuck Schumer tweeted about deficits far more often as Majority Leader **(4.0%)** than as Minority Leader **(1.0%)**, while Senator Mitch McConnell showed the reverse, posting more in the minority **(1.9%)** than the majority **(0.05%)**. Notably, in contrast to Seantor Schumer, her Democratic counterpart, Representative Nancy Pelosi displayed higher rates in the minority **(1.1%)** than as Speaker **(0.5%)**. By comparison, Representatives Kevin McCarthy and Paul Ryan registered very low shares overall, with McCarthy not posting a single deficit-related tweet. \FloatBarrier
+
+# Legislative Context
+
+```{r}
+#| label: fig-deficit-share-windows
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Deficit share within legislative windows."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/tweetlevel_deficit_share_overall.png")
+
+
+```
+
+```{r}
+#| label: fig--deficit-share-by-party
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Deficit share within legislative windows, by party."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/tweetlevel_deficit_share_by_party.png")
+
+
+```
+
+\FloatBarrier
+
+As noted, deficit tweeting is rare across Congress, with only **(0.7%)** of all tweets between 2017 and 2023 mentioning the deficit @fig-deficit-share-windows . Legislative periods – defined by one month before and after bill passage – raise the conditional rate modestly to **(0.9%).** Industrial policy bills – the Inflation Reduction Act (IRA) and CHIPS Act, passed under President Biden – generated the highest levels of deficit tweeting **(1.6%)** among passed legislation. The Tax Cuts and Jobs Act (2017), passed under President Trump, had a deficit tweet share of **(1.2%)** – higher than baseline, but lower than the IRA/CHIPS. 
+
+@fig--deficit-share-by-party decomposes these differences by party. At baseline, Republicans tweet about the deficit more often **(0.8%)** than Democrats **(0.6%)** – a gap that persists across most legislative windows. During the IRA and CHIPS periods, Republicans' tweets accelerated, with deficit mentions at nearly **(2.0%)**, compared to **(1.3%)** among Democrats. However, the TCJA – a partisan GOP tax cut– is a noticeable and stark exception. During these three months, the Democrats' deficit share spikes to **(2.0%)**, while the Republicans' share falls to just **(0.2%)**, reflecting a partisan realignment around a highly divisive bill. In contrast, during the COVID relief period in 2020 – a non-partisan voting context – both parties converged at very low levels **(0.3–0.4%)**.
+
+\FloatBarrier
+
+# Regression Visualization
+
+The following regression models offer a structured approach to examining how institutional, fiscal, and partisan contexts affect the likelihood of congressional deficit tweeting.
+
+Since the specifications rely heavily on interaction terms, it is useful to provide a framework for their interpretation first. The coefficients are expressed as odds ratios: values above one indicate that Republicans are more likely to tweet about deficits relative to Democrats. In contrast, values below one indicate a narrowing of the GOP-Dem gap. Each model includes majority interaction coefficients of the general form GOP × Conditioning Variable. These coefficients indicate whether the baseline Republican–Democratic difference changes under specific conditions (legislative windows, presidential control, chamber control, or trifectas).
+
+```{r}
+#| label: fig-r1-legislative-windows
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+#| fig-cap: "Regression 1: Legislative windows."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r3_legislative_windows_main.png")
+
+```
+
+\FloatBarrier
+
+The baseline model, @fig-r1-legislative-windows, examines partisan differences in legislative periods without conditioning on institutional control. The non-significant results suggest that, when averaged across both Democratic and Republican presidencies, legislative windows themselves do not systematically impact the partisan gap in deficit tweeting.
+
+\FloatBarrier
+
+```{r}
+#| label: fig-r2-presidency
+#| fig-cap: "Regression 2: Majority context (presidency)."
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r5_majority_context_main.png")
+
+
+```
+
+\FloatBarrier
+
+@fig-r2-presidency, which controls for presidential party, substantially changes the results from the preceding specification.
+
+Republicans' odds of tweeting about deficits are nearly double **(OR = 1.87)** when not holding the presidency compared to Democrats under the same condition. In contrast, **GOP × Legislative window (OR = 0.38)** highlights that under a Republican presidency, the partisan gap narrows during legislative months; the odds of the GOP tweeting are **62%** lower than those of Democrats. This pattern aligns with @fig-timeseries, which shows that Republican tweeting contracts while Democratic tweeting spikes as Congress passes the Tax Cuts and Jobs Act in late 2017. However, the three-way interaction coefficient **GOP × Legislative window × Minority presidency** reveals a reversal of this trend **(OR = 4.24)**. Under a Democratic presidency, Republicans' odds of tweeting are more than four times higher than those of Democrats in the same condition.
+
+\FloatBarrier
+
+```{r}
+#| label: fig-r3-chamber-presidency
+#| fig-cap: "Regression 3: Majority context — chamber and presidency combinations."
+#| fig-pos: "H"
+#| out-width: "0.75\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r6_majority_context_combos.png")
+
+```
+
+\FloatBarrier
+
+The third model further examines the role of institutional power by including combinations of chamber control. The regression baseline is Democrats, outside legislative windows, when their party controls nothing (i.e., a minority in the House and Senate; does not hold the Presidency).
+
+**GOP x Legislative window (OR = 0.31)** indicates that during legislative months, when holding a trifecta, Republicans' odds of tweeting are **69%** lower than Democrats. The Tax Cuts and Jobs Act (2017) – a legislative window under a GOP trifecta – is an illustration of this circumstance. Once again, once we condition on a Democratic trifecta, this effect reverses. Relative to the baseline condition (a GOP trifecta), Republicans' odds of deficit tweeting are seven times higher than those of Democrats in the same context. The juxtaposition of these two coefficients **(OR = 0.31)** versus **(OR = 7.00)** illustrates that legislative timing by itself isn't determinative of tweeting gaps – but who governs is. Under Democratic control (i.e., 2021-2023), Republicans accelerate deficit rhetoric during legislative months, while under the GOP trifecta (i.e., 2017-2019), they significantly reduce deficit tweeting frequencies.
+
+## **Bill Partisanship and Fiscal Magnitude**
+
+Across all three specifications, the coefficients for Fiscal magnitude (z) remain consistently insignificant (\~1.0).  These coefficients, based on a normalized measure of a given bill's 10-year CBO estimate, suggest that the fiscal consequences of policy do not systematically impact partisan tweeting gaps.
+
+Bill partisanship (z), however, shows significant contractions in the GOP-Dem tweeting gap once institutional control is included **(OR \~ 0.50)**. In other words, for each one-SD increase in a bill's partisanship score, the GOP-Dem gap contracts by roughly half. Notably, because these variables are continuous (ie, z-scores), the coefficients represent slopes rather than a baseline-specific effect. For example, in the context of bill partisanship, if Republicans are twice as likely as Democrats to tweet at **z = 0 (OR = 2.0)**, that gap narrows to parity at **z = 1 (OR = 1.0).**
+
+\FloatBarrier

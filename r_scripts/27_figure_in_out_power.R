@@ -257,3 +257,78 @@ gtsave(gt_tbl, filename = gt_path, vwidth = 1200, vheight = 700)
 
 # (Optional) also print to viewer
 gt_tbl
+
+
+# ==== UPDATE: Overall density by party (Fig. 4 alt) ====
+meds4 <- df_base |>
+  group_by(party) |>
+  summarise(med = median(pct_debt_tweets, na.rm = TRUE), .groups = "drop")
+
+x_clip4 <- quantile(df_base$pct_debt_tweets, 0.995, na.rm = TRUE)
+
+p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, fill = party, color = party)) +
+  geom_density(alpha = 0.28, adjust = 1.1, linewidth = 0.6) +
+  geom_vline(data = meds4, aes(xintercept = med, color = party),
+             linetype = 2, linewidth = 0.6, show.legend = FALSE) +
+  coord_cartesian(xlim = c(0, x_clip4)) +
+  scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
+  scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
+  scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
+  labs(
+    title    = "Distribution of Members' Deficit Tweet Share by Party (2017–2023)",
+    subtitle = "Dashed lines show party medians.",
+    x = "% of Deficit Tweets",
+    y = "Density",
+    fill = "Party", color = "Party"
+  ) +
+  theme_bw(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, face = "italic"),
+    panel.grid.minor = element_blank()
+  ) +
+  theme_axis_bold
+
+ggsave(file.path(out_dir, "density_pct_deficit_by_party_overall.png"),
+       p_dens_party_overall, width = 10, height = 6.2, dpi = 300)
+
+
+# ==== (9-smoothed) In–Out difference by party: density, faceted (Fig. 9 alt) ====
+# symmetric x-limits based on 99.5% mass
+# ==== UPDATE: In–Out difference density, OVERLAY (Fig. 9 alt) ====
+max_abs <- quantile(abs(df_diff$diff_in_minus_out), 0.995, na.rm = TRUE)
+
+meds_diff <- df_diff |>
+  group_by(party) |>
+  summarise(med = median(diff_in_minus_out, na.rm = TRUE), .groups = "drop")
+
+p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, fill = party, color = party)) +
+  geom_density(alpha = 0.35, adjust = 1.1, linewidth = 0.6) +
+  # (Removed the 0% vertical line)
+  geom_vline(data = meds_diff, aes(xintercept = med, color = party),
+             linetype = 2, linewidth = 0.6, show.legend = FALSE) +
+  coord_cartesian(xlim = c(-max_abs, max_abs)) +
+  scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
+  scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
+  scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
+  labs(
+    title    = "Change in Deficit Tweet Share: In Power – Out of Power (2017–2023)",
+    subtitle = "Dashed lines show party medians.",
+    x = "Percentage point difference",
+    y = "Density", fill = "Party", color = "Party"
+  ) +
+  theme_bw(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, face = "italic"),
+    panel.grid.minor = element_blank()
+  ) +
+  theme_axis_bold
+
+ggsave(file.path(out_dir, "density_in_minus_out_overlay.png"),
+       p_diff_dens_overlay, width = 10, height = 6.2, dpi = 300)
+
+
+
+
+

@@ -1,0 +1,173 @@
+---
+title: "Twitter and the Politics of the Federal Deficit"
+subtitle: "Results (Draft)"
+author:
+  - name: "Cy Coldiron"
+    affiliations:
+      - name: "University of California, Santa Barbara"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    geometry: margin=1in
+    number-sections: true
+    toc: true
+    keep-tex: true
+    fig-pos: "!htbp"
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+
+```{r}
+knitr::opts_chunk$set(out.width = "0.85\\linewidth")
+if (requireNamespace("here", quietly = TRUE)) {
+  knitr::opts_knit$set(root.dir = here::here())
+}
+
+
+```
+
+```{r, include=FALSE}
+must_exist <- c(
+  "/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/deficit_tweet_share_with_legislation.png",
+  "/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/g1_deficit_vs_approval_int_panel.png"
+  # add others here if you want
+)
+bad <- must_exist[!file.exists(must_exist)]
+if (length(bad)) stop("Missing files:\n", paste(bad, collapse = "\n"))
+
+```
+
+# Macro Trends {#sec-macro}
+
+```{r}
+#| label: fig-timeseries
+#| fig-cap: "Time series — percentage of congressional tweets about the deficit (by party), June 2017–Jan 2023. Shaded bands mark legislative windows."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/deficit_tweet_share_with_legislation.png")
+```
+
+@fig-timeseries shows the monthly share of congressional deficit tweets, by party, from June 2017 to January 2023. Consistent with political science best practices, this paper will represent the Republican party with red shading, and the Democratic party with blue. Shaded areas indicate legislative periods – defined as the month before, during and after the passage of a fiscally significant bill, which excludes small appropriations, procedural votes, and commemorations.
+
+Baseline deficit tweeting share for both parties is low – generally staying under 1% across the six-year period with notable accelerations occur around legislative periods. The minority party—Democrats from 2017 to 2021 and Republicans from 2021 to 2023—typically tweets at higher rates than the majority party, as illustrated in the peaks for Democrats (2017) and Republicans (2022, 2023).
+
+# Economic Indicators
+
+```{r}
+#| label: fig-deficit-vs-indicators
+#| fig-cap: "Deficit tweet share and key economic indicators (10-year Treasury yield and congressional approval; rescaled)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/g1_deficit_vs_approval_int_panel.png")
+
+
+
+```
+
+```{r}
+#| label: fig-deficit-vs-cpi
+#| fig-cap: "Deficit tweet share vs. U.S. CPI inflation."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/deficit_share_vs_inflation_smoothed.png")
+
+```
+
+# Member-Level Patterns
+
+```{r}
+#| label: fig-member-share-by-party
+#| fig-cap: "Share of deficit tweets by party (member-level distribution)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_pct_deficit_by_party.png")
+
+```
+
+```{r}
+#| label: fig-power-boxplot
+#| fig-cap: "Distribution of deficit tweets by power (boxplot)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/box_party_split_by_power.png")
+
+```
+
+```{r}
+#| label: fig-power-density
+#| fig-cap: "Distribution of deficit tweets by power (density plot)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_split_power.png")
+
+```
+
+```{r}
+#| label: tbl-power-summary
+#| fig-cap: "Distribution of deficit tweets by power (table)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/t_quartiles_by_party_power.png")
+
+
+```
+
+```{r}
+#| label: fig-inout-shifts
+#| fig-cap: "In–out shifts in deficit tweeting (histogram)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_in_minus_out_overlay.png")
+
+
+```
+
+```{r}
+#| label: fig-inout-shifts-faceted
+#| fig-cap: "Faceted in–out shifts in deficit tweeting (histograms by subgroup)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_in_minus_out_faceted.png")
+
+
+```
+
+# Leadership Analysis
+
+```{r}
+#| label: fig-leadership
+#| fig-cap: "Deficit tweeting by congressional leaders (House and Senate; majority vs. minority roles)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/leadership/leader_deficit_tweets.png")
+
+```
+
+# Legislative Context
+
+```{r}
+#| label: tbl-deficit-share-windows
+#| fig-cap: "Deficit share within legislative windows."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/tweetlevel_deficit_share_overall.png")
+
+
+```
+
+```{r}
+#| label: tbl-deficit-share-by-party
+#| fig-cap: "Deficit share within legislative windows, by party."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/tweetlevel_deficit_share_by_party.png")
+
+
+```
+
+# Regression Visualization
+
+```{r}
+#| label: fig-r1-legislative-windows
+#| fig-cap: "Legislative windows alone (r1): partisan gap in deficit tweeting without conditioning on institutional control."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r3_legislative_windows_main.png")
+
+```
+
+```{r}
+#| label: fig-r2-presidency
+#| fig-cap: "Majority context — presidency and GOP deficit tweeting (r2)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r5_majority_context_main.png")
+
+
+```
+
+```{r}
+#| label: fig-r3-chamber-presidency
+#| fig-cap: "Majority context — chamber and presidency combinations (r3)."
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables/r6_majority_context_combos.png")
+
+```

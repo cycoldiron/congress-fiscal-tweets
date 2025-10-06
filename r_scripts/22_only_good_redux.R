@@ -167,38 +167,83 @@ tbl_r5 <- make_gt_or_table(
 )
 gtsave(tbl_r5, file.path(out_dir, "r5_majority_context_main.png"))
 
+# ---------- GOVERNMENT-CENTRIC CONTROL (NEW) ----------
+# Build a government-centric factor that reflects who actually governs (not member-relative)
+df_mm <- df_mm %>%
+  mutate(
+    gov_combo = dplyr::case_when(
+      house_ctrl == "R" & senate_ctrl == "R" & pres_ctrl == "R" ~ "GOP trifecta",
+      house_ctrl == "D" & senate_ctrl == "D" & pres_ctrl == "D" ~ "Dem trifecta",
+      house_ctrl == "R" & senate_ctrl == "R" & pres_ctrl == "D" ~ "GOP H+S",
+      house_ctrl == "R" & senate_ctrl == "D" & pres_ctrl == "R" ~ "GOP H+P",
+      house_ctrl == "D" & senate_ctrl == "R" & pres_ctrl == "R" ~ "GOP S+P",
+      house_ctrl == "D" & senate_ctrl == "D" & pres_ctrl == "R" ~ "Dem H+S",
+      house_ctrl == "D" & senate_ctrl == "R" & pres_ctrl == "D" ~ "Dem H+P",
+      house_ctrl == "R" & senate_ctrl == "D" & pres_ctrl == "D" ~ "Dem S+P",
+      TRUE ~ NA_character_
+    ),
+    gov_combo = factor(
+      gov_combo,
+      levels = c(
+        "GOP trifecta","Dem trifecta",
+        "GOP S+P","GOP H+P","GOP H+S",
+        "Dem S+P","Dem H+P","Dem H+S"
+      )
+    )
+  )
+
+# ---------- r6 (REPLACED): use gov_combo with a clear baseline ----------
+m_r6 <- feglm(
+  prop_def ~
+    rep:leg_period +                               # baseline GOP–Dem gap in leg windows under ref gov state
+    rep:leg_period:i(gov_combo, ref = "GOP trifecta") +  # modifiers by government control (relative to GOP trifecta)
+    rep:covid_window + rep:any_IRA_CHIPS + rep:mp_z + rep:def_z + rep:deficit_reducing
+  | full_name + month,
+  family  = binomial("logit"),
+  data    = df_mm %>% dplyr::filter(!is.na(gov_combo)),
+  weights = ~ n_tweets,
+  vcov    = ~ full_name + month
+)
+
+title_r6 <- "Government Control and Legislative Windows"
+desc_r6  <- paste0(
+  "Baseline: Democrats vs Republicans during legislative windows under a GOP trifecta. ",
+  "Rows report how that GOP–Dem gap changes under alternative government control states. ",
+  "Pure Democrat shifts and a baseline GOP main effect are omitted by design."
+)
+
 labels_r6 <- c(
-  "rep:leg_period"                              = "GOP × Legislative window (no control)",
-  "rep:leg_period:control_combo::H only"        = "GOP × Legislative window × House-only",
-  "rep:leg_period:control_combo::S only"        = "GOP × Legislative window × Senate-only",
-  "rep:leg_period:control_combo::P only"        = "GOP × Legislative window × Presidency-only",
-  "rep:leg_period:control_combo::H+S"           = "GOP × Legislative window × House+Senate",
-  "rep:leg_period:control_combo::H+P"           = "GOP × Legislative window × House+Presidency",
-  "rep:leg_period:control_combo::S+P"           = "GOP × Legislative window × Senate+Presidency",
-  "rep:leg_period:control_combo::H+S+P"         = "GOP × Legislative window × Trifecta",
+  # Baseline row is now explicit:
+  "rep:leg_period"                              = "GOP × Legislative window (GOP trifecta)",
+  # Government-centric modifiers:
+  "rep:leg_period:gov_combo::Dem trifecta"      = "GOP × Legislative window × Dem trifecta",
+  "rep:leg_period:gov_combo::GOP S+P"           = "GOP × Legislative window × GOP Senate+Presidency",
+  "rep:leg_period:gov_combo::GOP H+P"           = "GOP × Legislative window × GOP House+Presidency",
+  "rep:leg_period:gov_combo::GOP H+S"           = "GOP × Legislative window × GOP House+Senate",
+  "rep:leg_period:gov_combo::Dem S+P"           = "GOP × Legislative window × Dem Senate+Presidency",
+  "rep:leg_period:gov_combo::Dem H+P"           = "GOP × Legislative window × Dem House+Presidency",
+  "rep:leg_period:gov_combo::Dem H+S"           = "GOP × Legislative window × Dem House+Senate",
+  # Other controls:
   "rep:covid_window"                            = "GOP × COVID window",
   "rep:any_IRA_CHIPS"                           = "GOP × IRA/CHIPS window",
   "rep:mp_z"                                    = "GOP × Bill partisanship (z)",
   "rep:def_z"                                   = "GOP × Fiscal magnitude (z)"
 )
+
 tbl_r6 <- make_gt_or_table(
   m_r6,
-  title = title_r6,
-  desc  = paste0(
-    "Baseline: Democrats, outside legislative windows, when their party controls none. ",
-    "Rows report GOP–Dem gaps and how the legislative-window gap varies by control state; ",
-    "pure Democrat shifts and a baseline GOP main effect are omitted by design."
-  ),
-  notes = c(
+  title       = title_r6,
+  desc        = desc_r6,
+  notes       = c(
     "- Odds ratios with 95% CIs; stars: *** p<0.001, ** p<0.01, * p<0.05.",
     "- Member and month fixed effects; SEs two-way clustered by member and month.",
-    "- Bill partisanship (z): 1 SD increase in mean bill partisanship score.",
-    "- Fiscal magnitude (z): 1 SD increase in total 10-year deficit impact."
+    "- Bill partisanship (z) and fiscal magnitude (z) are standardized."
   ),
   term_labels = labels_r6,
   term_header = "",
-  spacer_px = SPACER_PX
+  spacer_px   = SPACER_PX
 )
+
 gtsave(tbl_r6, file.path(out_dir, "r6_majority_context_combos.png"))
 
 labels_r9 <- c(
