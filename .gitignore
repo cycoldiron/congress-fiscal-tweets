@@ -18,3 +18,20 @@ results/.DS_Store
 # R session history
 .Rapp.history
 results/good_tables/.Rapp.history
+
+# --- Python / virtualenv ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyd
+
+# --- Jupyter / Quarto / render artifacts ---
+.ipynb_checkpoints/
+*_files/
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+

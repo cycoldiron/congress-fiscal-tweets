@@ -6,7 +6,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## 🔍 Overview
+## Overview
 
 - Party differences in deficit tweeting and how gaps evolve during **legislative windows** (e.g., TCJA, IRA).
 - How gaps change with **relative power** (presidency/chambers; trifectas; control combos).
@@ -15,7 +15,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## ⚙️ What’s in this repo
+##  What’s in this repo
 
 **R scripts (`/r_scripts`)** – 20+ scripts grouped as:
 - **00–12: data build & joins** (cleaning tweets, merging congressional & macro data, monthly panels).
@@ -34,7 +34,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## 🧪 Key analyses (high level)
+## Key analyses (high level)
 
 - **Majority context**: GOP–Dem gaps vary sharply with who governs. Trifecta & control-combo models
   show opposite patterns in legislative vs. non-legislative months.
@@ -43,7 +43,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## 📚 Data
+## Data
 
 - Tweets from **Tweets of Congress** by Alex Litel; congressional metadata from the
   Congressional Tweet Automator. See links below.
@@ -51,7 +51,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## 🛠️ Repro (abridged)
+## Repro (abridged)
 
 1. Run `r_scripts/03a_setup.R` to load packages/paths.
 2. Build legislative windows & panel: `13b_legislative_windows_build.R`, then `14b_member_month_join.R`.
@@ -60,7 +60,7 @@ It tracks how rhetoric shifts with **party control**, **major legislation**, **m
 
 ---
 
-## ⚖️ License & Attribution
+##  License & Attribution
 
 - MIT License.
 - Data & metadata from:

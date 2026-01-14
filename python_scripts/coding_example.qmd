@@ -1,0 +1,121 @@
+---
+title: "Coding Sample: Deficit Tweet Classifier (Python)"
+format:
+  pdf:
+    number-sections: false
+    toc: false
+    highlight-style: pygments
+    code-block-font-size: 9pt   # smaller code font
+fontsize: 11pt
+geometry: margin=0.9in
+engine: knitr
+jupyter: false
+execute:
+  eval: false
+include-in-header: |
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+---
+
+## Overview:
+
+**Context.**
+
+This script is part of my project *Twitter and the Politics of the Federal Deficit* (\~3.6M tweets from official congressional accounts, 2017–2023). The goal is to identify deficit-related tweets to build monthly member-level panels used in logistic regressions linking "deficit" rhetoric to party control and legislative windows.
+
+**What the code does.**
+
+(i)Reads raw tweet JSON files (each JSON file is a tweet)
+
+\(ii\) Flags tweets using a two-tier keyword system (precise phrases OR weaker terms + required context). For instance, a tweet would is labeled as deficit (is_deficit = 1) if it contains an obvious reference to the deficit (i.e, "national debt")— or any other phrase in "strong keywords" dictionary. Or, it tweet can be classified if it contains the word "debt" with a corresponding context word (i.e, "federal")
+
+**Limitations & extensions.**
+
+The dictionary approach likely undercounts implicit deficit tweets across all members. I discuss limitations in more depth in my methodology sections and propose alternative labeling procedures—such as a supervised machine learning approach. However, as I underscore in that section, this approach is not an obvious improvement, as it demands substantially greater time and computational resources while likely offering only marginal gains in accuracy.
+
+**My Coding Background** ([GitHub](https://github.com/cycoldiron)):
+
+While this code sample is Python my programming language of choice is typically R. For more information please reference my [GitHub](https://github.com/cycoldiron)—which has 50+ scripts executed in R.
+
+I have ample experience working with various econometric packages—particularly for time series data (ARMA modeling, structural break / changepoint detection, forecasting, etc). I'm comfortable with web scraping, merging data through various key-joining techniques, SQL, and creating aesthetic visualizations.
+
+------------------------------------------------------------------------
+
+``` python
+
+
+import os, json
+import pandas as pd
+from tqdm import tqdm
+
+# ----- Tier 1: Strong phrase-based keywords (high precision) --------------
+strong_keywords = [
+    "national debt", "national deficit", "government debt", "government deficit",
+    "federal debt", "federal deficit", "u.s. debt", "u.s. deficit",
+    "us debt", "us deficit", "american debt", "american deficit",
+    "debt ceiling", "budget deficit", "fiscal responsibility", "fiscal cliff",
+    "paygo", "unsustainable debt", "reckless spending", "debt crisis",
+    "interest on the debt", "interest payments", "balanced budget", "unpaid debt",
+    "unpaid tax", "trillion-dollar debt", "trillion-dollar deficit",
+    "burdening future generations", "mortgaging our future",
+    "out-of-control spending", "runaway debt", "deficit"
+]
+
+# ----- Tier 2: Weak keywords + context ------------------------------------
+weak_keywords = ["debt"]
+context_words = [
+    "spending", "federal", "budget", "tax", "government", "cut", "reduce",
+    "increase", "decrease", "higher", "increased", "increasing", "trillion",
+    "reckless", "unsustainable", "burden", "ceiling", "cliff", "reduction",
+    "billion"
+]
+
+# ----- Paths ----------------------------------------------------------------
+raw_data_path = "raw_congress_tweets/data"
+output_path   = "data/debt_tweet_summary.csv"
+
+records = []
+
+# Each JSON file typically contains a list of tweets for a day
+for filename in tqdm(sorted(os.listdir(raw_data_path))):
+    if not filename.endswith(".json"):
+        continue
+
+    full_path = os.path.join(raw_data_path, filename)
+    try:
+        with open(full_path, "r") as f:
+            tweets = json.load(f)
+    except Exception as e:
+        print(f"Error reading {filename}: {e}")
+        continue
+
+    for tweet in tweets:
+        text        = tweet.get("text", "").lower()
+        screen_name = tweet.get("screen_name", "")
+        tweet_date  = tweet.get("time", "")[:7]  # YYYY-MM
+
+        # Strong match
+        is_strong_match = any(kw in text for kw in strong_keywords)
+
+        # Weak match: contains "debt" + a context word
+        contains_weak    = any(wk in text for wk in weak_keywords)
+        contains_context = any(ctx in text for ctx in context_words)
+        is_weak_match    = contains_weak and contains_context
+
+        is_debt = int(is_strong_match or is_weak_match)
+
+        records.append({
+            "screen_name": screen_name,
+            "is_debt": is_debt,
+            "tweet_date": tweet_date
+        })
+
+df = pd.DataFrame(records)
+df.to_csv(output_path, index=False)
+print(f"Saved {len(df)} rows to {output_path}")
+
+# quick checks
+df = pd.read_csv(output_path)
+print(df.head())
+print(df["is_debt"].sum())
+```

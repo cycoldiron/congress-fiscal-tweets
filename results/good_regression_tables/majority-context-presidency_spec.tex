@@ -1,0 +1,26 @@
+\documentclass[preview,border=14pt,11pt,fleqn,leqno]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{newtxtext,newtxmath}
+\usepackage{enumitem}
+\setlength{\mathindent}{0pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\allowdisplaybreaks
+\begin{document}
+\begin{minipage}{0.92\linewidth}
+\begin{equation}
+\tag{2}
+\begin{aligned}
+\operatorname{logit}(Y_{it}) = \alpha_i + \gamma_t \\ +\; \beta_{1}(\text{GOP}_i\!\times\!\text{LegWin}_t) \\ +\; \beta_{2}(\text{GOP}_i\!\times\!\text{Minority presidency}_t) \\ +\; \beta_{3}(\text{GOP}_i\!\times\!\text{LegWin}_t\!\times\!\text{Minority presidency}_t) \\ +\; \beta_{4}(\text{GOP}_i\!\times\!\text{COVID}_t) \\ +\; \beta_{5}(\text{GOP}_i\!\times\!\text{IRA/CHIPS}_t) \\ +\; \beta_{6}(\text{GOP}_i\!\times\!\text{Bill partisanship}_t) \\ +\; \beta_{7}(\text{GOP}_i\!\times\!\text{Fiscal magnitude}_t) \\ +\; \varepsilon_{it}
+\end{aligned}
+\end{equation}
+\vspace{0.25em}
+{\itshape
+\begin{itemize}[leftmargin=*,nosep]
+\item Coefficients are GOP–Dem gaps; the three-way term is the shift in the legislative-window gap under minority presidency.
+\item Fixed effects: member and month; SEs two-way clustered by member and month.
+\item Standardized covariates: Bill partisanship (z), Fiscal magnitude (z).
+\end{itemize}
+}
+\end{minipage}
+\end{document}
