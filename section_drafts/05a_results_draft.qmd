@@ -86,7 +86,7 @@ Another explanation could be that along with higher inflation, the significant f
 #| fig-cap: "Share of deficit tweets by party (member-level distribution)."
 #| fig-pos: "H"
 #| out-width: "0.75\\linewidth"
-knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_pct_deficit_by_party.png")
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_overall.png")
 
 ```
 
@@ -116,7 +116,7 @@ knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figure
 ```{r}
 #| label: fig-inout-shifts
 #| fig-cap: "In–out shifts in deficit tweeting (histogram)."
-knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/hist_in_minus_out_overlay.png")
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_in_minus_out_overlay.png")
 
 
 ```
@@ -154,8 +154,7 @@ Aside from highlighting rhetorical patterns in key legislators, @fig-leadership 
 
 The GOP, however, presents a more uniform party dynamic. Senator McConnell’s increase in deficit tweeting in out-of-power contexts mirrors the broader Republican trend illustrated in @fig-inout-shifts. Furthermore, McConnell’s tweeting patterns confirm long-held conceptions about his communication and political style, which emphasizes unrelenting opposition to Democratic fiscal policies.
 
-The two messaging strategies employed by party leaders reflect a broader division in party dynamics between Democrats and the GOP. These results provide nuance to our understanding of the communication strategies of key political figures, such as Representative Ryan and Senator McConnell, whose “deficit” messaging has had significant implications for historical and contemporary American fiscal policy.
-\FloatBarrier
+The two messaging strategies employed by party leaders reflect a broader division in party dynamics between Democrats and the GOP. These results provide nuance to our understanding of the communication strategies of key political figures, such as Representative Ryan and Senator McConnell, whose “deficit” messaging has had significant implications for historical and contemporary American fiscal policy. \FloatBarrier
 
 # Legislative Context
 
