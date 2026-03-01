@@ -1,5 +1,5 @@
 ---
-title: "Twitter and the Politics of the Federal Deficit"
+title: "Results"
 subtitle: "Results (Draft)"
 author:
   - name: "Cy Coldiron"
@@ -40,17 +40,6 @@ knitr::opts_chunk$set(out.width = "0.85\\linewidth")
 
 
 ```
-
-::: callout-important
-**Writing sample disclaimer.** This PDF contains a draft of the *Results* section from the working paper\
-**Twitter and the Politics of the Federal Deficit**. The abstract is included below for context.
-:::
-
-## Abstract (for context)
-
-A long-held belief in American politics is that elected officials’ concern about the federal deficit is mainly a function of who holds power. Amid deepening polarization, elevated public debt, and the shift of political communication online, it is vital—for voters, policymakers, and public-knowledge institutions—to understand empirically how deficit rhetoric operates in these spaces. I analyze \~3.6 million tweets from official congressional accounts (June 2017–January 2023), identify deficit-related posts using a two-tier keyword approach, and estimate member–month logistic models linked to leadership roles and legislative windows. My research confirms that deficit rhetoric is rare but fluctuates greatly depending on two contexts: relative institutional power (ie, minority / majority party), and legislative periods (ie, Tax Cuts and Jobs Act, Inflation Reduction Act). These findings contribute to understanding the modern incentive structures and patterns of U.S. political communication strategies, illustrating that deficit rhetoric is less a barometer of underlying fiscal conditions than a tool used to serve political and partisan interests.
-
-\clearpage
 
 # Macro Trends {#sec-macro}
 
