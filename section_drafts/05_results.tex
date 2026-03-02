@@ -122,6 +122,11 @@
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\textfraction}{0.07}
 \renewcommand{\floatpagefraction}{0.8}
+
+% ---- Make the YAML title ("Results") bold ----
+\usepackage{titling}
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vskip 0.5em}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -179,12 +184,16 @@
 
 \title{Results}
 \author{Cy Coldiron}
-\date{2026-03-01}
+\date{2026-03-02}
 \begin{document}
 \maketitle
 
 
-\section{Macro Trends}\label{sec-macro}
+\setcounter{section}{4}
+
+\section{Results}\label{results}
+
+\subsection{Macro Trends}\label{sec-macro}
 
 Figure~\ref{fig-timeseries} shows the monthly share of congressional
 deficit tweets, by party, from June 2017 to January 2023. Consistent
@@ -219,7 +228,7 @@ however, demonstrate consistently higher deficit tweeting rates as the
 minority party, as illustrated in the peaks (2022, 2023) compared to
 relatively low rates from 2017-2021.
 
-\section{Economic Indicators}\label{economic-indicators}
+\subsection{Economic Indicators}\label{sec-econ}
 
 Figure~\ref{fig-deficit-vs-cpi} plots deficit tweet share against US CPI
 inflation (YoY) reveals a relatively strong positive relationship, as
@@ -248,7 +257,7 @@ significant fiscal legislation being proposed in the summer of 2022
 (e.g, IRA, CHIPS) may have drawn concerns from representatives prompting
 more congressional tweets on the topic.
 
-\section{Member-Level Patterns}\label{member-level-patterns}
+\subsection{Member-Level Patterns}\label{sec-member}
 
 \begin{figure}[H]
 
@@ -345,7 +354,7 @@ messaging within the party. Democrats, by contrast, show less cohesion
 in their messaging strategy, with members displaying a wider range of
 tweeting behaviors across power contexts.
 
-\section{Leadership Analysis}\label{leadership-analysis}
+\subsection{Leadership Analysis}\label{sec-leadership}
 
 Figure~\ref{fig-leadership} summarizes deficit-tweeting by House and
 Senate leaders across majority/minority contexts. Patterns differ by
@@ -428,7 +437,7 @@ key political figures, such as Representative Ryan and Senator
 McConnell, whose ``deficit'' messaging has had significant implications
 for historical and contemporary American fiscal policy.
 
-\section{Legislative Context}\label{legislative-context}
+\subsection{Legislative Context}\label{sec-leg-context}
 
 \begin{figure}[htbp]
 
@@ -458,7 +467,7 @@ realignment around a highly divisive bill. In contrast, during the COVID
 relief period in 2020 -- a non-partisan voting context -- both parties
 converged at very low levels (0.3--0.4\%).
 
-\section{Regression Visualization}\label{regression-visualization}
+\subsection{Regression Visualization}\label{sec-reg-viz}
 
 The following regression models offer a structured approach to examining
 how institutional, fiscal, and partisan contexts affect the likelihood
@@ -568,8 +577,8 @@ deficit rhetoric during legislative months, while under the GOP trifecta
 (i.e., 2017-2019), they significantly reduce deficit tweeting
 frequencies.
 
-\subsection{\texorpdfstring{\textbf{Bill Partisanship and Fiscal
-Magnitude}}{Bill Partisanship and Fiscal Magnitude}}\label{bill-partisanship-and-fiscal-magnitude}
+\subsubsection{Bill Partisanship and Fiscal
+Magnitude}\label{sec-bill-partisanship}
 
 Across all three specifications, the coefficients for Fiscal magnitude
 (z) remain consistently insignificant (\textasciitilde1.0).~ These

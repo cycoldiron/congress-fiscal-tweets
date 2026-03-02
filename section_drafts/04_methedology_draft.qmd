@@ -1,11 +1,16 @@
 ---
-title: "Methedology Section"
+title: "Methedology"
 author: "Cy Coldiron"
-format: pdf
+format:
+  pdf:
+    number-sections: true
 editor: visual
 ---
 
-## 4.1 Regression Methodology
+\setcounter{section}{4}
+# Methedology {#sec-methedology}
+
+## Regression Methodology
 
 \
 This project's primary analysis is conducted using logistic regression. There are two reasons for this choice. First, the dependent variable—share of tweets that are deficit related—is a binary variable; that is, a congressional member either tweeted about the deficit (1) or did not (0). Second, we are concerned with the probability of tweeting about the deficit (values between 0 and 1). Thus, a traditional regression model—which does not constrain predicted values—would not be appropriate, as it would allow for probabilities to be less than zero (negative) or greater than 1. Moreover, logistic regression allows us to explore how these probabilities, or odds, change with levels of explanatory variables (party, legislative context, fiscal conditions etc)—which is a key consideration in this research. For instance, logistic regression allows us to see how odds of tweeting about the deficit change among parties when the fiscal impact of policy bills increase.
@@ -37,7 +42,7 @@ To illustrate the interpretation of coefficients, consider the following example
 
 In the second regression model, the coefficient on GOP × Legislative window (OR = .38) shows that the partisan gap contracts during legislative months: Republicans’ odds of tweeting about the deficit decrease to 62% lower than Democrats’ odds relative to the baseline condition (Democrats outside legislative windows; Republicans hold presidency).
 
-## 4.2 Regression Design
+## Regression Design
 
 Our research goal is to understand how deficit rhetoric—specifically among Democrats and Republicans—changes with varying institutional, fiscal and legislative conditions. To do this, we estimate a sequence of specifications that control for these variables in a progressively specific manner. The baseline model (Regression 1) interacts with party affiliation with legislative windows. Furthermore, it includes coefficients to describe how this baseline tweeting gap changes with differing levels of bill partisanship and fiscal impact (CBO estimate of the bill). Such coefficients help us to understand the relationship—or lack thereof—between the divisiveness of a bill, or its fiscal impact, and how members talk about it on twitter.
 

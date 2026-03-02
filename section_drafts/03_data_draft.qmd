@@ -1,9 +1,12 @@
 ---
-title: "Section 2: Data Overview"
+title: "Data Overview"
 author: "Cy Coldiron"
 format: pdf
 editor: visual
 ---
+\setcounter{section}{2}
+# Data 
+
 
 ## 3.1 Tweet Data Overview
 
