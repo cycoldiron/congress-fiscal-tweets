@@ -25,13 +25,13 @@ To identify deficit-related tweets, I implemented a two-tier keyword strategy in
 
 **Tier 2 – Contextual Expansion.** Tweets containing weaker terms (e.g., *“debt”*) were only flagged if they co-occurred with contextual phrases (e.g., *“federal,” “budget,” “tax,” “spending”*).
 
-The logic of my labeling framework is to balance the two key countervailing forces in text classification: precision and coverage. While a larger keyword dictionary would capture more subtle deficit references, it would also reduce precision by inflating the number of false positives. For instance, including phrases like ‘trillions of dollars’ may capture references that would otherwise be missed, it also risks falsely tagging a growing number of unrelated tweets, such as discussions of income inequality or GDP growth. By contrast, a smaller dictionary would reduce false positives but would also diminish overall coverage, leading to more deficit related tweets going un-labeled.
+The logic of my labeling framework is to balance the two key countervailing forces in text classification: precision and coverage. While a larger keyword dictionary would capture more subtle deficit references, it would also reduce precision by inflating the number of false positives. For instance, while including phrases like ‘trillions of dollars’ may capture references that would otherwise be missed, it also risks falsely tagging a growing number of unrelated tweets, such as discussions of income inequality or GDP growth. By contrast, a smaller dictionary would reduce false positives but would also diminish overall coverage, leading to more deficit related tweets going un-labeled.
 
 ### **Illustrative Example:**
 
 Figures 1 and 2 demonstrates the labeling logic. Rep. Alexandria Ocasio-Cortez’s reference to “student loan debt” is not flagged: “debt” is a weak keyword but lacks an accompanying context term. By contrast, Speaker Kevin McCarthy’s reference to the “national debt” matches a strong anchor keyword and is thus labeled as deficit related.
 
-(Note: Speaker McCarthy's tweet was published outside our anlaytical timeframe (January 2023) but still serves as an informative example).
+(Note: Speaker McCarthy's tweet was published outside our anlalytical timeframe (January 2023) but still serves as an informative example).
 
 ```{r}
 #| label: fig-tweets
@@ -54,7 +54,7 @@ While this classification provides simplicity and replicability, it also introdu
 
 \(1\) Dictionary Limits: Precision vs. Coverage
 
-As noted, the inherent challenge in using a dictionary-based method is balancing precision with coverage. Dictionary methods risk underestimation by missing subtle or implicit deficit references Alternatively, in cases where one uses both large and speculative dictionaries, the classification strategy may overestimate deficit rhetoric. In practice, I adjusted the specificity of both dictionaries iteratively based on the accuracy of their given outputs —which I assessed manually by checking the data. While bias in either direction is statistically possible, I’d argue that my strategy almost certainly underestimates total deficit rhetoric, since there are theoretically infinite ways to reference the federal debt.
+As noted, the challenge in using a dictionary-based method is balancing precision with coverage. In practice, I adjusted the specificity of both dictionaries iteratively based on the accuracy of their given outputs —which I assessed manually by checking the data. While bias in either direction is statistically possible, I’d argue that my strategy almost certainly underestimates total deficit rhetoric, since there are theoretically infinite ways to reference the federal debt.
 
 \(2\) Variation in Rhetoric and Style
 
@@ -66,7 +66,7 @@ For future research considerations—whether involving similar or identical data
 
 My current strategy relies on a rule-based dictionary method, where I defined Tier 1 and Tier 2 terms and applied them directly to the full dataset. While transparent, and easily adjustable, this approach inevitably misses implicit deficit references and requires subjective judgment in constructing the dictionaries.
 
-A clear improvement would be to use a supervised dictionary validation approach. This method first requires manually labeling enough positive-class instances (i.e., deficit-related tweets), capturing both explicit and implicit references. Because deficit tweets are rare (\~1–3% of all tweets), one would need to label roughly 20–30k tweets under an active learning strategy—or 100k+ under random sampling—to obtain 2–3k positive instances. This threshold aligns with best practices for addressing class imbalance (Japkowicz & Stephen 2002; He & Garcia 2009). After constructing this training data, one would build and test multiple dictionary configurations, each with varying levels of specificity, and then select the configuration with the highest validated accuracy.
+A possible improvement would be to use a supervised dictionary validation approach. This method first requires manually labeling enough positive-class instances (i.e., deficit-related tweets), capturing both explicit and implicit references. Because deficit tweets are rare (\~1–3% of all tweets), one would need to label roughly 20–30k tweets under an active learning strategy—or 100k+ under random sampling—to obtain 2–3k positive instances. This threshold aligns with best practices for addressing class imbalance (Japkowicz & Stephen 2002; He & Garcia 2009). After constructing this training data, one would build and test multiple dictionary configurations, each with varying levels of specificity, and then select the configuration with the highest validated accuracy.
 
 Accuracy would be assessed with two measures:
 
@@ -74,7 +74,7 @@ Accuracy would be assessed with two measures:
 
 \(2\) Precision: the false-positive rate.
 
-Selecting the best model would thus require one to determine the ideal “accuracy” metric, or determining the relative weight of coverage vs precision. This decision—similar to my dictionary choices—requires intuition and could be adjusted based on the researcher's preference.
+Selecting the best model would thus require one to determine the ideal “accuracy” metric or determining the relative weight of coverage vs precision. This decision—like my dictionary choices—requires intuition and could be adjusted based on the researcher's preference.
 
 In sum, a supervised dictionary validation approach would reduce under-detection of implicit references but would not fully eliminate the two forms of bias referenced in 3.2. For instance, expanding the dictionary to improve coverage risks a higher false-positive rate. The training dataset would capture less explicit tweets, and the best-performing dictionary would detect many of these indirect cases. Yet the same expansion may also misclassify unrelated tweets, raising the false-positive ratio. Thus, even if the most comprehensive model achieved the greatest overall accuracy, the fundamental bias would persist, albeit at a smaller scale.
 

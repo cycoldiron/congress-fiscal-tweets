@@ -33,15 +33,11 @@ Member fixed effects absorb differences across legislators and between parties. 
 
 Coefficients are presented as odds ratios and should be understood relative to the omitted (baseline) category. Odds ratios (ORs) indicate how the odds of an event— in this case, tweeting about the deficit—change with different levels of predictor variables, holding all other factors constant. The baseline condition, for which coefficients should be compared to, is always Democrats outside legislative windows under the institutional baseline of each specification. By “institutional baseline,” I mean the makeup of congressional and executive power used in the model. 
 
-Main-effect (single variable) coefficients represent the differences in tweeting among Republicans and Democrats in the baseline condition. In each model, the coefficient (GOP) represents this baseline tweeting gap. Interaction coefficients capture shifts in that baseline partisan gap, which is represented by GOP, under specific institutional combinations (legislative windows, congressional control, etc.). An odds ratio greater than 1 means the Republican–Democrat gap widens (Republicans become relatively more deficit-focused), while an odds ratio less than 1 means the gap narrows, relative to the baseline.
-
-In sum, when interpreting the coefficients in this paper one should keep the following in mind. First, that the GOP coefficient (Main-effect) represents the baseline gap in tweeting among Republicans and Democrats. Thus, all interaction coefficients describe whether this baseline gap changes once we consider other variables. A significant odds ratio (ie, the 95% confidence interval does not contain 1) means that there is sufficient evidence to suggest that the tweeting gap has changed, relative to the baseline. 
+In each model the main-effect, the coefficient (GOP) — represents the baseline tweeting gap between Republicans and Democrats. Interaction coefficients capture shifts in this baseline partisan gap under specific institutional combinations (legislative windows, congressional control, etc.). An odds ratio greater than 1 means the Republican–Democrat gap widens (Republicans become relatively more deficit-focused), while an odds ratio less than 1 means the gap narrows, relative to the baseline.
 
 ### Example Coefficient Interpretation
 
-To illustrate the interpretation of coefficients, consider the following example:
-
-In the second regression model, the coefficient on GOP × Legislative window (OR = .38) shows that the partisan gap contracts during legislative months: Republicans’ odds of tweeting about the deficit decrease to 62% lower than Democrats’ odds relative to the baseline condition (Democrats outside legislative windows; Republicans hold presidency).
+For example, in the second regression model, the coefficient on GOP × Legislative window (OR = .38) shows that the partisan gap contracts during legislative months: Republicans’ odds of tweeting about the deficit decrease to 62% lower than Democrats’ odds relative to the baseline condition (Democrats outside legislative windows; Republicans hold presidency).
 
 ## Regression Design
 

@@ -1,0 +1,33 @@
+---
+title: "Introduction"
+author: "Cy Coldiron"
+format:
+  pdf:
+    number-sections: true
+editor: visual
+---
+
+\setcounter{section}{0}
+
+# Introduction
+
+“It has become standard fare in American politics to watch each party rail against deficits when they are out of power but hungrily embrace deficits when in control and able to advance their own agenda.” — **Kenneth Rogoff**, *Our Dollar, Your Problem*
+
+## Background
+
+\
+Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes-including record high inflation—to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
+
+Aside from the Federal Deficits centrality in American political discourse, the national debt itself has implications for both the domestic and global economy. Beyond the stimulus effects of deficit spending, long-term imbalances can exacerbate inflationary pressures, burden future generations with higher borrowing costs, and contribute to asset bubbles and macroeconomic instability.
+
+Yet despite both the rhetorical and economic significance of deficits —there exists little empirical analysis of when and why deficit rhetoric is used by elected officials. For instance, does political attention to the national deficit increase in response to rising debt levels—and is it correlated with other macroeconomic outcomes? And, does an elected official's deficit rhetoric change in response to their power status or during legislative periods? This paper seeks to answer these questions. Using elected officials tweets, we examine the evolution of deficit rhetoric (i.e, how often polticians tweet about the debt) and analyze how messaging varies across institutional contexts (who holds power), legislative periods, and macroeconomic conditions, providing the first large-scale empirical assessment of how deficit rhetoric functions within the incentive structure of American politics.
+
+## Motivation
+
+Political discourse can influence public perceptions by directing public attention to certain issues (e.g., health care, immigration) and influencing how citizens assign responsibility for policy outcomes (McCombs & Shaw 1972; Iyengar 1991). If this same mechanism applies to the public debt, then changes to public opinion on deficit spending may influence legislative agendas—giving political capital for party leaders to advance policy agendas. For instance, if online deficit rhetoric impacts public support for fiscal stimulus—then the majority party's legislative agenda may be forced to change, thereby impacting the economic trajectory of the country. In addition to economic influence, deficit rhetoric can have substantial impacts on political outcomes. Considering deficit rhetoric shapes voters' beliefs about the fiscal responsibility of elected officials and the parties they represent—political entities that are more persuasive in their online messaging, whether that be denigrating the opposition, or advocating for their own policies, will have greater success in electoral campaigns. If this is the case, elected officials would have reason to communicate about the deficit in such a way that maximizes their political outcomes—whether it be consistent with their actual policies or not. By analyzing the rhetorical patterns of these officials—we can understand how political actors use the federal deficit, across varying institutional and economic contexts, to influence voters' beliefs, and shape public opinion.
+
+## Why Twitter?
+
+Twitter (now X) is a uniquely effective medium for this analysis. It is widely and consistently used by members of Congress and is a direct representation of each representative’s rhetorical intentions. Moreover, Tweets are standardized in format—meaning each post is timestamped, have the same character constraints, and are tied to verifiable individuals, allowing for large-scale and reproducible time-series analysis. Tweets, unlike floor speeches or hearings (which vary in length and frequency) are published daily by almost all congressional members. This provides a far more comprehensive dataset (in this case 3.6M tweets), giving us greater statistical power, and allowing us to draw stronger conclusions about key explanatory relationships.
+
+\

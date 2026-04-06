@@ -4,7 +4,9 @@ author: "Cy Coldiron"
 format: pdf
 editor: visual
 ---
+
 \setcounter{section}{1}
+
 # Literature Review
 
 ## 2.1 Overview of Deficit Rhetoric Literature

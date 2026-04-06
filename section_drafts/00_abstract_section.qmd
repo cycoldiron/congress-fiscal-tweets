@@ -1,0 +1,23 @@
+---
+title: "Twitter and the Politics of the Federal Deficit"
+author: "Cy Coldiron"
+date: ""
+format:
+  pdf:
+    documentclass: article
+    fontsize: 11pt
+    geometry: margin=1in
+editor: visual
+---
+\begin{center}
+University of California, Santa Barbara\\
+Department of Economics\\
+Department of Statistics \& Data Science\\
+\texttt{coldiron@ucsb.edu}
+\end{center}
+
+## Abstract {.unnumbered}
+
+Economists and political observers have long noted a recurring pattern in American politics: politicians change their messaging around the federal deficit depending on their relative power status by becoming more fiscally conservative in periods of opposition (minority). This paper examines this claim by tracking U.S congressional members deficit related tweets between 2017-2023. Using a two-tier dictionary classification method, I identify tweets referencing the national debt and estimate how deficit-related messaging varies across institutional, legislative, and fiscal conditions using logistic regression.
+
+Deficit-tweeting is low overall (\~.7%) but varies significantly depending on a representative's party affiliation and power status: Republicans tweet about the deficit five times as often when in the minority, while Democrats’ rates remain comparatively stable across majority/minority status. While legislative periods further amplify these patterns, the fiscal size of legislation (CBO estimates) has no impact on tweeting rates. Results confirm that deficit rhetoric is indeed correlated to political opportunity - not fiscal conditions - likely serving partisan communication goals and legislative agendas.
