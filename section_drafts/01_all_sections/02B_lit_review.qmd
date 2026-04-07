@@ -11,6 +11,6 @@ editor: visual
 
 ## 2.1 Overview of Deficit Rhetoric Literature
 
-A substantial body of literature has examined various aspects of U.S. federal deficit spending and the partisan nature of public finance more broadly (Alesina & Tebellini 1990; Pettersson-Lidbom 2001; Alesina & Passalacqua 2016). This research provides extensive insight into the determinants of fiscal outcomes, including how political institutions, electoral incentives, and partisan control over legislation influence government spending decisions.
+A substantial body of literature has examined various aspects of U.S. federal deficit spending and the partisan nature of public finance more broadly (Alesina & Tabellini 1990; Pettersson-Lidbom 2001; Alesina & Passalacqua 2016). This research provides extensive insight into the determinants of fiscal outcomes, including how political institutions, electoral incentives, and partisan control over legislation influence government spending decisions.
 
 While this research provides extensive analysis of actual fiscal outcomes, it offers little insight into the actual political communication surrounding the national debt itself. To our knowledge, this paper is the first comprehensive analysis of how politicians’ deficit-related messaging varies with political contexts and fiscal circumstances.

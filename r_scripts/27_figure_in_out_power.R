@@ -1,6 +1,7 @@
 # ===== Libraries =====
 library(tidyverse)
 library(scales)
+library(ggridges)
 load("/Users/cycoldiron/Desktop/congress-fiscal-tweets/data/processed/06_member_deficit_behavior_summary.RData")
 
 # ===== Parameters =====
@@ -266,10 +267,12 @@ meds4 <- df_base |>
 
 x_clip4 <- quantile(df_base$pct_debt_tweets, 0.995, na.rm = TRUE)
 
-p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, fill = party, color = party)) +
-  geom_density(alpha = 0.28, adjust = 1.1, linewidth = 0.6) +
-  geom_vline(data = meds4, aes(xintercept = med, color = party),
-             linetype = 2, linewidth = 0.6, show.legend = FALSE) +
+p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill = party, color = party)) +
+  geom_density_ridges(
+    alpha = 0.45, scale = 0.85, linewidth = 0.6,
+    quantile_lines = TRUE, quantiles = 0.5,
+    vline_linetype = 2, vline_color = "grey30"
+  ) +
   coord_cartesian(xlim = c(0, x_clip4)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
@@ -278,14 +281,15 @@ p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, fill = party, c
     title    = "Distribution of Members' Deficit Tweet Share by Party (2017–2023)",
     subtitle = "Dashed lines show party medians.",
     x = "% of Deficit Tweets",
-    y = "Density",
+    y = NULL,
     fill = "Party", color = "Party"
   ) +
   theme_bw(base_size = 12) +
   theme(
     plot.title    = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
   ) +
   theme_axis_bold
 
@@ -302,11 +306,12 @@ meds_diff <- df_diff |>
   group_by(party) |>
   summarise(med = median(diff_in_minus_out, na.rm = TRUE), .groups = "drop")
 
-p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, fill = party, color = party)) +
-  geom_density(alpha = 0.35, adjust = 1.1, linewidth = 0.6) +
-  # (Removed the 0% vertical line)
-  geom_vline(data = meds_diff, aes(xintercept = med, color = party),
-             linetype = 2, linewidth = 0.6, show.legend = FALSE) +
+p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fill = party, color = party)) +
+  geom_density_ridges(
+    alpha = 0.45, scale = 0.85, linewidth = 0.6,
+    quantile_lines = TRUE, quantiles = 0.5,
+    vline_linetype = 2, vline_color = "grey30"
+  ) +
   coord_cartesian(xlim = c(-max_abs, max_abs)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
@@ -315,13 +320,15 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, fill = party, 
     title    = "Change in Deficit Tweet Share: In Power – Out of Power (2017–2023)",
     subtitle = "Dashed lines show party medians.",
     x = "Percentage point difference",
-    y = "Density", fill = "Party", color = "Party"
+    y = NULL,
+    fill = "Party", color = "Party"
   ) +
   theme_bw(base_size = 12) +
   theme(
     plot.title    = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
   ) +
   theme_axis_bold
 

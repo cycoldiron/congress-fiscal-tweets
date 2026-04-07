@@ -69,6 +69,7 @@ knitr::opts_chunk$set(
 #| label: fig-timeseries
 #| fig-cap: "Share of congressional tweets about the deficit."
 #| fig-pos: "htbp"
+#| out-width: "0.78\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/deficit_tweet_share_with_legislation.png")
 ```
 
@@ -82,7 +83,7 @@ The baseline deficit tweeting share for both parties is low, generally under 1% 
 #| label: fig-deficit-vs-cpi
 #| fig-cap: "Deficit tweet share vs. U.S. CPI inflation."
 #| fig-pos: "htbp"
-#| out-width: "0.80\\linewidth"
+#| out-width: "0.68\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/deficit_share_vs_inflation_smoothed.png")
 
 ```
@@ -95,7 +96,7 @@ Another explanation could be that along with higher inflation, the significant, 
 #| label: fig-member-share-by-party
 #| fig-cap: "Share of deficit tweets by party (member-level distribution)."
 #| fig-pos: "H"
-#| out-width: "0.80\\linewidth"
+#| out-width: "0.72\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_overall.png")
 
 ```
@@ -110,7 +111,7 @@ Democrats display a relatively compact distribution, with most representatives f
 #| label: fig-power-boxplot
 #| fig-cap: "Distribution of deficit tweets by power (boxplot)."
 #| fig-pos: "H"
-#| out-width: "0.80\\linewidth"
+#| out-width: "0.72\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/box_party_split_by_power.png")
 
 ```
@@ -121,7 +122,7 @@ knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figure
 #| label: fig-inout-shifts
 #| fig-cap: "In–out shifts in deficit tweeting (histogram)."
 #| fig-pos: "H"
-#| out-width: "0.80\\linewidth"
+#| out-width: "0.72\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_in_minus_out_overlay.png")
 
 
@@ -139,7 +140,7 @@ Taken together, @fig-power-boxplot and @fig-inout-shifts suggest that Republican
 #| label: fig-leadership
 #| fig-cap: "Deficit tweeting by congressional leaders (House and Senate; majority vs. minority roles)."
 #|fig-pos: "H"
-#| out-width: "0.75\\linewidth"
+#| out-width: "0.68\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/leadership/leader_deficit_tweets.png")
 
 ```
@@ -158,13 +159,15 @@ Consider the differences in tweeting patterns among the two parties top legislat
 #| label: fig-deficit-share-by-party
 #| fig-cap: "Deficit share within legislative windows, by party."
 #| fig-pos: "htbp"
-#| out-width: "0.75\\linewidth"
+#| out-width: "0.65\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_summary_tables/tweetlevel_deficit_share_by_party.png")
 
 
 ```
 
 @fig-deficit-share-by-party reports the conditional share of tweets mentioning the deficit within ±1-month windows around major bills, split by party (with a pooled/overall column for reference). At baseline, Republicans tweet about the deficit more often 0.8% than Democrats 0.6% – a gap that persists across most legislative windows. During the Inflation Reduction Act (2022) and CHIPS Act (2022) periods, Republicans’ tweets accelerated, with deficit mentions at nearly 2.0%, compared to 1.3% among Democrats. However, the TCJA (2017)—a partisan GOP tax cut—is a noticeable and stark exception. During these three months, the Democrats’ deficit share spikes to 2.0%, while the Republicans’ share falls to just 0.2%, reflecting a partisan realignment around a highly divisive bill. In contrast, during the COVID relief period in 2020 – a non-partisan voting context – both parties converged at very low levels (0.3–0.4%).
+
+\FloatBarrier
 
 ## Regression Visualization {#sec-reg-viz}
 
@@ -174,7 +177,7 @@ The following regression models offer a structured approach to examining how ins
 #| label: fig-r1-legislative-windows
 #| fig-cap: "Regression 1: Legislative windows."
 #| fig-pos: "htbp"
-#| out-width: "0.75\\linewidth"
+#| out-width: "0.62\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r3_legislative_windows_main.png")
 
 ```
@@ -185,7 +188,7 @@ The baseline model, @fig-r1-legislative-windows, examines partisan differences i
 #| label: fig-r2-presidency
 #| fig-cap: "Regression 2: Majority context (presidency)."
 #| fig-pos: "htbp"
-#| out-width: "0.75\\linewidth"
+#| out-width: "0.62\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r5_majority_context_main.png")
 
 
@@ -199,7 +202,7 @@ Republicans’ odds of tweeting about deficits are nearly double (OR = 1.87) whe
 #| label: fig-r3-chamber-presidency
 #| fig-cap: "Regression 3: Majority context — chamber and presidency combinations."
 #| fig-pos: "htbp"
-#| out-width: "0.75\\linewidth"
+#| out-width: "0.62\\linewidth"
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r6_majority_context_combos.png")
 
 ```
