@@ -4,9 +4,17 @@ author: "Cy Coldiron"
 date: ""
 format:
   pdf:
+    pdf-engine: xelatex
     documentclass: article
     fontsize: 11pt
     geometry: margin=1in
+    toc: false
+
+header-includes: |
+  \usepackage{titling}
+  \pretitle{\begin{center}\LARGE\bfseries}
+  \posttitle{\par\end{center}\vskip 0.5em}
+
 editor: visual
 ---
 

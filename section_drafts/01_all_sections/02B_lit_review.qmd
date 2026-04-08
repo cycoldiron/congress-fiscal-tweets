@@ -1,8 +1,19 @@
 ---
 title: "Fiscal Policy vs. Political Communication"
 author: "Cy Coldiron"
-format: pdf
-editor: visual
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 11pt
+    geometry: margin=1in
+    number-sections: true
+    toc: false
+
+header-includes: |
+  \usepackage{titling}
+  \pretitle{\begin{center}\LARGE\bfseries}
+  \posttitle{\par\end{center}\vskip 0.5em}
 ---
 
 \setcounter{section}{1}

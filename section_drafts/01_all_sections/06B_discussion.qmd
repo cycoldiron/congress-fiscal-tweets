@@ -3,8 +3,17 @@ title: "Discussion Section"
 author: "Cy Coldiron"
 format:
   pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 11pt
+    geometry: margin=1in
     number-sections: true
-editor: visual
+    toc: false
+
+header-includes: |
+  \usepackage{titling}
+  \pretitle{\begin{center}\LARGE\bfseries}
+  \posttitle{\par\end{center}\vskip 0.5em}
 ---
 
 \setcounter{section}{5}
