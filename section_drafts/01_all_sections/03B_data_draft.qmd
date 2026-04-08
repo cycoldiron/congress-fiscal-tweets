@@ -1,5 +1,5 @@
 ---
-title: "Data Overview"
+title: "Data and Measurement of Deficit Rhetoric"
 author: "Cy Coldiron"
 format: pdf
 editor: visual
@@ -7,9 +7,9 @@ editor: visual
 
 \setcounter{section}{2}
 
-# Data
+# Data and Measurement of Deficit Rhetoric
 
-## 3.1 Tweet Data Overview
+## Congressional Twitter Dataset (2017–2023)
 
 The dataset used for classifying tweets is Tweets of Congress (maintained by Alex Litel), which contains all tweets (original, retweets, and quoted retweets) from the official accounts of U.S. congressional members between June 2017 and January 2023. The data was generated via an open-source, serverless application that interfaces with the Twitter API, querying for new tweets at the top of each hour. Each observation (tweet) is stored as an object (with one JSON file corresponding to each day). This automated pipeline ensures comprehensive, continuous coverage of congressional Twitter activity during that period, with accounts updated through routine synchronization with legislator metadata. For instance, this system automatically adds newly sworn-in members to the metadata and removes non-members (i.e., those who lost an election, resigned, etc.)—thereby reflecting Congress's true composition at each point in time.
 
@@ -17,7 +17,7 @@ Although more recent data (2024-2025) would provide greater relevance and utilit
 
 While the raw dataset itself includes party committee accounts (oversight, armed services, education, etc.) and institutional accounts (housedems, senateGOP), our project focuses exclusively on the rhetorical patterns of congressional members. Thus, we remove all accounts not directly tied to an individual congressional member, finalizing the dataset at roughly 3.6 million tweets.
 
-## 3.2 Tweet classification Strategy
+## Dictionary-Based Classification of Deficit-Related Tweets
 
 To identify deficit-related tweets, I implemented a two-tier keyword strategy in Python (pandas). The full code can be seen at the projects [GitHub Repo](https://github.com/cycoldiron/congress-fiscal-tweets).
 
@@ -48,7 +48,7 @@ knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/screen
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/screenshots/kev_mccarthy_ss.png")
 ```
 
-## 3.3 Biases and Limitations
+## Measurement Error in Deficit Tweet Classification
 
 While this classification provides simplicity and replicability, it also introduces potential sources of bias. These fall into two main categories:
 
@@ -60,7 +60,7 @@ As noted, the challenge in using a dictionary-based method is balancing precisio
 
 Bias may also arise from differences in rhetorical style across time, parties, and individuals. For instance, members who consistently use explicit terms like *“national debt”* are captured reliably, while those who reference deficits more vaguely or implicitly are systematically undercounted. If such variation correlates with party or institutional context (e.g., legislative periods), it could bias comparisons.
 
-## **3.4 Model Improvement: A Machine Learning Approach**
+## Extensions: Supervised Validation and Machine Learning Approaches
 
 For future research considerations—whether involving similar or identical data—it is important to consider alternative, complementary approaches to improve labeling accuracy.
 
@@ -78,7 +78,7 @@ Selecting the best model would thus require one to determine the ideal “accura
 
 In sum, a supervised dictionary validation approach would reduce under-detection of implicit references but would not fully eliminate the two forms of bias referenced in 3.2. For instance, expanding the dictionary to improve coverage risks a higher false-positive rate. The training dataset would capture less explicit tweets, and the best-performing dictionary would detect many of these indirect cases. Yet the same expansion may also misclassify unrelated tweets, raising the false-positive ratio. Thus, even if the most comprehensive model achieved the greatest overall accuracy, the fundamental bias would persist, albeit at a smaller scale.
 
-## 3.5 Other Data
+## Institutional, Legislative, and Economic Covariates
 
 To contextualize congressional tweeting among broader political and economic phenomena, I integrated a wide set of temporal covariates into the dataset. Economic indicators—sourced from the U.S. Treasury and Federal Reserve—include ten-year interest rates, inflation (U.S CPI YoY) and multiple measures of federal debt (publicly held debt, intragovernmental holdings, and total debt outstanding). 
 

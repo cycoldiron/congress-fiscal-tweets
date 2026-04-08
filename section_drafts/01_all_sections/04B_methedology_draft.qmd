@@ -1,5 +1,5 @@
 ---
-title: "Methodology"
+title: "Empirical Strategy"
 author: "Cy Coldiron"
 format:
   pdf:
@@ -9,9 +9,9 @@ editor: visual
 
 \setcounter{section}{3}
 
-# Methedology {#sec-methedology}
+# Empirical Strategy
 
-## Regression Methodology
+## Logistic Regression Framework for Deficit Tweeting
 
 \
 Our research objective is to examine the link between deficit rhetoric and political, fiscal and legislative contexts. To assess this relationship — our project employs logistic regression. There are two reasons for this choice. First, the dependent variable—share of tweets that are deficit related—is a binary variable; that is, a congressional member either tweeted about the deficit (1) or did not (0). Second, we are concerned with the probability of tweeting about the deficit (values between 0 and 1). Thus, a traditional regression model—which does not constrain predicted values—would not be appropriate, as it would allow for probabilities to be less than zero (negative) or greater than 1. Moreover, logistic regression allows us to explore how these probabilities, or odds, change with levels of explanatory variables (party, legislative context, fiscal conditions etc)—which is a key consideration in this research. For instance, logistic regression allows us to see how odds of tweeting about the deficit change among parties when the fiscal impact of policy bills increase.
@@ -25,21 +25,21 @@ $$
 = \alpha_i + \gamma_t + \beta X_{it} + \varepsilon_{it}
 $$
 
-### Fixed Effects
+### Member and Time Fixed Effects
 
 Member fixed effects absorb differences across legislators and between parties. For example, Senator Rand Paul tweets far more often than Senator Ted Cruz, and Republicans, generally speaking, tweet more about deficits than Democrats. These baseline differences are captured by $\alpha_i$, so estimates rely on within-member changes over time. Moreover, month fixed effects absorb shocks common to all legislators in a given month. For instance, during COVID-19 legislative periods (i.e., CARES Act), both parties reduced deficit rhetoric at similar rates. Month fixed effects, $\gamma_i$, ensures that these shared shocks, such as COVID-19, are not misattributed to partisan–institutional dynamics.
 
-### Interpreting Coefficients
+### Interpreting Odds Ratios and Interaction Effects
 
 Coefficients are presented as odds ratios and should be understood relative to the omitted (baseline) category. Odds ratios (ORs) indicate how the odds of an event— in this case, tweeting about the deficit—change with different levels of predictor variables, holding all other factors constant. The baseline condition, for which coefficients should be compared to, is always Democrats outside legislative windows under the institutional baseline of each specification. By “institutional baseline,” I mean the makeup of congressional and executive power used in the model. 
 
 In each model the main-effect, the coefficient (GOP) — represents the baseline tweeting gap between Republicans and Democrats. Interaction coefficients capture shifts in this baseline partisan gap under specific institutional combinations (legislative windows, congressional control, etc.). An odds ratio greater than 1 means the Republican–Democrat gap widens (Republicans become relatively more deficit-focused), while an odds ratio less than 1 means the gap narrows, relative to the baseline.
 
-### Example Coefficient Interpretation
+### Illustration of Interaction Effects in Legislative Contexts
 
 For example, in the second regression model, the coefficient on GOP × Legislative window (OR = .38) shows that the partisan gap contracts during legislative months: Republicans’ odds of tweeting about the deficit decrease to 62% lower than Democrats’ odds relative to the baseline condition (Democrats outside legislative windows; Republicans hold presidency).
 
-## Regression Design
+## Sequential Model Specifications and Identification Strategy
 
 Our research goal is to understand how deficit rhetoric—specifically among Democrats and Republicans—changes with varying institutional, fiscal and legislative conditions. To do this, we estimate a sequence of specifications that control for these variables in a progressively specific manner. The baseline model (Regression 1) interacts with party affiliation with legislative windows. Furthermore, it includes coefficients to describe how this baseline tweeting gap changes with differing levels of bill partisanship and fiscal impact (CBO estimate of the bill). Such coefficients help us to understand the relationship—or lack thereof—between the divisiveness of a bill, or its fiscal impact, and how members talk about it on twitter.
 

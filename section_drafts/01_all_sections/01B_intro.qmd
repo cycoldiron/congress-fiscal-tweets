@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Political Incentives and Deficit Rhetoric on Twitter"
 author: "Cy Coldiron"
 format:
   pdf:
@@ -9,11 +9,11 @@ editor: visual
 
 \setcounter{section}{0}
 
-# Introduction
+# Political Incentives and Deficit Rhetoric on Twitter
 
 “It has become standard fare in American politics to watch each party rail against deficits when they are out of power but hungrily embrace deficits when in control and able to advance their own agenda.” — **Kenneth Rogoff**, *Our Dollar, Your Problem*
 
-## Background
+## Historical Evolution and Partisan Framing of the Federal Deficit
 
 \
 Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes-including record high inflation—to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
