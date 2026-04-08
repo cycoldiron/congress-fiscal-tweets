@@ -276,7 +276,7 @@ lbl_overall <- data.frame(
 p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill = party, color = party)) +
   geom_density_ridges(
     alpha = 0.4, scale = 0.85, linewidth = 0.8,
-    bandwidth = 0.0011,
+    bandwidth = 0.0011, from = 0,
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
