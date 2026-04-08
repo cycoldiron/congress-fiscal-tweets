@@ -24,7 +24,6 @@ header-includes: |
 
 ## Historical Evolution and Partisan Framing of the Federal Deficit
 
-\
 Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes-including record high inflation—to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
 
 Aside from the Federal Deficits centrality in American political discourse, the national debt itself has implications for both the domestic and global economy. Beyond the stimulus effects of deficit spending, long-term imbalances can exacerbate inflationary pressures, burden future generations with higher borrowing costs, and contribute to asset bubbles and macroeconomic instability.

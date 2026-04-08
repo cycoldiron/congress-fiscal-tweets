@@ -18,9 +18,7 @@ header-includes: |
 
 \setcounter{section}{1}
 
-# Fiscal Policy vs. Political Communication
-
-## Existing Research on Fiscal Outcomes and the Absence of Deficit Rhetoric Analysis
+# Overview of Deficit Rhetoric Literature
 
 A substantial body of literature has examined various aspects of U.S. federal deficit spending and the partisan nature of public finance more broadly (Alesina & Tabellini 1990; Pettersson-Lidbom 2001; Alesina & Passalacqua 2016). This research provides extensive insight into the determinants of fiscal outcomes, including how political institutions, electoral incentives, and partisan control over legislation influence government spending decisions.
 
