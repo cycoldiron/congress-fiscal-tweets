@@ -4,7 +4,6 @@ author:
   - name: "Cy Coldiron"
     affiliations:
       - name: "University of California, Santa Barbara"
-date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 
 format:
   pdf:
@@ -60,7 +59,7 @@ knitr::opts_chunk$set(
 
 \setcounter{section}{4}
 
-# Empirical Results: Deficit Rhetoric Across Political Contexts
+# Empirical Results
 
 ## Time-Series Trends in Deficit Tweeting (2017–2023) {#sec-macro}
 

@@ -23,7 +23,7 @@ header-includes: |
 
 \setcounter{section}{2}
 
-# Data and Measurement of Deficit Rhetoric
+# Data
 
 ## Congressional Twitter Dataset (2017–2023)
 

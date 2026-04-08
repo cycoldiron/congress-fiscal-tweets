@@ -18,7 +18,7 @@ header-includes: |
 
 \setcounter{section}{1}
 
-# Fiscal Policy vs. Political Communication
+# Literature Review
 
 ## Existing Research on Fiscal Outcomes and the Absence of Deficit Rhetoric Analysis
 
