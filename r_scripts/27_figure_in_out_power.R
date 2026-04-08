@@ -267,14 +267,27 @@ meds4 <- df_base |>
 
 x_clip4 <- quantile(df_base$pct_debt_tweets, 0.995, na.rm = TRUE)
 
+lbl_overall <- data.frame(
+  party = factor(c("Democratic", "Republican"), levels = c("Democratic", "Republican")),
+  x     = c(0.019, 0.019),
+  label = c("Democrats", "Republicans")
+)
+
 p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill = party, color = party)) +
   geom_density_ridges(
-    alpha = 0.45, scale = 0.85, linewidth = 0.6,
+    alpha = 0.65, scale = 0.85, linewidth = 0.8,
+    bandwidth = 0.0011,
     quantile_lines = TRUE, quantiles = 0.5,
-    vline_linetype = 2, vline_color = "grey30"
+    vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
-  coord_cartesian(xlim = c(0, x_clip4)) +
+  geom_text(
+    data = lbl_overall,
+    aes(x = x, y = party, label = label, color = party),
+    vjust = -0.8, hjust = 1, size = 3.8, fontface = "bold", show.legend = FALSE
+  ) +
+  coord_cartesian(xlim = c(0, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
+  scale_y_discrete(labels = c("Democratic" = "Democrats", "Republican" = "Republicans")) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
@@ -306,14 +319,27 @@ meds_diff <- df_diff |>
   group_by(party) |>
   summarise(med = median(diff_in_minus_out, na.rm = TRUE), .groups = "drop")
 
+lbl_diff <- data.frame(
+  party = factor(c("Democratic", "Republican"), levels = c("Democratic", "Republican")),
+  x     = c(0.016, 0.016),
+  label = c("Democrats", "Republicans")
+)
+
 p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fill = party, color = party)) +
   geom_density_ridges(
-    alpha = 0.45, scale = 0.85, linewidth = 0.6,
+    alpha = 0.65, scale = 0.85, linewidth = 0.8,
+    bandwidth = 0.0018,
     quantile_lines = TRUE, quantiles = 0.5,
-    vline_linetype = 2, vline_color = "grey30"
+    vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
-  coord_cartesian(xlim = c(-max_abs, max_abs)) +
+  geom_text(
+    data = lbl_diff,
+    aes(x = x, y = party, label = label, color = party),
+    vjust = -0.8, hjust = 1, size = 3.8, fontface = "bold", show.legend = FALSE
+  ) +
+  coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
+  scale_y_discrete(labels = c("Democratic" = "Democrats", "Republican" = "Republicans")) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
