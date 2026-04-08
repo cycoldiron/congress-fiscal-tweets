@@ -275,15 +275,10 @@ lbl_overall <- data.frame(
 
 p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill = party, color = party)) +
   geom_density_ridges(
-    alpha = 0.65, scale = 0.85, linewidth = 0.8,
+    alpha = 0.4, scale = 0.85, linewidth = 0.8,
     bandwidth = 0.0011,
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
-  ) +
-  geom_text(
-    data = lbl_overall,
-    aes(x = x, y = party, label = label, color = party),
-    vjust = -0.8, hjust = 1, size = 3.8, fontface = "bold", show.legend = FALSE
   ) +
   coord_cartesian(xlim = c(0, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
@@ -327,15 +322,10 @@ lbl_diff <- data.frame(
 
 p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fill = party, color = party)) +
   geom_density_ridges(
-    alpha = 0.65, scale = 0.85, linewidth = 0.8,
+    alpha = 0.4, scale = 0.85, linewidth = 0.8,
     bandwidth = 0.0018,
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
-  ) +
-  geom_text(
-    data = lbl_diff,
-    aes(x = x, y = party, label = label, color = party),
-    vjust = -0.8, hjust = 1, size = 3.8, fontface = "bold", show.legend = FALSE
   ) +
   coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
