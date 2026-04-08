@@ -276,13 +276,16 @@ lbl_overall <- data.frame(
 p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill = party, color = party)) +
   geom_density_ridges(
     alpha = 0.4, scale = 0.85, linewidth = 0.8,
-    bandwidth = 0.0011, from = 0,
+    bandwidth = 0.0007, from = 0,
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
   coord_cartesian(xlim = c(0, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
-  scale_y_discrete(labels = c("Democratic" = "Democrats", "Republican" = "Republicans")) +
+  scale_y_discrete(
+    labels  = c("Democratic" = "Democrats", "Republican" = "Republicans"),
+    expand  = expansion(add = c(0.1, 0.6))
+  ) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
@@ -297,7 +300,8 @@ p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill
     plot.title    = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
     panel.grid.minor = element_blank(),
-    legend.position = "none"
+    legend.position = "none",
+    axis.text.y     = element_text(face = "bold", size = 13)
   ) +
   theme_axis_bold
 
@@ -323,13 +327,16 @@ lbl_diff <- data.frame(
 p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fill = party, color = party)) +
   geom_density_ridges(
     alpha = 0.4, scale = 0.85, linewidth = 0.8,
-    bandwidth = 0.0018,
+    bandwidth = 0.0013,
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
   coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
-  scale_y_discrete(labels = c("Democratic" = "Democrats", "Republican" = "Republicans")) +
+  scale_y_discrete(
+    labels  = c("Democratic" = "Democrats", "Republican" = "Republicans"),
+    expand  = expansion(add = c(0.1, 0.6))
+  ) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
@@ -344,7 +351,8 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
     plot.title    = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
     panel.grid.minor = element_blank(),
-    legend.position = "none"
+    legend.position = "none",
+    axis.text.y     = element_text(face = "bold", size = 13)
   ) +
   theme_axis_bold
 
