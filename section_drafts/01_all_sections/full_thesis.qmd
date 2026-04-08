@@ -41,7 +41,7 @@ header-includes: |
   \preauthor{\begin{center}\normalsize\lineskip 0.5em}
   \postauthor{\\[0.3em]
     {\small University of California, Santa Barbara} \\[0.1em]
-    {\small Department of Economics $\cdot$ Department of Statistics \& Data Science} \\[0.1em]
+    {\small Department of Economics} \\[0.1em]
     {\small \texttt{coldiron@ucsb.edu}}
     \par\end{center}\vskip 0.2em}
   \predate{\begin{center}\normalsize}
