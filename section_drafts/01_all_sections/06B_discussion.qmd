@@ -1,5 +1,5 @@
 ---
-title: "Discussion Section"
+title: "Discussion"
 author: "Cy Coldiron"
 format:
   pdf:

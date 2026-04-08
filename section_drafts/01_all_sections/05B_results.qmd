@@ -1,5 +1,5 @@
 ---
-title: "Empirical Results: Deficit Rhetoric Across Political Contexts"
+title: "Results"
 author:
   - name: "Cy Coldiron"
     affiliations:
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(
 
 \setcounter{section}{4}
 
-# Empirical Results
+# Empirical Results: Deficit Rhetoric Across Political Contexts
 
 ## Time-Series Trends in Deficit Tweeting (2017–2023) {#sec-macro}
 

@@ -1,5 +1,5 @@
 ---
-title: "Data and Measurement of Deficit Rhetoric"
+title: "Data"
 author: "Cy Coldiron"
 format:
   pdf:
@@ -23,7 +23,7 @@ header-includes: |
 
 \setcounter{section}{2}
 
-# Data
+# Data and Measurement of Deficit Rhetoric
 
 ## Congressional Twitter Dataset (2017–2023)
 

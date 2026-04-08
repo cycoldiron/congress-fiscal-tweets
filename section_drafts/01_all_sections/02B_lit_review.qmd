@@ -1,5 +1,5 @@
 ---
-title: "Fiscal Policy vs. Political Communication"
+title: "Literature Review"
 author: "Cy Coldiron"
 format:
   pdf:
@@ -18,7 +18,7 @@ header-includes: |
 
 \setcounter{section}{1}
 
-# Literature Review
+# Fiscal Policy vs. Political Communication
 
 ## Existing Research on Fiscal Outcomes and the Absence of Deficit Rhetoric Analysis
 

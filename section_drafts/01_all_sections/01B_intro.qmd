@@ -1,5 +1,5 @@
 ---
-title: "Political Incentives and Deficit Rhetoric on Twitter"
+title: "Introduction"
 author: "Cy Coldiron"
 format:
   pdf:
@@ -18,7 +18,7 @@ header-includes: |
 
 \setcounter{section}{0}
 
-# Introduction
+# Political Incentives and Deficit Rhetoric on Twitter
 
 “It has become standard fare in American politics to watch each party rail against deficits when they are out of power but hungrily embrace deficits when in control and able to advance their own agenda.” — **Kenneth Rogoff**, *Our Dollar, Your Problem*
 
