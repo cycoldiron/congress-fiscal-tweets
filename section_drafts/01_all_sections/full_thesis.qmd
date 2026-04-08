@@ -274,6 +274,10 @@ Another explanation could be that along with higher inflation, the significant, 
 
 ## Distribution of Deficit Tweeting Across Members and Parties {#sec-member}
 
+@fig-member-share-by-party presents member-level distributions of deficit tweeting, calculated as the share of each member's tweets that mention the deficit over the entire period. As illustrated by the dashed lines (party medians), Republicans tweet about the deficit more frequently than Democrats, with average shares of 0.81% and 0.62%, respectively.
+
+Democrats display a relatively compact distribution, with most representatives falling below 0.7%, indicating less intra-party variation in deficit tweeting. Republicans, however, show far greater variability within their party. The GOP's right tail distribution illustrates that, compared to their Democratic colleagues, a far greater proportion of members tweet about the deficit at much higher rates, with outliers reaching 4–8%.
+
 ```{r}
 #| label: fig-member-share-by-party
 #| fig-cap: "Share of deficit tweets by party (member-level distribution)."
@@ -282,9 +286,7 @@ Another explanation could be that along with higher inflation, the significant, 
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_overall.png")
 ```
 
-@fig-member-share-by-party presents member-level distributions of deficit tweeting, calculated as the share of each member's tweets that mention the deficit over the entire period. As illustrated by the dashed lines (party medians), Republicans tweet about the deficit more frequently than Democrats, with average shares of 0.81% and 0.62%, respectively.
-
-Democrats display a relatively compact distribution, with most representatives falling below 0.7%, indicating less intra-party variation in deficit tweeting. Republicans, however, show far greater variability within their party. The GOP's right tail distribution illustrates that, compared to their Democratic colleagues, a far greater proportion of members tweet about the deficit at much higher rates, with outliers reaching 4–8%.
+\FloatBarrier
 
 @fig-power-boxplot breaks down these distributions further by institutional power status (majority vs. minority). The left and right panels juxtapose the distribution when a member's party controls the presidency (in-power) versus when it does not (out-of-power). For instance, Democrats would be considered in-power from January 2021 to January 2023 under President Joe Biden, while Republicans would be out-of-power during this same period.
 
