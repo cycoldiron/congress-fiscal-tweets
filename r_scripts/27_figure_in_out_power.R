@@ -331,6 +331,27 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
     quantile_lines = TRUE, quantiles = 0.5,
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
+  # --- directional arrows placed between the two ridges (y = 1.5) ---
+  annotate("segment",
+    x = 0.001, xend = 0.022, y = 1.5, yend = 1.5,
+    arrow = arrow(length = unit(0.22, "cm"), type = "closed"),
+    color = "grey35", linewidth = 0.55
+  ) +
+  annotate("text",
+    x = 0.0115, y = 1.60,
+    label = "Tweets more when in power",
+    size = 2.9, color = "grey35", hjust = 0.5, fontface = "italic"
+  ) +
+  annotate("segment",
+    x = -0.001, xend = -0.022, y = 1.5, yend = 1.5,
+    arrow = arrow(length = unit(0.22, "cm"), type = "closed"),
+    color = "grey35", linewidth = 0.55
+  ) +
+  annotate("text",
+    x = -0.0115, y = 1.60,
+    label = "Tweets more when out-of-power",
+    size = 2.9, color = "grey35", hjust = 0.5, fontface = "italic"
+  ) +
   coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
   scale_y_discrete(
