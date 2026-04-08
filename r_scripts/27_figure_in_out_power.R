@@ -333,24 +333,24 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
   ) +
   # --- directional arrows placed between the two ridges (y = 1.5) ---
   annotate("segment",
-    x = 0.001, xend = 0.022, y = 1.5, yend = 1.5,
-    arrow = arrow(length = unit(0.22, "cm"), type = "closed"),
-    color = "grey35", linewidth = 0.55
+    x = 0.005, xend = 0.022, y = 1.5, yend = 1.5,
+    arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+    color = "grey35", linewidth = 0.9
   ) +
   annotate("text",
-    x = 0.0115, y = 1.60,
+    x = 0.0135, y = 1.61,
     label = "Tweets more when in power",
-    size = 2.9, color = "grey35", hjust = 0.5, fontface = "italic"
+    size = 3.4, color = "grey35", hjust = 0.5, fontface = "bold"
   ) +
   annotate("segment",
-    x = -0.001, xend = -0.022, y = 1.5, yend = 1.5,
-    arrow = arrow(length = unit(0.22, "cm"), type = "closed"),
-    color = "grey35", linewidth = 0.55
+    x = -0.005, xend = -0.022, y = 1.5, yend = 1.5,
+    arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+    color = "grey35", linewidth = 0.9
   ) +
   annotate("text",
-    x = -0.0115, y = 1.60,
+    x = -0.0135, y = 1.61,
     label = "Tweets more when out-of-power",
-    size = 2.9, color = "grey35", hjust = 0.5, fontface = "italic"
+    size = 3.4, color = "grey35", hjust = 0.5, fontface = "bold"
   ) +
   coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
