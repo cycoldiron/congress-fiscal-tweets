@@ -3,7 +3,7 @@ title: "Twitter and the Politics of the Federal Deficit"
 author: "Cy Coldiron"
 date: "April 2026"
 abstract: |
-  Economists and political observers have long noted a recurring pattern in American politics: politicians change their messaging around the federal deficit depending on their relative power status—becoming more fiscally conservative in periods of opposition. This paper examines this claim by tracking U.S. congressional members' deficit-related tweets between 2017–2023. Using a two-tier dictionary classification method, I identify tweets referencing the national debt and estimate how deficit-related messaging varies across institutional, legislative, and fiscal conditions using logistic regression. Deficit-tweeting is low overall (\~0.7%) but varies significantly depending on a representative's party affiliation and power status: Republicans tweet about the deficit five times as often when in the minority, while Democrats' rates remain comparatively stable across majority/minority status. While legislative periods further amplify these patterns, the fiscal size of legislation (CBO estimates) has no impact on tweeting rates. Results confirm that deficit rhetoric is correlated with political opportunity—not fiscal conditions—likely serving partisan communication goals and legislative agendas.
+  Economists and political observers have long noted a recurring pattern in American politics: politicians cyclically allign their messaging on the federal deficit — advocating fiscal restraint (austerity) in periods of opposition, while downplaying the repercussions of fiscal stimulus once in power. This paper examines this claim by tracking U.S. congressional members' deficit-related tweets between 2017–2023. Using a two-tier dictionary classification method, I identify tweets referencing the national debt and estimate how deficit-related messaging varies across institutional, legislative, and fiscal conditions using logistic regression. Deficit-tweeting is low overall (\~0.7%) but varies significantly depending on a representative's party affiliation and power status: Republicans tweet about the deficit five times as often when in the minority, while Democrats' rates remain comparatively stable across majority/minority status. While legislative periods further amplify these patterns, the fiscal size of legislation (CBO estimates) has no impact on tweeting rates. Results confirm that deficit rhetoric is correlated with political opportunity—not fiscal conditions—likely serving partisan communication goals and legislative agendas.
 
 format:
   pdf:
@@ -41,7 +41,7 @@ header-includes: |
   \preauthor{\begin{center}\normalsize\lineskip 0.5em}
   \postauthor{\\[0.3em]
     {\small University of California, Santa Barbara} \\[0.1em]
-    {\small Department of Economics} \\[0.1em]
+    {\small Department of Economics $\cdot$ Department of Statistics \& Data Science} \\[0.1em]
     {\small \texttt{coldiron@ucsb.edu}}
     \par\end{center}\vskip 0.2em}
   \predate{\begin{center}\normalsize}
@@ -97,7 +97,7 @@ knitr::opts_chunk$set(out.width = "0.85\\linewidth")
 
 ## Historical Background of Deficit Rheotoric
 
-Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes-including record high inflation—to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
+Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics. By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes-including record high inflation—to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
 
 Aside from the Federal Deficits centrality in American political discourse, the national debt itself has implications for both the domestic and global economy. Beyond the stimulus effects of deficit spending, long-term imbalances can exacerbate inflationary pressures, burden future generations with higher borrowing costs, and contribute to asset bubbles and macroeconomic instability.
 
@@ -274,10 +274,6 @@ Another explanation could be that along with higher inflation, the significant, 
 
 ## Distribution of Deficit Tweeting Across Members and Parties {#sec-member}
 
-@fig-member-share-by-party presents member-level distributions of deficit tweeting, calculated as the share of each member's tweets that mention the deficit over the entire period. As illustrated by the dashed lines (party medians), Republicans tweet about the deficit more frequently than Democrats, with average shares of 0.81% and 0.62%, respectively.
-
-Democrats display a relatively compact distribution, with most representatives falling below 0.7%, indicating less intra-party variation in deficit tweeting. Republicans, however, show far greater variability within their party. The GOP's right tail distribution illustrates that, compared to their Democratic colleagues, a far greater proportion of members tweet about the deficit at much higher rates, with outliers reaching 4–8%.
-
 ```{r}
 #| label: fig-member-share-by-party
 #| fig-cap: "Share of deficit tweets by party (member-level distribution)."
@@ -286,7 +282,9 @@ Democrats display a relatively compact distribution, with most representatives f
 knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_overall.png")
 ```
 
-\FloatBarrier
+@fig-member-share-by-party presents member-level distributions of deficit tweeting, calculated as the share of each member's tweets that mention the deficit over the entire period. As illustrated by the dashed lines (party medians), Republicans tweet about the deficit more frequently than Democrats, with average shares of 0.81% and 0.62%, respectively.
+
+Democrats display a relatively compact distribution, with most representatives falling below 0.7%, indicating less intra-party variation in deficit tweeting. Republicans, however, show far greater variability within their party. The GOP's right tail distribution illustrates that, compared to their Democratic colleagues, a far greater proportion of members tweet about the deficit at much higher rates, with outliers reaching 4–8%.
 
 @fig-power-boxplot breaks down these distributions further by institutional power status (majority vs. minority). The left and right panels juxtapose the distribution when a member's party controls the presidency (in-power) versus when it does not (out-of-power). For instance, Democrats would be considered in-power from January 2021 to January 2023 under President Joe Biden, while Republicans would be out-of-power during this same period.
 

@@ -1,0 +1,13 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Conclusion
+
+This paper provides the first large-scale empirical analysis of how politicians — in this case, U.S. congressional members — communicate about the federal deficit on social media. By layering Twitter data — 3.6m tweets from 2017-2023 — with other relevant political, macroeconomic and fiscal circumstances, we find that deficit rhetoric is driven far more by exogenous political contexts than by fiscal reality: tweeting rates are uncorrelated with the fiscal magnitude of legislation, but vary significantly with party affiliation, legislative timing, and institutional power. Notably, these effects (i.e., the sensitivity of members tweeting rates to changes in political circumstances) are highly asymmetric across parties: Republicans increase deficit-related messaging five-fold when moving from in-power to out-of-power contexts, while Democrats rates are largely unchanged between scenarios. At the leadership level, these dynamics are even more pronounced: Republican leaders, (e.g, Mitch McConnell and Paul Ryan) are more responsive to shifts in political contexts and more closely track broader trends within their party. 
+
+The disconnect between economic conditions and deficit rhetoric suggest that messaging around the national debt (for U.S. congressional leaders) functions less as a reflection of genuine fiscal concern and more as a vehicle for advancing political objectives. Our results point to two primary incentive mechanisms driving these communication choices. First, politicians, especially in the opposition, have an incentive to increase deficit-related messaging in order to externalize blame on the governing party—which could derail unwanted legislative agendas and erode trust more broadly. Second,  deficit rhetoric could serve as a tool for ideological signaling: politicians have reason to discuss the federal deficit in certain circumstances — regardless of their intentions to actually reduce the debt itself — to convey fiscal responsibility to voters, potentially improving their popularity or chances of re-election. Taken together, our research has important implications on various fronts: our findings can serve as a foundation for any future research on political rhetoric and incentive frameworks. And, our results can be utilized by both voters, media and forecasters when making decisions on how to view political discourse surrounding the national debt.
+
+\

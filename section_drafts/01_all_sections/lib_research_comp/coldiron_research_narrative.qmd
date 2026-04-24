@@ -1,0 +1,53 @@
+---
+title: "Research Narrative"
+subtitle: "Twitter and the Politics of the Federal Deficit"
+author: "Cy Coldiron"
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 12pt
+    geometry: "top=1.25in, bottom=1in, left=1.25in, right=1.25in"
+    number-sections: false
+    toc: false
+    colorlinks: false
+    keep-tex: false
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+header-includes: |
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}
+  \usepackage{setspace}
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyfoot[C]{\thepage}%
+    \renewcommand{\headrulewidth}{0pt}%
+  }
+---
+
+\onehalfspacing
+
+I became interested in my research topic in June of 2025. That summer, working as a Research Assistant for two Economics PhD students, I closely followed the political dynamics and rhetoric surrounding the construction and passage of the Big Beautiful Bill (BBB): a historically partisan piece of legislation that had significant implications for the long-term fiscal trajectory of the U.S. In following these developments, I noticed a consistent and interesting pattern: Republicans---who were strongly against the policies of President Joe Biden---were now backing the Big Beautiful Bill, a policy projected to add \textasciitilde\$3 trillion in primary deficits over the next decade. At the same time, Democrats---who supported President Biden's legislative agenda---were now unanimously opposing the BBB, often citing its significant fiscal impact as their reason.
+
+To me, this seemed like an obvious dynamic: political parties become more fiscally conservative in periods of opposition, while relaxing such concerns once they gain legislative power. Yet despite the political and economic significance of this phenomenon, no formal research existed on how politicians, and political parties more broadly, change their messaging around the national debt depending on their relative power status. This question underpinned two of the most salient issues in American politics: the size and scope of the national debt and the growing political partisanship among our elected officials.
+
+I wanted to explore how politicians and the political parties they represent talk about the federal deficit over time---and whether deficit rhetoric varies depending on factors relating to the debt itself (i.e., the size and growth of the federal deficit) or on seemingly unrelated political contexts---such as an entity's relative power status. Given this objective, I sought four features from potential data sources. First, I needed data that reflected the rhetorical intentions of elected officials. Second, data that was comprehensive: it could not systematically exclude members or parties in a way that would introduce bias. Third, the data needed to be standardized in format. This requirement would allow me to perform the same labeling method and analysis techniques (e.g., logistic regression) across all observations. Moreover, if certain data were either longer or shorter in a systematic way---for instance, a two-minute Instagram video versus a one-hour floor speech---the analysis could be biased towards legislators with longer-form rhetorical content. Finally, the data needed to be sufficiently large. Small amounts of data would weaken our ability to draw conclusions about the relationship between explanatory variables (power status, legislation, etc.) and the outcome (deficit rhetoric). Given that Twitter (X) satisfied these four constraints, I concluded it would be the best source of data.
+
+Initially, I planned to web scrape Twitter. Using UCSB Library ProQuest Congressional, I made a comprehensive list of all legislators from 2017 (115th Congress) to present day---including their social media alias (username), party affiliation, and dates served. This approach, however, proved unworkable: following Elon Musk's acquisition in 2022, Twitter had tightened its API accessibility---making my proposed dataset financially infeasible (it would cost \textasciitilde\$30--42K to construct). Thus, I turned to an alternative approach: instead of creating or searching for data directly, I used UCSB's Library Search to find research with similar data inputs and then traced their cited data sources. This led me to Alex Litel's Tweets of Congress GitHub repository---which was used by various research papers and news articles (including the Washington Post), and included a comprehensive, standardized archive of tweets from June 2017 to January 2023 that met all of my data criteria.
+
+Following the collection and cleaning of data, I encountered the core methodological challenge of my research: how to classify deficit-related tweets. While the outcome variable itself was clear---tweets referencing the national debt---the methodology for classifying this variable was not. Because political rhetoric is both implicit and ambiguous, a naive classification approach, such as labeling tweets as "deficit related" if they contain words such as "debt" or "deficit," would fail on multiple fronts: it would over-count non-deficit related tweets (false positive) and under-count implicit references (false negative). After several iterations, I concluded that a two-tier dictionary approach would be best. The first tier captures explicit references (e.g., "national debt"), while the second tier reduces false positives by requiring weaker terms (e.g., "debt") to co-occur with contextual phrases such as "federal," "budget," "trillions."
+
+After labeling the 3.6 million tweets, I turned my attention to assessing the relationships between deficit rhetoric and various fiscal, economic, and political contexts. Using UCSB Library Economic Sources LibGuide, I collected various macroeconomic covariates: ten-year Treasury rates, CPI, and multiple measures of federal debt, all from FRED (Federal Reserve Economic Data). Incorporating these data was central to my research question---they allowed me to explore how the propensity of political parties to discuss the national debt varied across political contexts.
+
+The results largely confirmed the dynamic I had observed that summer, with a few important nuances. Deficit rhetoric, among U.S. legislators, is not related to the size or growth of the national debt itself. Moreover, deficit tweeting rates, especially among Republicans, are strongly correlated with their relative power status---increasing five-fold (from 0.2% to 1%) when going from in-power to out-of-power contexts.
+
+Aside from the novel findings that this paper uncovered, the process of completing this project reshaped how I think about research. What started as a straightforward question---whether deficit rhetoric is related to fiscal or political conditions---quickly turned into a complex measurement problem. Addressing this required iteration, adjustment, and a willingness to rethink my approach. While I expected to enjoy the technical aspects of research, I underestimated how much I would value the creative process of figuring out how to answer a question. This project showed me that research is not a linear progression from question to answer, but an evolving process that depends on persistence, adaptability, and creative problem-solving.

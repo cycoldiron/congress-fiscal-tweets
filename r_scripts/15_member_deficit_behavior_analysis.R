@@ -11,11 +11,11 @@ library(scales)
 add_party_row_color <- function(gt_table, party_col = "party") {
   gt_table %>%
     tab_style(
-      style = list(cell_fill(color = "#cfe2f3")),
+      style = list(cell_fill(color = "#e3eff9")),
       locations = cells_body(rows = !!sym(party_col) == "Democratic")
     ) %>%
     tab_style(
-      style = list(cell_fill(color = "#f4cccc")),
+      style = list(cell_fill(color = "#fae3e3")),
       locations = cells_body(rows = !!sym(party_col) == "Republican")
     )
 }
@@ -53,7 +53,6 @@ top_total_deficit_tweeters <- member_deficit_behavior_summary %>%
   ) %>%
   cols_align("left", columns = full_name) %>%
   cols_align("center", columns = everything()) %>%
-  tab_style(style = cell_text(weight = "bold"), locations = cells_body(columns = full_name)) %>%
   add_party_row_color() %>%
   cols_hide(columns = party)
 
@@ -81,7 +80,6 @@ top_pct_deficit_tweeters <- member_deficit_behavior_summary %>%
   ) %>%
   cols_align("left", columns = full_name) %>%
   cols_align("center", columns = everything()) %>%
-  tab_style(style = cell_text(weight = "bold"), locations = cells_body(columns = full_name)) %>%
   add_party_row_color() %>%
   cols_hide(columns = party)
 
@@ -191,4 +189,3 @@ gtsave(top_inout_shifters_table, filename = "figures/individuals/t3_top_inout_sh
 # === Save Output ===
 gtsave(top_total_deficit_tweeters, filename = "figures/individuals/t1_top_total_deficit_tweeters.png")
 gtsave(top_pct_deficit_tweeters, filename = "figures/individuals/t2_top_pct_deficit_tweeters.png")
-gtsave(top_inout_shifters, filename = "figures/individuals/t3_top_inout_shifters.png")

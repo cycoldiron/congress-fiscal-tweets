@@ -24,25 +24,6 @@ tweets_monthly_by_party <- df0 %>%
   mutate(percent_deficit = 100 * deficit_tweets / if_else(total_tweets > 0, total_tweets, NA_real_)) %>%
   ungroup()
 
-# ---------- Spline interpolation (geometric smoothing — passes through all data points) ----------
-smooth_series <- function(df) {
-  df <- df %>% arrange(month) %>% filter(!is.na(percent_deficit))
-  x  <- as.numeric(df$month)
-  sp <- splinefun(x, df$percent_deficit, method = "monoH.FC")
-  x_dense <- seq(min(x), max(x), length.out = 500)
-  tibble(
-    month                  = as.Date(x_dense, origin = "1970-01-01"),
-    percent_deficit_smooth = sp(x_dense),
-    party                  = df$party[1]
-  )
-}
-
-tweets_smooth <- tweets_monthly_by_party %>%
-  filter(party %in% c("Democratic", "Republican")) %>%
-  group_by(party) %>%
-  group_split() %>%
-  map_dfr(smooth_series)
-
 # ---------- Build shaded-legislative windows from leg_period ----------
 # Collapse consecutive months where leg_period == 1 into start/end windows.
 # The presidency split is at 2021-01-20.
@@ -80,10 +61,10 @@ ts_deficit_by_party <- ggplot() +
     inherit.aes = FALSE,
     fill = leg_df$fill_color, alpha = 0.18, color = NA
   ) +
-  # party lines (spline-interpolated — geometric smoothing only, DGP unchanged)
+  # party lines (raw monthly averages)
   geom_line(
-    data = tweets_smooth,
-    aes(x = month, y = percent_deficit_smooth, color = party),
+    data = tweets_monthly_by_party %>% filter(party %in% c("Democratic", "Republican")),
+    aes(x = month, y = percent_deficit, color = party),
     linewidth = 1.1
   ) +
   scale_color_manual(values = c("Democratic" = "#4E7EAD", "Republican" = "#B85C5C")) +
@@ -94,12 +75,13 @@ ts_deficit_by_party <- ggplot() +
     x = "Month",
     y = "Share of Tweets on the Deficit"
   ) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
-    plot.title    = element_text(hjust = 0.5, size = 18, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 12.5),
+    plot.title    = element_text(hjust = 0.5, size = 22, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 15),
     legend.position = "bottom",
     legend.title = element_blank(),
+    legend.text  = element_text(size = 17),
     panel.grid.major = element_line(color = "grey83"),
     panel.grid.minor = element_blank(),
     plot.margin = margin(10, 10, 22, 10)

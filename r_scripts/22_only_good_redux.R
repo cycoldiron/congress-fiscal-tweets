@@ -105,7 +105,7 @@ m_r9 <- feglm(
 )
 
 # ---------- OUTPUT ----------
-out_dir <- "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_tables"
+out_dir <- "/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 title_r3 <- "Legislative Windows and Major Bills"
@@ -127,14 +127,7 @@ labels_r3 <- c(
 tbl_r3 <- make_gt_or_table(
   m_r3,
   title = title_r3,
-  desc  = "Republican–Democrat differences in the odds of tweeting about the deficit across legislative windows and major-bill periods, with member and month fixed effects.",
-  notes = c(
-    "- Odds ratios with 95% CIs; stars: *** p<0.001, ** p<0.01, * p<0.05.",
-    "- Member and calendar-month fixed effects; SEs two-way clustered by member and month.",
-    "- Bill partisanship (z): 1 SD increase in mean bill partisanship score.",
-    "- Fiscal magnitude (z): 1 SD increase in total 10-year deficit impact.",
-    "- COVID window and IRA/CHIPS window are month-level indicators."
-  ),
+  notes = "Odds ratios with 95% CIs; *** p<0.001, ** p<0.01, * p<0.05.",
   term_labels = labels_r3,
   term_header = "",
   spacer_px = SPACER_PX
@@ -155,12 +148,7 @@ labels_r5 <- c(
 tbl_r5 <- make_gt_or_table(
   m_r5,
   title = title_r5,
-  desc = "Coefficients are GOP–Dem gaps: outside-leg gap under minority presidency; the legislative-window gap under same-party presidency; and how that gap changes under minority presidency.",
-  notes = c(
-    "- Odds ratios with 95% CIs; stars: *** p<0.001, ** p<0.01, * p<0.05.",
-    "- Member and calendar-month fixed effects; SEs two-way clustered by member and month.",
-    "- Bill partisanship (z) and fiscal magnitude (z) are standardized."
-  ),
+  notes = "Odds ratios with 95% CIs; *** p<0.001, ** p<0.01, * p<0.05.",
   term_labels = labels_r5,
   term_header = "",
   spacer_px = SPACER_PX
@@ -233,12 +221,7 @@ labels_r6 <- c(
 tbl_r6 <- make_gt_or_table(
   m_r6,
   title       = title_r6,
-  desc        = desc_r6,
-  notes       = c(
-    "- Odds ratios with 95% CIs; stars: *** p<0.001, ** p<0.01, * p<0.05.",
-    "- Member and month fixed effects; SEs two-way clustered by member and month.",
-    "- Bill partisanship (z) and fiscal magnitude (z) are standardized."
-  ),
+  notes       = "Odds ratios with 95% CIs; *** p<0.001, ** p<0.01, * p<0.05.",
   term_labels = labels_r6,
   term_header = "",
   spacer_px   = SPACER_PX

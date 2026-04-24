@@ -1,0 +1,526 @@
+---
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 12pt
+    geometry: "top=1.25in, bottom=1in, left=1.25in, right=1.25in"
+    number-sections: true
+    toc: false
+    colorlinks: false
+    keep-tex: false
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+resource-path:
+  - /Users/cycoldiron/Desktop/congress-fiscal-tweets
+  - .
+
+header-includes: |
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}
+
+  \usepackage{setspace}
+  \onehalfspacing
+
+  \usepackage{abstract}
+  \renewcommand{\abstractnamefont}{\normalfont\bfseries}
+  \setlength{\absleftindent}{0.5in}
+  \setlength{\absrightindent}{0.5in}
+
+  \usepackage{titlesec}
+  \titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+  \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+  \titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection}{1em}{}
+
+  \usepackage{graphicx}
+  \DeclareGraphicsExtensions{.png,.pdf,.jpg}
+  \usepackage{float}
+  \usepackage{flafter}
+  \usepackage[section]{placeins}
+  \setlength{\textfloatsep}{10pt}
+  \setlength{\floatsep}{8pt}
+  \setlength{\intextsep}{8pt}
+  \renewcommand{\topfraction}{0.9}
+  \renewcommand{\bottomfraction}{0.8}
+  \renewcommand{\textfraction}{0.07}
+  \renewcommand{\floatpagefraction}{0.8}
+
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyfoot[C]{\thepage}%
+    \renewcommand{\headrulewidth}{0pt}%
+  }
+---
+
+```{r}
+#| include: false
+knitr::opts_chunk$set(out.width = "0.85\\linewidth")
+```
+
+```{=latex}
+\begin{center}
+{\large\bfseries Research Narrative}\\[0.3em]
+{\normalsize\itshape Twitter and the Politics of the Federal Deficit}\\[0.8em]
+{\normalsize Cy Coldiron}\\[0.2em]
+{\small University of California, Santa Barbara}\\[0.1em]
+{\small Department of Economics}
+\end{center}
+\vspace{1.5em}
+```
+
+I became interested in my research topic in June of 2025. That summer, working as a Research Assistant for two Economics PhD students, I closely followed the political dynamics and rhetoric surrounding the construction and passage of the Big Beautiful Bill (BBB): a historically partisan piece of legislation that had significant implications for the long-term fiscal trajectory of the U.S. In following these developments, I noticed a consistent and interesting pattern: Republicans---who were strongly against the policies of President Joe Biden---were now backing the Big Beautiful Bill, a policy projected to add \textasciitilde\$3 trillion in primary deficits over the next decade. At the same time, Democrats---who supported President Biden's legislative agenda---were now unanimously opposing the BBB, often citing its significant fiscal impact as their reason.
+
+To me, this seemed like an obvious dynamic: political parties become more fiscally conservative in periods of opposition, while relaxing such concerns once they gain legislative power. Yet despite the political and economic significance of this phenomenon, no formal research existed on how politicians, and political parties more broadly, change their messaging around the national debt depending on their relative power status. This question underpinned two of the most salient issues in American politics: the size and scope of the national debt and the growing political partisanship among our elected officials.
+
+I wanted to explore how politicians and the political parties they represent talk about the federal deficit over time---and whether deficit rhetoric varies depending on factors relating to the debt itself (i.e., the size and growth of the federal deficit) or on seemingly unrelated political contexts---such as an entity's relative power status. Given this objective, I sought four features from potential data sources. First, I needed data that reflected the rhetorical intentions of elected officials. Second, data that was comprehensive: it could not systematically exclude members or parties in a way that would introduce bias. Third, the data needed to be standardized in format. This requirement would allow me to perform the same labeling method and analysis techniques (e.g., logistic regression) across all observations. Moreover, if certain data were either longer or shorter in a systematic way---for instance, a two-minute Instagram video versus a one-hour floor speech---the analysis could be biased towards legislators with longer-form rhetorical content. Finally, the data needed to be sufficiently large. Small amounts of data would weaken our ability to draw conclusions about the relationship between explanatory variables (power status, legislation, etc.) and the outcome (deficit rhetoric). Given that Twitter (X) satisfied these four constraints, I concluded it would be the best source of data.
+
+Initially, I planned to web scrape Twitter. Using UCSB Library ProQuest Congressional, I made a comprehensive list of all legislators from 2017 (115th Congress) to present day---including their social media alias (username), party affiliation, and dates served. This approach, however, proved unworkable: following Elon Musk's acquisition in 2022, Twitter had tightened its API accessibility---making my proposed dataset financially infeasible (it would cost \textasciitilde\$30--42K to construct). Thus, I turned to an alternative approach: instead of creating or searching for data directly, I used UCSB's Library Search to find research with similar data inputs and then traced their cited data sources. This led me to Alex Litel's Tweets of Congress GitHub repository---which was used by various research papers and news articles (including the Washington Post), and included a comprehensive, standardized archive of tweets from June 2017 to January 2023 that met all of my data criteria.
+
+Following the collection and cleaning of data, I encountered the core methodological challenge of my research: how to classify deficit-related tweets. While the outcome variable itself was clear---tweets referencing the national debt---the methodology for classifying this variable was not. Because political rhetoric is both implicit and ambiguous, a naive classification approach, such as labeling tweets as "deficit related" if they contain words such as "debt" or "deficit," would fail on multiple fronts: it would over-count non-deficit related tweets (false positive) and under-count implicit references (false negative). After several iterations, I concluded that a two-tier dictionary approach would be best. The first tier captures explicit references (e.g., "national debt"), while the second tier reduces false positives by requiring weaker terms (e.g., "debt") to co-occur with contextual phrases such as "federal," "budget," "trillions."
+
+After labeling the 3.6 million tweets, I turned my attention to assessing the relationships between deficit rhetoric and various fiscal, economic, and political contexts. Using UCSB Library Economic Sources LibGuide, I collected various macroeconomic covariates: ten-year Treasury rates, CPI, and multiple measures of federal debt, all from FRED (Federal Reserve Economic Data). Incorporating these data was central to my research question---they allowed me to explore how the propensity of political parties to discuss the national debt varied across political contexts.
+
+The results largely confirmed the dynamic I had observed that summer, with a few important nuances. Deficit rhetoric, among U.S. legislators, is not related to the size or growth of the national debt itself. Moreover, deficit tweeting rates, especially among Republicans, are strongly correlated with their relative power status---increasing five-fold (from 0.2% to 1%) when going from in-power to out-of-power contexts.
+
+Aside from the novel findings that this paper uncovered, the process of completing this project reshaped how I think about research. What started as a straightforward question---whether deficit rhetoric is related to fiscal or political conditions---quickly turned into a complex measurement problem. Addressing this required iteration, adjustment, and a willingness to rethink my approach. While I expected to enjoy the technical aspects of research, I underestimated how much I would value the creative process of figuring out how to answer a question. This project showed me that research is not a linear progression from question to answer, but an evolving process that depends on persistence, adaptability, and creative problem-solving.
+
+```{=latex}
+\clearpage
+
+\setcounter{section}{0}
+
+\begin{center}
+{\large\bfseries Twitter and the Politics of the Federal Deficit}\\[0.4em]
+{\normalsize Cy Coldiron}\\[0.3em]
+{\small University of California, Santa Barbara}\\[0.1em]
+{\small Department of Economics}\\[0.1em]
+{\small \texttt{coldiron@ucsb.edu}}\\[0.2em]
+{\normalsize April 16, 2026}
+\end{center}
+\vspace{1em}
+
+\begin{abstract}
+Economists and political observers have long noted a recurring pattern in American politics: politicians change their messaging around the federal deficit depending on their relative power status --- advocating fiscal restraint (austerity) in opposition, while publicly supporting fiscal stimulus once in power. This paper examines this claim by tracking U.S. congressional members' deficit-related tweets between 2017--2023. Using a two-tier dictionary classification method, I identify tweets referencing the national debt and estimate how deficit-related messaging varies across institutional, legislative, and fiscal conditions using logistic regression. Deficit-tweeting is low overall (\textasciitilde{}0.7\%) but varies significantly depending on a representative's party affiliation and power status: Republicans tweet about the deficit five times as often when in the minority, while Democrats' rates remain comparatively stable across majority/minority status. These differences extend to party leadership, where Republican leaders' deficit tweeting rates closely track those of rank-and-file members, while Democratic leadership shows more heterogeneous patterns. Notably, the fiscal size of legislation has no measurable effect on tweeting rates. Results confirm that deficit rhetoric is correlated with political opportunity---not fiscal conditions---likely serving partisan communication goals and legislative agendas.
+\end{abstract}
+```
+
+# Introduction
+
+"It has become standard fare in American politics to watch each party rail against deficits when they are out of power but hungrily embrace deficits when in control and able to advance their own agenda." --- **Kenneth Rogoff**, *Our Dollar, Your Problem*
+
+## Historical Background of Deficit Rhetoric
+
+Debates over the size and scope of the Federal Deficit have been a central feature of American politics since its inception. Beginning as a constitutional question in the 1790s, deficits became increasingly normalized in the 20th century with the rise of Keynesian economics. By the late twentieth century, deficit discourse turned uniquely partisan. Political leaders, including then President Ronald Reagan, attributed the country's economic woes---including record high inflation---to the opposition parties' excessive spending policies. Reagan's successful rhetorical campaigns greatly influenced the coming decades of political communication, especially with the rise of social media, which featured growing partisanship.
+
+Aside from the Federal Deficit's centrality in American political discourse, the national debt itself has implications for both the domestic and global economy. Beyond the stimulus effects of deficit spending, long-term imbalances can exacerbate inflationary pressures, burden future generations with higher borrowing costs, and contribute to asset bubbles and macroeconomic instability.
+
+Yet despite both the rhetorical and economic significance of deficits ---there exists little empirical analysis of when and why deficit rhetoric is used by elected officials. For instance, does political attention to the national deficit increase in response to rising debt levels---and is it correlated with other macroeconomic outcomes? And, does an elected official's deficit rhetoric change in response to their power status or during legislative periods? This paper seeks to answer these questions. Using elected officials' tweets, we examine the evolution of deficit rhetoric (i.e., how often politicians tweet about the debt) and analyze how messaging varies across institutional contexts (who holds power), legislative periods, and macroeconomic conditions, providing the first large-scale empirical assessment of how deficit rhetoric functions within the incentive structure of American politics.
+
+## Motivation
+
+Political discourse can influence public perceptions by directing public attention to certain issues (e.g., health care, immigration) and influencing how citizens assign responsibility for policy outcomes (McCombs & Shaw 1972; Iyengar 1991). If this same mechanism applies to the public debt, then changes to public opinion on deficit spending may influence legislative agendas---giving political capital for party leaders to advance policy agendas. For instance, if online deficit rhetoric impacts public support for fiscal stimulus---then the majority party's legislative agenda may be forced to change, thereby impacting the economic trajectory of the country. In addition to economic influence, deficit rhetoric can have substantial impacts on political outcomes. Considering deficit rhetoric shapes voters' beliefs about the fiscal responsibility of elected officials and the parties they represent---political entities that are more persuasive in their online messaging, whether that be denigrating the opposition, or advocating for their own policies, will have greater success in electoral campaigns. If this is the case, elected officials would have reason to communicate about the deficit in such a way that maximizes their political outcomes---whether it be consistent with their actual policies or not. By analyzing the rhetorical patterns of these officials---we can understand how political actors use the federal deficit, across varying institutional and economic contexts, to influence voters' beliefs, and shape public opinion.
+
+## Why Twitter?
+
+Twitter (now X) is a uniquely effective medium for this analysis. It is widely and consistently used by members of Congress and is a direct representation of each representative's rhetorical intentions. Moreover, Tweets are standardized in format---meaning each post is timestamped, has the same character constraints, and are tied to verifiable individuals, allowing for large-scale and reproducible time-series analysis.
+
+Most importantly, tweets reach a far greater audience than other traditional forms of communication (e.g., floor speeches, hearings) making them a more impactful communication medium for political messaging. Based on estimates of average follower count (with median accounts followed by roughly 100k users) and typical impression rates, even an average tweet can reach thousands of viewers, with more viral posts reaching hundreds of thousands (even millions) of people.
+
+As a result, politicians are likely to be especially rhetorically conscious on Twitter given the platform's broad and immediate public exposure. In addition, tweets, unlike floor speeches or hearings (which vary in length and frequency) are published daily by almost all congressional members. This provides a comprehensive dataset (3.6M tweets), giving us greater statistical power, and allowing us to draw stronger conclusions about key explanatory relationships.
+
+# Literature Review
+
+A substantial body of literature has examined various aspects of U.S. federal deficit spending and the partisan nature of public finance more broadly (Alesina & Tabellini 1990; Pettersson-Lidbom 2001; Alesina & Passalacqua 2016). This research provides extensive insight into the determinants of fiscal outcomes, including how political institutions, electoral incentives, and partisan control over legislation influence government spending decisions.
+
+While this research provides extensive analysis of actual fiscal outcomes, it offers little insight into the actual political communication surrounding the national debt itself. To our knowledge, this paper is the first comprehensive analysis of how politicians' deficit-related messaging varies with political contexts and fiscal circumstances.
+
+# Data
+
+## Congressional Twitter Dataset (2017--2023)
+
+The dataset used for classifying tweets is Tweets of Congress (maintained by Alex Litel), which contains all tweets (original, retweets, and quoted retweets) from the official accounts of U.S. congressional members between June 2017 and January 2023. The data was generated via an open-source, serverless application that interfaces with the Twitter API, querying for new tweets at the top of each hour. Each observation (tweet) is stored as an object (with one JSON file corresponding to each day). This automated pipeline ensures comprehensive, continuous coverage of congressional Twitter activity during that period, with accounts updated through routine synchronization with legislator metadata. For instance, this system automatically adds newly sworn-in members to the metadata and removes non-members (i.e., those who lost an election, resigned, etc.)---thereby reflecting Congress's true composition at each point in time.
+
+Although more recent data (2024--2025) would provide greater relevance and utility, especially with the passage of the Big Beautiful Bill (BBB), the cost of [x.com's](http://x.com/) current API access---which changed following Elon Musk's acquisition---is beyond this project's financial resources. For reference, under current pricing structures, replicating a dataset of a similar size (roughly six million tweets) would cost between \$30,000 and \$42,000.
+
+While the raw dataset itself includes party committee accounts (oversight, armed services, education, etc.) and institutional accounts (housedems, senateGOP), our project focuses exclusively on the rhetorical patterns of congressional members. Thus, we remove all accounts not directly tied to an individual congressional member, finalizing the dataset at roughly 3.6 million tweets.
+
+## Dictionary-Based Classification of Deficit-Related Tweets
+
+To identify deficit-related tweets, I implemented a two-tier keyword strategy in Python (pandas). The full code can be seen at the project's [GitHub Repo](https://github.com/cycoldiron/congress-fiscal-tweets).
+
+**Tier 1 -- Anchor Keywords.** Tweets were flagged as deficit-related if they contained unambiguous anchor phrases (e.g., *"national debt," "balanced budget," "fiscal responsibility"*). These strong keywords identify explicit deficit references with high confidence.
+
+**Tier 2 -- Contextual Expansion.** Tweets containing weaker terms (e.g., *"debt"*) were only flagged if they co-occurred with contextual phrases (e.g., *"federal," "budget," "tax," "spending"*).
+
+The logic of my labeling framework is to balance the two key countervailing forces in text classification: precision and coverage. While a larger keyword dictionary would capture more subtle deficit references, it would also reduce precision by inflating the number of false positives. For instance, while including phrases like 'trillions of dollars' may capture references that would otherwise be missed, it also risks falsely tagging a growing number of unrelated tweets, such as discussions of income inequality or GDP growth. By contrast, a smaller dictionary would reduce false positives but would also diminish overall coverage, leading to more deficit-related tweets going unlabeled.
+
+### Illustrative Example
+
+Figures 1 and 2 demonstrate the labeling logic. Rep. Alexandria Ocasio-Cortez's reference to "student loan debt" is not flagged: "debt" is a weak keyword but lacks an accompanying context term. By contrast, Speaker Kevin McCarthy's reference to the "national debt" matches a strong anchor keyword and is thus labeled as deficit related.
+
+(Note: Speaker McCarthy's tweet was published outside our analytical timeframe (January 2023) but still serves as an informative example).
+
+```{r}
+#| label: fig-tweets2
+#| layout-ncol: 2
+#| fig-cap:
+#|   - "Rep. Alexandria Ocasio-Cortez"
+#|   - "Rep. Kevin McCarthy"
+#| fig-width: 3
+#| fig-height: 2
+#| out-width: "100%"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/screenshots/aoc_ss.png")
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/screenshots/kev_mccarthy_ss.png")
+```
+
+## Measurement Error in Deficit Tweet Classification
+
+While this classification provides simplicity and replicability, it also introduces potential sources of bias. These fall into two main categories:
+
+\(1\) Dictionary Limits: Precision vs. Coverage
+
+As noted, the challenge in using a dictionary-based method is balancing precision with coverage. In practice, I adjusted the specificity of both dictionaries iteratively based on the accuracy of their given outputs ---which I assessed manually by checking the data. While bias in either direction is statistically possible, I'd argue that my strategy almost certainly underestimates total deficit rhetoric, since there are theoretically infinite ways to reference the federal debt.
+
+\(2\) Variation in Rhetoric and Style
+
+Bias may also arise from differences in rhetorical style across time, parties, and individuals. For instance, members who consistently use explicit terms like *"national debt"* are captured reliably, while those who reference deficits more vaguely or implicitly are systematically undercounted. If such variation correlates with party or institutional context (e.g., legislative periods), it could bias comparisons.
+
+## Extensions: Supervised Validation and Machine Learning Approaches
+
+For future research considerations---whether involving similar or identical data---it is important to consider alternative, complementary approaches to improve labeling accuracy.
+
+My current strategy relies on a rule-based dictionary method, where I defined Tier 1 and Tier 2 terms and applied them directly to the full dataset. While transparent, and easily adjustable, this approach inevitably misses implicit deficit references and requires subjective judgment in constructing the dictionaries.
+
+A possible improvement would be to use a supervised dictionary validation approach. This method first requires manually labeling enough positive-class instances (i.e., deficit-related tweets), capturing both explicit and implicit references. Because deficit tweets are rare (\textasciitilde{}1--3\% of all tweets), one would need to label roughly 20--30k tweets under an active learning strategy---or 100k+ under random sampling---to obtain 2--3k positive instances. This threshold aligns with best practices for addressing class imbalance (Japkowicz & Stephen 2002; He & Garcia 2009). After constructing this training data, one would build and test multiple dictionary configurations, each with varying levels of specificity, and then select the configuration with the highest validated accuracy.
+
+Accuracy would be assessed with two measures:
+
+\(1\) Coverage: the share of true deficit tweets correctly labeled.
+
+\(2\) Precision: the false-positive rate.
+
+Selecting the best model would thus require one to determine the ideal "accuracy" metric or determining the relative weight of coverage vs precision. This decision---like my dictionary choices---requires intuition and could be adjusted based on the researcher's preference.
+
+In sum, a supervised dictionary validation approach would reduce under-detection of implicit references but would not fully eliminate the two forms of bias referenced in 3.2. For instance, expanding the dictionary to improve coverage risks a higher false-positive rate. The training dataset would capture fewer explicit tweets, and the best-performing dictionary would detect many of these indirect cases. Yet the same expansion may also misclassify unrelated tweets, raising the false-positive ratio. Thus, even if the most comprehensive model achieved the greatest overall accuracy, the fundamental bias would persist, albeit at a smaller scale.
+
+## Institutional, Legislative, and Economic Covariates
+
+To contextualize congressional tweeting among broader political and economic phenomena, I integrated a wide set of temporal covariates into the dataset. Economic indicators---sourced from the U.S. Treasury and Federal Reserve---include ten-year interest rates, inflation (U.S. CPI YoY) and multiple measures of federal debt (publicly held debt, intragovernmental holdings, and total debt outstanding).
+
+Institutional context is captured through variables on presidential party, House and Senate control, majority and minority leadership, and whether government is unified or divided, as well as monthly congressional approval ratings.
+
+Legislative periods are represented by data on major bills from 2017 to 2023 (e.g., CARES Act, PPP, CHIPS Act, IRA). Periods are defined by one month before and after passage. For instance, the Tax Cuts and Jobs Act was signed into law by President Trump in December 2017 making its designated legislative period November 2017--January 2018. Fiscal impact estimates for each bill come from the Congressional Budget Office (CBO) and are normalized when included in regression specifications.
+
+Finally, our research constructs a novel partisanship score formula to capture the level of partisan division in each legislative period. The measure is defined as the absolute difference between Democratic and Republican support rates for a given bill:
+
+$$
+\text{Partisanship Score}
+= \left|
+\frac{\text{Dem Yea}}{\text{Dem Total}}
+-
+\frac{\text{Rep Yea}}{\text{Rep Total}}
+\right|
+$$
+
+This score ranges from 0 (perfect bipartisan support) to 1 (completely partisan support, with only one party voting in favor). For regression analysis, I normalize the score to standardize across legislative periods.
+
+# Methodology
+
+## Logistic Regression Framework for Deficit Tweeting
+
+Our research objective is to examine the link between deficit rhetoric and political, fiscal and legislative contexts. To assess this relationship --- our project employs logistic regression. There are two reasons for this choice. First, the dependent variable---share of tweets that are deficit related---is a binary variable; that is, a congressional member either tweeted about the deficit (1) or did not (0). Second, we are concerned with the probability of tweeting about the deficit (values between 0 and 1). Thus, a traditional regression model---which does not constrain predicted values---would not be appropriate, as it would allow for probabilities to be less than zero (negative) or greater than 1. Moreover, logistic regression allows us to explore how these probabilities, or odds, change with levels of explanatory variables (party, legislative context, fiscal conditions etc)---which is a key consideration in this research. For instance, logistic regression allows us to see how odds of tweeting about the deficit change among parties when the fiscal impact of policy bills increase.
+
+The unit of analysis is the member--month: for each member $i$ in month $t$, the dependent variable is the share of tweets that are deficit-related. Models include member fixed effects ($\alpha_i$) and month fixed effects ($\gamma_t$). Standard errors are two-way clustered by member and month, accounting for correlation within legislators over time and across legislators in the same month.
+
+Formally,
+
+$$
+\log\left(\frac{P(Y_{it}=1)}{1 - P(Y_{it}=1)}\right)
+= \alpha_i + \gamma_t + \beta X_{it} + \varepsilon_{it}
+$$
+
+### Member and Time Fixed Effects
+
+Member fixed effects absorb differences across legislators and between parties. For example, Senator Rand Paul tweets far more often than Senator Ted Cruz, and Republicans, generally speaking, tweet more about deficits than Democrats. These baseline differences are captured by $\alpha_i$, so estimates rely on within-member changes over time. Moreover, month fixed effects absorb shocks common to all legislators in a given month. For instance, during COVID-19 legislative periods (i.e., CARES Act), both parties reduced deficit rhetoric at similar rates. Month fixed effects, $\gamma_t$, ensures that these shared shocks, such as COVID-19, are not misattributed to partisan--institutional dynamics.
+
+### Interpreting Odds Ratios and Interaction Effects
+
+Coefficients are presented as odds ratios and should be understood relative to the omitted (baseline) category. Odds ratios (ORs) indicate how the odds of an event--- in this case, tweeting about the deficit---change with different levels of predictor variables, holding all other factors constant. The baseline condition, for which coefficients should be compared to, is always Democrats outside legislative windows under the institutional baseline of each specification. By "institutional baseline," I mean the makeup of congressional and executive power used in the model.
+
+In each model the main-effect, the coefficient (GOP) --- represents the baseline tweeting gap between Republicans and Democrats. Interaction coefficients capture shifts in this baseline partisan gap under specific institutional combinations (legislative windows, congressional control, etc.). An odds ratio greater than 1 means the Republican--Democrat gap widens (Republicans become relatively more deficit-focused), while an odds ratio less than 1 means the gap narrows, relative to the baseline.
+
+### Illustration of Interaction Effects in Legislative Contexts
+
+For example, in the second regression model, the coefficient on GOP × Legislative window (OR = .38) shows that the partisan gap contracts during legislative months: Republicans' odds of tweeting about the deficit decrease to 62% lower than Democrats' odds relative to the baseline condition (Democrats outside legislative windows; Republicans hold presidency).
+
+## Sequential Model Specifications and Identification Strategy
+
+Our research goal is to understand how deficit rhetoric---specifically among Democrats and Republicans---changes with varying institutional, fiscal and legislative conditions. To do this, we estimate a sequence of specifications that control for these variables in a progressively specific manner. The baseline model (Regression 1) interacts party affiliation with legislative windows. Furthermore, it includes coefficients to describe how this baseline tweeting gap changes with differing levels of bill partisanship and fiscal impact (CBO estimate of the bill). Such coefficients help us to understand the relationship---or lack thereof---between the divisiveness of a bill, or its fiscal impact, and how members talk about it on Twitter.
+
+The second model (Regression 2) adds a further control by conditioning on the presidential party; that is, which party controls the White House. The change in coefficient estimates between Regression 2 and the preceding model indicates that conditioning on presidential power is an important consideration when analyzing deficit rhetoric. In other words, tweeting gaps among parties are partly a function of whose party holds executive power. Without including this condition, one would improperly interpret the significance of tweeting differences. Finally, the last specification (Regression 3) adds further detail by controlling for the composition of the legislative branch (Congress).
+
+# Results
+
+## Time-Series Trends in Deficit Tweeting (2017--2023) {#sec-macro2}
+
+@fig-timeseries2 shows the monthly share of congressional deficit tweets, by party, from June 2017 to January 2023. Consistent with best practices in political science, this paper will represent the Republican Party with red shading and the Democratic Party with blue. Shaded areas indicate legislative periods -- defined as the month before, during, and after the passage of a fiscally significant bill. Legislative periods exclude small appropriations, procedural votes, and commemorations.
+
+```{r}
+#| label: fig-timeseries2
+#| fig-cap: "Share of congressional tweets about the deficit."
+#| fig-pos: "htbp"
+#| out-width: "0.78\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/summary/deficit_tweet_share_with_legislation.png")
+```
+
+The baseline deficit tweeting share for both parties is low, generally under 1% when averaged across members over six years, with notable accelerations occurring around legislative periods. Democratic tweeting patterns remain relatively consistent across the six years, with three notable peaks, all during legislative periods: December 2017 (Tax Cuts and Jobs Act), October 2021 (Infrastructure Investment and Jobs Act), and August 2022 (Inflation Reduction Act, CHIPS & Science Act). Republicans, however, demonstrate consistently higher deficit tweeting rates as the minority party, as illustrated in the peaks (2022, 2023) compared to relatively low rates from 2017--2021.
+
+## Deficit Tweeting and Macroeconomic Conditions {#sec-econ2}
+
+@fig-deficit-vs-cpi2, which plots deficit tweet share against US CPI inflation (YoY), reveals a relatively strong positive relationship, as indicated by its large R-value (.78). There are a few plausible explanations for this linear relationship. First, the elevated inflation rates of 2022, peaking at 9.1% in June (40-year high), may have increased elected officials' concern about deficit spending. Public discontent over higher prices may have also pressured representatives to take a more hawkish approach on federal expenditures.
+
+```{r}
+#| label: fig-deficit-vs-cpi2
+#| fig-cap: "Deficit tweet share vs. U.S. CPI inflation."
+#| fig-pos: "htbp"
+#| out-width: "0.68\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/economic_indicators/deficit_share_vs_inflation_smoothed.png")
+```
+
+Another explanation could be that along with higher inflation, the significant, and contentious, fiscal legislation being proposed in the summer of 2022 (e.g., IRA, CHIPS) may have drawn concerns from representatives, prompting more congressional tweets on the topic.
+
+## Distribution of Deficit Tweeting Across Members and Parties {#sec-member2}
+
+@fig-member-share-by-party2 presents member-level distributions of deficit tweeting, calculated as the share of each member's tweets that mention the deficit over the entire period. As illustrated by the dashed lines (party medians), Republicans tweet about the deficit more frequently than Democrats, with average shares of 0.81% and 0.62%, respectively.
+
+Democrats display a relatively compact distribution, with most representatives falling below 0.7%, indicating less intra-party variation in deficit tweeting. Republicans, however, show far greater variability within their party. The GOP's right tail distribution illustrates that, compared to their Democratic colleagues, a far greater proportion of members tweet about the deficit at much higher rates, with outliers reaching 4--8%.
+
+```{r}
+#| label: fig-member-share-by-party2
+#| fig-cap: "Share of deficit tweets by party (member-level distribution)."
+#| fig-pos: "H"
+#| out-width: "0.72\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_pct_deficit_by_party_overall.png")
+```
+
+\FloatBarrier
+
+@fig-power-boxplot2 breaks down these distributions further by institutional power status (majority vs. minority). The left and right panels juxtapose the distribution when a member's party controls the presidency (in-power) versus when it does not (out-of-power). For instance, Democrats would be considered in-power from January 2021 to January 2023 under President Joe Biden, while Republicans would be out-of-power during this same period.
+
+```{r}
+#| label: fig-power-boxplot2
+#| fig-cap: "Distribution of deficit tweets by power (boxplot)."
+#| fig-pos: "H"
+#| out-width: "0.72\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/box_party_split_by_power.png")
+```
+
+@fig-power-boxplot2 shows a clear asymmetry in Republican tweeting patterns between these periods. When moving between power contexts, the Republican median tweet share increases five-fold, from 0.2% to 1.0%, and the interquartile range from 0.6% to 1.8%. Put simply, Republicans were far more likely to tweet about the deficit under President Biden than under President Trump. This stark distributional contrast illustrates a synchronized and cohesive shift in messaging among Republicans: emphasize the deficit more in periods of political weakness. Democrats, by contrast, remain relatively stable across contexts and in fact demonstrate a modest increase in spread and averages when in power.
+
+```{r}
+#| label: fig-inout-shifts2
+#| fig-cap: "In--out shifts in deficit tweeting (histogram)."
+#| fig-pos: "H"
+#| out-width: "0.72\\linewidth"
+knitr::include_graphics("/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/individuals/density_in_minus_out_overlay.png")
+```
+
+@fig-inout-shifts2 visualizes these shifts more directly by plotting the distribution of changes in deficit tweeting when moving from in-power to out-of-power contexts. The x-axis represents the difference in deficit tweet share between these two periods for each member (in minus out). Positive values indicate that a member tweeted more about the deficit when in power, while negative values indicate higher tweeting rates when out of power. The GOP's comprehensive party shift is evident, with the bulk of the party's distribution skewed negative.
+
+Taken together, @fig-power-boxplot2 and @fig-inout-shifts2 suggest that Republicans are far more sensitive to power status when deciding how frequently to tweet about the deficit, while Democrats maintain a more consistent messaging strategy regardless of institutional control. These results also illustrate a broader point about the degree of strategic messaging coordination among parties: the systematic increase in Republican deficit tweeting supports the notion of uniform, top-down messaging within the party. Democrats, by contrast, show less cohesion in their messaging strategy, with members displaying a wider range of tweeting behaviors across power contexts.
+
+## Deficit Rhetoric Among Congressional Leadership {#sec-leadership2}
+
+Table 1 summarizes deficit-tweeting by House and Senate leaders across majority/minority contexts. Patterns differ by party and chamber, with the sharpest contrasts in the Senate: Senator Chuck Schumer tweeted about deficits far more as Majority Leader (4.0%) than as Minority Leader (1.0%), while Senator Mitch McConnell did the reverse (1.9% in the minority vs. 0.05% in the majority). In the House, Representative Pelosi tweeted about deficits more in the minority (1.1%) than as Speaker (0.5%).
+
+```{=latex}
+\begin{table}[H]
+\centering
+\caption{Deficit tweeting by congressional leaders (House and Senate; majority vs. minority roles).}
+\includegraphics[width=0.68\linewidth]{/Users/cycoldiron/Desktop/congress-fiscal-tweets/figures/leadership/leader_deficit_tweets.png}
+\end{table}
+```
+
+Notably, Representative McCarthy has relatively few tweets (762). Because leaders often switch or add handles when roles change, the data collection process may have failed to include relevant accounts. Thus, McCarthy's deficit tweet share should be interpreted cautiously.
+
+Taken together, these patterns illustrate that deficit rhetoric among congressional leaders varies systematically with institutional role and party, mirroring---and in some cases, amplifying---the broader party-level trends documented above.
+
+While the preceding analysis covers broader party-level trends, exploring individual leaders' tweeting patterns provides us insight into how key political figures communicate about the deficit in varying institutional contexts. Considering the legislative and electoral significance of these figures, their messaging strategies are more influential and calculated than rank-and-file members. For instance, party leaders may use specific communication strategies around legislative periods to catalyze or bar the passage of key bills. Examining these trends can therefore help illustrate the degree of strategic communication employed by top legislators, and by extension --- the party they represent.
+
+Consider the differences in tweeting patterns among the two parties' top legislators. First, for Democrats, the divergent tweeting patterns of Speaker Pelosi and Senator Schumer suggest a weak intra-party alignment in messaging. And, these patterns are consistent with the broader Democratic caucus, which shows no discernible difference in deficit tweeting between power contexts (as shown in @fig-power-boxplot2 and @fig-inout-shifts2). The Republican party, however, presents a more uniform party dynamic. Senator McConnell's increase in deficit tweeting in out-of-power contexts mirrors the broader Republican trend illustrated in @fig-inout-shifts2. Furthermore, McConnell's tweeting patterns confirm long-held conceptions about his communication and political style, which emphasizes unrelenting opposition to Democratic fiscal policies (MacGillis 2014; Hacker and Pierson 2016).
+
+## Deficit Tweeting Within Legislative Windows {#sec-leg-context2}
+
+```{=latex}
+\begin{table}[htbp]
+\centering
+\caption{Deficit share within legislative windows, by party.}
+\includegraphics[width=0.65\linewidth]{/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_summary_tables/tweetlevel_deficit_share_by_party.png}
+\end{table}
+```
+
+Table 2 reports the conditional share of tweets mentioning the deficit within ±1-month windows around major bills, split by party (with a pooled/overall column for reference). At baseline, Republicans tweet about the deficit more often 0.8% than Democrats 0.6% -- a gap that persists across most legislative windows. During the Inflation Reduction Act (2022) and CHIPS Act (2022) periods, Republicans' tweets accelerated, with deficit mentions at nearly 2.0%, compared to 1.3% among Democrats. However, the TCJA (2017)---a partisan GOP tax cut---is a noticeable and stark exception. During these three months, the Democrats' deficit share spikes to 2.0%, while the Republicans' share falls to just 0.2%, reflecting a partisan realignment around a highly divisive bill. In contrast, during the COVID relief period in 2020 -- a non-partisan voting context -- both parties converged at very low levels (0.3--0.4%).
+
+\FloatBarrier
+
+## Regression Results: Institutional and Legislative Interactions {#sec-reg-viz2}
+
+The following regression models offer a structured approach to examining how institutional, fiscal, and partisan contexts affect the likelihood of congressional deficit tweeting. Each model includes interaction coefficients of the general form GOP × Conditioning Variable, indicating whether the baseline Republican--Democratic difference changes under specific conditions.
+
+```{=latex}
+\begin{table}[htbp]
+\centering
+\caption{Regression 1: Legislative windows.}
+\includegraphics[width=0.62\linewidth]{/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r3_legislative_windows_main.png}
+\end{table}
+```
+
+The baseline model, Table 3, examines partisan differences in legislative periods without conditioning on institutional control. The non-significant results suggest that, when averaged across both Democratic and Republican presidencies, legislative windows themselves do not systematically impact the partisan gap in deficit tweeting.
+
+```{=latex}
+\begin{table}[htbp]
+\centering
+\caption{Regression 2: Majority context (presidency).}
+\includegraphics[width=0.62\linewidth]{/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r5_majority_context_main.png}
+\end{table}
+```
+
+Table 4 controls for presidential party by adding an indicator for serving under the out-party president (GOP under a Democratic president; Democrats under a Republican president) and by interacting it with Legislative window, plus the three-way term GOP × Legislative window × Minority presidency. These terms let the GOP--Dem deficit-tweeting gap differ under Democratic vs. Republican presidents and specifically during legislative months.
+
+Republicans' odds of tweeting about deficits are nearly double (OR = 1.87) when not holding the presidency (i.e., Joe Biden is President) compared to Democrats under the same condition. In contrast, GOP × Legislative window (OR= 0.38) highlights that under a Republican presidency, the partisan gap narrows during legislative months---the odds of the GOP tweeting are 62% lower than those of Democrats. In other words, Republicans are far less likely to discuss the deficit when their party holds the executive branch. This pattern aligns with Figure 1, which shows that Republican tweeting contracts while Democratic tweeting spikes as Congress passes the Tax Cuts and Jobs Act in late 2017. However, the three-way interaction coefficient GOP × Legislative window × Minority presidency reveals a reversal of this trend (OR= 4.24). Under a Democratic presidency (Joe Biden), Republicans' odds of tweeting are more than four times higher than those of Democrats in the same condition.
+
+```{=latex}
+\begin{table}[htbp]
+\centering
+\caption{Regression 3: Majority context --- chamber and presidency combinations.}
+\includegraphics[width=0.62\linewidth]{/Users/cycoldiron/Desktop/congress-fiscal-tweets/results/good_regression_tables/r6_majority_context_combos.png}
+\end{table}
+```
+
+Table 5 examines how the tweeting gap changes by who controls congressional and executive branches. A GOP trifecta means Republicans held the presidency, House, and Senate simultaneously---a condition they held from 2017 to 2019 during the 115th Congress. The model includes indicators for these control combinations: the baseline is Democrats outside legislative windows when their party controls no institution (minority in both chambers and not holding the presidency). This context would describe Democrats, between 2017 and 2019, in non-legislative periods (i.e., not during Tax Cuts and Jobs Act).
+
+GOP x Legislative window (OR = 0.31) indicates that during legislative months, when holding a trifecta, Republicans' odds of tweeting are 69% lower than Democrats. The Tax Cuts and Jobs Act (2017) -- a legislative window under a GOP trifecta -- is an illustration of this condition. However, once we condition on a Democratic trifecta, this effect reverses. Relative to the baseline condition (a GOP trifecta), Republicans' odds of deficit tweeting are seven times higher than those of Democrats in the same context. The juxtaposition of these two coefficients (OR = 0.31) versus (OR = 7.00) illustrates that legislative timing by itself isn't a determinant of tweeting gaps---but who governs is. Under Democratic control (i.e., 2021--2023), Republicans accelerate deficit rhetoric during legislative months, while under the GOP trifecta (i.e., 2017--2019), they significantly reduce deficit tweeting frequencies.
+
+### Effects of Bill Partisanship and Fiscal Magnitude {#sec-bill-partisanship2}
+
+Across all three specifications, the coefficients for Fiscal magnitude (z) are statistically insignificant (\textasciitilde{}1.0). These coefficients, based on a normalized measure of a given bill's 10-year CBO estimate, suggest that the fiscal consequences of policy do not systematically impact partisan tweeting gaps.
+
+Bill partisanship (z), however, shows significant contractions in the GOP-Dem tweeting gap once institutional control is included (OR \textasciitilde{} 0.50). In other words, for each one-SD increase in a bill's partisanship score, the GOP-Dem gap contracts by roughly half. Notably, because these variables are continuous (i.e., z-scores), the coefficients represent slopes rather than a baseline-specific effect. For example, in the context of bill partisanship, if Republicans are twice as likely as Democrats to tweet at z = 0 (OR = 2.0), that gap narrows to parity at z = 1 (OR = 1.0).
+
+\FloatBarrier
+
+# Discussion
+
+## Summary of Empirical Patterns in Deficit Tweeting
+
+Our research finds that deficit rhetoric on Twitter among U.S. congressional members is low---fluctuating between averages of .5% to 2% throughout the six-year periods (or 5--20 "deficit tweets" per 1000 tweets). However, our results highlight significant and important nuances. Specifically, we find that variation in deficit tweeting is strongly tied to two factors: relative institutional power and legislative timing. We also find that deficit rhetoric is not tied to the fiscal magnitude of policy bills: tweeting rates are uncorrelated with the long-term fiscal impact of legislation (measured by its 10-year CBO estimate).
+
+Institutional power---whether a member's party holds congressional and/or executive control---is a key determinant of deficit tweeting among Republicans, but not Democrats, and it helps to explain significant variations in tweeting gaps among the parties. Republicans' deficit rhetoric increases five-fold (.2% to 1%) when transitioning into out of power-contexts (holding all other factors constant) while Democrats' rates remain constant throughout. Republican leaders mirror the trends of their rank-and-file members (increase deficit in out-of-power contexts), while Democratic leaders show no discernible pattern in contextual tweeting among each other.
+
+Regression analysis also indicates that legislative windows influence deficit tweeting only after conditioning on presidential and/or congressional control. In other words, Republican-Democrat tweeting differences only change once we consider who is in power: the partisan tweeting gap contracts in legislative months where Democrats hold the presidency.
+
+These results suggest that, for Republicans, deficit rhetoric functions as a context-dependent communication resource: members will emphasize the deficit when political accountability is externalized---that is, when Democrats hold power. Republicans, especially among their leadership, will lessen such deficit tweeting when legislative responsibility is internalized.
+
+## Deficit Rhetoric is Independent of Fiscal Conditions
+
+Results show no discernible relationship between the fiscal magnitude of legislation and deficit tweeting: members do not increase references to the deficit in legislative periods that are characterized by large spending. In other words, deficit tweeting is the same for policy bills that have a low fiscal impact (such as the Inflation Reduction Act) and legislation with high fiscal impact (such as the Tax Cuts and Jobs Act). And, the fiscal magnitude of bills does not predict tweeting gaps once institutional controls are included.
+
+One would assume that deficit rhetoric should derive from the very thing it is in reference to: the federal deficit. Our research, however, suggests that no such relationship exists. This is an important relationship, or lack thereof, that stakeholders (voters, journalists, and forecasters) should understand: deficit rhetoric, most of the time, should not be interpreted as a direct proxy for fiscal concern, but rather as a reflection of a representative's power and political incentives.
+
+## Partisan Asymmetry and Message Coordination
+
+Beyond these aggregate patterns, our findings highlight important asymmetries between political parties' communication patterns. First, Republicans exhibit greater sensitivity to power status: their deficit tweeting rates fluctuate significantly depending on who controls Congress and the presidency.
+
+The second asymmetry which warrants consideration, is the difference in coordination and alignment among party leaders and rank-and-file members: Republican leaders, compared to their Democratic counterparts, demonstrate a greater degree of both partisan messaging and uniformity with their members. For instance, consider Representative Paul Ryan---a self-described fiscal conservative, Speaker of the House from 2017--2019, and a central political figure in modern discourse surrounding the national deficit. While Ryan frequently branded himself a "deficit hawk," his public deficit messaging was minimal during unified GOP control as Congress advanced the Tax Cuts and Jobs Act, which the CBO estimated would add roughly \$1.5 trillion to the debt over ten years. In short, Ryan rarely emphasized the deficit while orchestrating a major deficit-increasing legislative agenda. Ryan's self-contradictory tweeting behavior is emblematic of the claim we have highlighted in this section: deficit messaging, especially for Republicans, is not a proxy for genuine fiscal worries, but is a reflection of a representative's political incentives.
+
+As the only Republican to serve as both the minority and majority leader, Mitch McConnell serves as an effective illustration of a representative cyclically aligning their rhetoric to serve political means. As Figure 6 shows, during his four-year role as majority leader, McConnell tweeted about the deficit just three times out of 5622 total tweets---a staggering 0.05% deficit-tweet rate. This stands in sharp contrast to his tweeting patterns as the minority leader, under President Joe Biden, where McConnell's deficit tweeting rates increased to 1.89%---a 38-fold increase. Speaker McConnell---the spokesperson for the Republican party---made a conscious effort to vastly alter his deficit-rhetoric during his time in the opposition. And, the broader Republican party followed in unison with his messaging goal---increasing deficit tweeting rates significantly in minority contexts. Taken together, these rhetorical trends suggest a top-down messaging dynamic among Republicans: party leaders establish rhetorical cues that are consequently adopted by rank-and-file members.
+
+By comparison, the Democratic party illustrates both less intra-party coordination and less sensitivity to changes in their relative power. For example, the diverging tweeting patterns of Speaker Pelosi and Senator Schumer suggest a comparatively weaker intra-party alignment in messaging. Speaker Pelosi tweets at higher rates in the minority versus majority (1.11 vs 0.50), while Senator Schumer tweets at significantly higher rates in the majority (1.03 vs 4.00). Our results suggest that Democratic messaging is far more heterogeneous at both the leadership level (Pelosi and Schumer), and among rank-and-file members themselves. Overall, we see that Republicans---intentional or not---are far more successful in articulating organized and context-specific messaging.
+
+## The Political Incentives of the Federal Deficit: Blame Avoidance and Ideological Signaling
+
+The bulk of this paper thus far has dealt with objectively describing the nature of deficit rhetoric among U.S. congressional members. Our analysis naturally brings about a key question: what motivates politicians' deficit-related messaging on Twitter? While the precise motivations underlying elected officials' communication choices cannot be directly observed---i.e., we cannot know the reasoning behind every tweet---the systematic patterns in our data provide a constructive foundation for interpretive analysis.
+
+The most plausible explanatory factor driving deficit rhetoric is then the political incentive to externalize fiscal blame on the opposing party. The reasoning is the following: minority parties, while lacking any real legislative, governing, or subpoena power, have the capacity to frame the opposing party as fiscally irresponsible in hopes of improving their popularity or electoral prospects. This political incentive weakens once a party gains legislative control: it no longer becomes politically advantageous to discuss---or in this case, tweet---about the federal deficit.
+
+Such an explanation is consistent with Kent Weaver's political theory of blame avoidance. Given that voters are more sensitive to negative outcomes than positive ones (negativity bias), Weaver observes that politicians are motivated to be 'blame minimizers', not 'credit maximizers'. Under Weaver's framework, governing parties would therefore have an incentive to suppress deficit rhetoric to minimize the visibility of a loss-allocating topic (the national debt). He also highlights a key distinction between governing powers: while majority parties can legislate and initiate policy, the opposition party has one key source of power---blame generation.
+
+Consider this framework applied to the Republican party. From 2017--2021, Republicans had mostly majority legislative control. During this period, there was little political incentive to emphasize the national debt. However, once they no longer have legislative power (2021--2023), their political incentives reverse, motivating them to now externalize fiscal blame to the Democratic party. Through this lens, we can view deficit rhetoric not as proxy for fiscal concern, but as a political tool that is used when political parties no longer have power through traditional congressional means.
+
+Justin Grimmer offers a complementary theory of what drives political communication, arguing that public messaging is used to signal ideology that benefits politicians' electoral positioning. This framework could explain why members emphasize the deficit more: politicians want to signal to voters that they are fiscally responsible. If, for example, Republican voters value fiscal responsibility, Republican politicians would be motivated to emphasize the deficit to signal their hawkish ideology.
+
+Grimmer also makes an important distinction between public communication and voting patterns: what legislators say publicly is not the same as how they vote. Representatives may tweet about the deficit for electoral and ideological reasons but also vote in favor of deficit spending due to political constraints (party leadership, coalition requirements, etc.). This distinction helps explain how some congressional members have historically supported fiscal stimulus while also having relatively high deficit tweeting rates.
+
+## Implications for Voters, Media and Interpretation of Rhetoric
+
+Voters make decisions based on their interpretation of candidates' policy and governing intentions. These interpretations are partly constructed through the information voters consume---whether that be through speeches, interviews, or social media posts. Thus, if voting decisions are based on a specific topic, such as the national debt, then voters will naturally prefer candidates who choose to align with such preferences. However, in the case of the federal deficit, political messaging around the national debt (for the most part) is not a reflection of genuine fiscal concern, but is instead a reflection of institutional positioning and political incentives. Therefore, it is essential for those who consider the national debt as a significant factor in voting decisions to understand the underlying political incentives driving a politician's messaging. Our research suggests that an uptick in a representative's deficit rhetoric will more often than not reflect a change in political contexts (power status, legislative timing) rather than a sincere change in policy perspective. Voters should therefore be cognizant of the current political atmosphere when drawing conclusions of a representative or candidates' opinions on the national debt.
+
+As stated previously, voters (and the public more broadly) form their political decisions and opinions based on the information and news they consume. As a consequence, the media plays an outsized role in forming current and future political environments. Thus, it is imperative for journalists to understand the relationship surrounding deficit rhetoric and political incentives so as to maximize the objectivity, and fairness, of their political coverage. For instance, it would be incomplete journalism to represent Senator Mitch McConnell's relatively frequent deficit messaging from 2021--2023 without contextualizing his staggering low rates from 2017--2021 (0.05%). This research provides a solid foundation for journalistic coverage of the Federal Deficit. When covering a political party or representative's opinions regarding the national debt, media coverage should be aware of previous trends and current political contexts so as to appropriately contextualize the situation.
+
+Understanding the dynamics of deficit rhetoric is important for any stakeholders (researchers, forecasters, political strategists) whose decisions are based upon the messaging of representatives and political parties more broadly. Thus, similar to voters and journalists, impacted entities should understand the dynamic between political contexts and political messaging when constructing forecasts and making decisions.
+
+## Directions for Future Research
+
+Our research, while comprehensive in many respects, is solely focused on deficit tweeting rates among U.S. congressional members from 2017--2023. This leaves many avenues for supplemental research. Most notably, future research could examine whether the trends identified here extend beyond Twitter--- whether that be to other social media platforms or to other communication channels entirely, including floor speeches, press releases, fundraising emails, or televised appearances. Moreover, it would be informative to perform similar analysis from either a more recent or larger timeframe---giving us greater insight into how parties, political leaders, and rank-and-file members change their messaging across fiscal and political contexts including the 2024 election and the passage of the Big Beautiful Bill (2025).
+
+A second consideration would be to analyze the degree of engagement (likes, retweets, views etc). One could examine whether engagement interacts with political contexts (power status, legislative periods etc). Such analysis would help to inform us on the degree to which political incentives shape deficit rhetoric. For instance, there may be an additional political incentive for representatives to engage in such tweeting when it benefits their engagement levels systematically.
+
+# Conclusion
+
+This paper provides the first large-scale empirical analysis of how politicians --- in this case, U.S. congressional members --- communicate about the federal deficit on social media. By layering Twitter data with other relevant political, macroeconomic and fiscal circumstances, we find that deficit rhetoric is driven far more by exogenous political contexts than by fiscal reality: tweeting rates are uncorrelated with the fiscal magnitude of legislation, but vary significantly with party affiliation, legislative timing, and institutional power. Notably, these effects (i.e., the sensitivity of members' tweeting rates to changes in political circumstances) are highly asymmetric across parties: Republicans increase deficit-related messaging five-fold when moving from in-power to out-of-power contexts, while Democrats' rates are largely unchanged between scenarios. At the leadership level, these dynamics are even more pronounced: Republican leaders, (e.g., Mitch McConnell and Paul Ryan) are more responsive to shifts in political contexts and more closely track broader trends within their party.
+
+The disconnect between economic conditions and deficit rhetoric suggests that messaging around the national debt (for U.S. congressional leaders) functions less as a reflection of genuine fiscal concern and more as a vehicle for advancing political objectives. Our results point to two primary incentive mechanisms driving these communication choices. First, politicians, especially in the opposition, have an incentive to increase deficit-related messaging in order to externalize blame on the governing party---which could derail unwanted legislative agendas and erode trust more broadly. Second, deficit rhetoric could serve as a tool for ideological signaling: politicians have reason to discuss the federal deficit in certain circumstances --- regardless of their intentions to actually reduce the debt itself --- to convey fiscal responsibility to voters, potentially improving their popularity or chances of re-election. Taken together, our research has important implications on various fronts: our findings can serve as a foundation for any future research on political rhetoric and incentive frameworks. Finally, our results can be utilized by both voters, media and forecasters when making decisions on how to view political discourse surrounding the national debt.
+
+# References {.unnumbered}
+
+\begin{singlespace}
+\setlength{\parindent}{-1.5em}
+\setlength{\leftskip}{1.5em}
+\setlength{\parskip}{8pt}
+
+\noindent\textbf{Citation Style: Chicago Author-Date}
+
+\vspace{0.8em}
+
+Alesina, Alberto, and Andrea Passalacqua. 2016. ``The Political Economy of Government Debt.'' In \textit{Handbook of Macroeconomics}, Vol. 2, eds. John B. Taylor and Harald Uhlig. Amsterdam: Elsevier, 2599--2651.
+
+Alesina, Alberto, and Guido Tabellini. 1990. ``A Positive Theory of Fiscal Deficits and Government Debt.'' \textit{Review of Economic Studies} 57(3): 403--414.
+
+Anthropic. 2025. \textit{Claude} (claude-sonnet-4-6). Large language model used for code generation. https://www.anthropic.com.
+
+Federal Reserve Bank of St. Louis. n.d. \textit{Federal Reserve Economic Data (FRED)}. https://fred.stlouisfed.org.
+
+Grimmer, Justin. 2013. \textit{Representational Style in Congress: What Legislators Say and Why It Matters}. New York: Cambridge University Press.
+
+Hacker, Jacob S., and Paul Pierson. 2016. \textit{American Amnesia: How the War on Government Led Us to Forget What Made America Prosper}. New York: Simon \& Schuster.
+
+He, Haibo, and Edwardo A. Garcia. 2009. ``Learning from Imbalanced Data.'' \textit{IEEE Transactions on Knowledge and Data Engineering} 21(9): 1263--1284.
+
+Iyengar, Shanto. 1991. \textit{Is Anyone Responsible? How Television Frames Political Issues}. Chicago: University of Chicago Press.
+
+Japkowicz, Nathalie, and Shaju Stephen. 2002. ``The Class Imbalance Problem: A Systematic Study.'' \textit{Intelligent Data Analysis} 6(5): 429--449.
+
+Litel, Alex. n.d. \textit{Tweets of Congress}. Open-source dataset. GitHub Repository. https://github.com/alexlitel/congresstweets.
+
+MacGillis, Alec. 2014. \textit{The Cynic: The Political Education of Mitch McConnell}. New York: Simon \& Schuster.
+
+McCombs, Maxwell E., and Donald L. Shaw. 1972. ``The Agenda-Setting Function of Mass Media.'' \textit{Public Opinion Quarterly} 36(2): 176--187.
+
+OpenAI. 2025. \textit{ChatGPT} (GPT-4o). Large language model used for code generation. https://chat.openai.com.
+
+Pettersson-Lidbom, Per. 2001. ``An Empirical Investigation of the Strategic Use of Debt.'' \textit{Journal of Political Economy} 109(3): 570--583.
+
+Rogoff, Kenneth. 2025. \textit{Our Dollar, Your Problem: An Insider's View of Seven Turbulent Decades of Global Finance, and the Road Ahead}. New Haven: Yale University Press.
+
+Weaver, R. Kent. 1986. ``The Politics of Blame Avoidance.'' \textit{Journal of Public Policy} 6(4): 371--398.
+
+\end{singlespace}

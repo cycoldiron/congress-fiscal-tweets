@@ -28,6 +28,7 @@ summary_df_block <- all_tweets_final_index %>%
   ) %>%
   arrange(period, party) %>%
   mutate(
+    party = ifelse(party == "Democratic", "Democrat", party),
     period = ifelse(duplicated(period), "", period),
     gov_type = ifelse(duplicated(gov_type), "", gov_type)
   )
@@ -46,7 +47,15 @@ summary_table_block <- summary_df_block %>%
     num_tweets = "Num of Tweets"
   ) %>%
   tab_header(
-    title = "Deficit Tweeting by Party and Government Period"
+    title = md("**Deficit Tweeting by Party and Government Period**")
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "#e3eff9"),
+    locations = cells_body(columns = c(party, avg_deficit_tweets, num_tweets), rows = party == "Democrat")
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "#fae3e3"),
+    locations = cells_body(columns = c(party, avg_deficit_tweets, num_tweets), rows = party == "Republican")
   ) %>%
   tab_options(
     table.font.size = "small",

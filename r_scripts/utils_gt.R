@@ -72,7 +72,7 @@ make_gt_or_table <- function(model,
                              term_labels = NULL,
                              decimals = 2,
                              term_header = "",
-                             spacer_px = 56) {
+                             spacer_px = 20) {
   
   tt <- broom::tidy(model, conf.int = TRUE) %>%
     dplyr::mutate(
@@ -108,10 +108,10 @@ make_gt_or_table <- function(model,
   
   # Build width formulas with *inlined* px objects so no env lookup happens
   width_specs <- list(
-    expr(Term      ~ !!gt::px(520)),
-    expr(OddsRatio ~ !!gt::px(170)),
+    expr(Term      ~ !!gt::px(455)),
+    expr(OddsRatio ~ !!gt::px(165)),
     expr(Spacer    ~ !!gt::px(spacer_px)),
-    expr(CI95      ~ !!gt::px(260))
+    expr(CI95      ~ !!gt::px(240))
   )
   
   gt::gt(tt_render) %>%
@@ -130,7 +130,8 @@ make_gt_or_table <- function(model,
     gt::cols_align(align = "right", columns = c(OddsRatio, CI95)) %>%
     gt::tab_options(
       table.font.names = c("Inter","Helvetica","Arial","sans-serif"),
-      data_row.padding = gt::px(6),
+      table.font.size  = gt::px(22),
+      data_row.padding = gt::px(8),
       table.border.top.style = "none",
       table.border.bottom.style = "none"
     ) %>%

@@ -1,0 +1,82 @@
+---
+title: "Bibliography"
+subtitle: "Twitter and the Politics of the Federal Deficit"
+author: "Cy Coldiron"
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 12pt
+    geometry: "top=1.25in, bottom=1in, left=1.25in, right=1.25in"
+    number-sections: false
+    toc: false
+    colorlinks: false
+    keep-tex: false
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+header-includes: |
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}
+  \usepackage{setspace}
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyfoot[C]{\thepage}%
+    \renewcommand{\headrulewidth}{0pt}%
+  }
+---
+
+\onehalfspacing
+
+**Citation Style: Chicago Author-Date**
+
+\vspace{1em}
+
+# References {.unnumbered}
+
+\begin{singlespace}
+\setlength{\parindent}{-1.5em}
+\setlength{\leftskip}{1.5em}
+\setlength{\parskip}{8pt}
+
+Alesina, Alberto, and Andrea Passalacqua. 2016. ``The Political Economy of Government Debt.'' In \textit{Handbook of Macroeconomics}, Vol. 2, eds. John B. Taylor and Harald Uhlig. Amsterdam: Elsevier, 2599--2651.
+
+Alesina, Alberto, and Guido Tabellini. 1990. ``A Positive Theory of Fiscal Deficits and Government Debt.'' \textit{Review of Economic Studies} 57(3): 403--414.
+
+Anthropic. 2025. \textit{Claude} (claude-sonnet-4-6). Large language model used for code generation. https://www.anthropic.com.
+
+Federal Reserve Bank of St. Louis. n.d. \textit{Federal Reserve Economic Data (FRED)}. https://fred.stlouisfed.org.
+
+Grimmer, Justin. 2013. \textit{Representational Style in Congress: What Legislators Say and Why It Matters}. New York: Cambridge University Press.
+
+Hacker, Jacob S., and Paul Pierson. 2016. \textit{American Amnesia: How the War on Government Led Us to Forget What Made America Prosper}. New York: Simon \& Schuster.
+
+He, Haibo, and Edwardo A. Garcia. 2009. ``Learning from Imbalanced Data.'' \textit{IEEE Transactions on Knowledge and Data Engineering} 21(9): 1263--1284.
+
+Iyengar, Shanto. 1991. \textit{Is Anyone Responsible? How Television Frames Political Issues}. Chicago: University of Chicago Press.
+
+Japkowicz, Nathalie, and Shaju Stephen. 2002. ``The Class Imbalance Problem: A Systematic Study.'' \textit{Intelligent Data Analysis} 6(5): 429--449.
+
+Litel, Alex. n.d. \textit{Tweets of Congress}. Open-source dataset. GitHub Repository. https://github.com/alexlitel/congresstweets.
+
+MacGillis, Alec. 2014. \textit{The Cynic: The Political Education of Mitch McConnell}. New York: Simon \& Schuster.
+
+McCombs, Maxwell E., and Donald L. Shaw. 1972. ``The Agenda-Setting Function of Mass Media.'' \textit{Public Opinion Quarterly} 36(2): 176--187.
+
+OpenAI. 2025. \textit{ChatGPT} (GPT-4o). Large language model used for code generation. https://chat.openai.com.
+
+Pettersson-Lidbom, Per. 2001. ``An Empirical Investigation of the Strategic Use of Debt.'' \textit{Journal of Political Economy} 109(3): 570--583.
+
+Rogoff, Kenneth. 2025. \textit{Our Dollar, Your Problem: An Insider's View of Seven Turbulent Decades of Global Finance, and the Road Ahead}. New Haven: Yale University Press.
+
+Weaver, R. Kent. 1986. ``The Politics of Blame Avoidance.'' \textit{Journal of Public Policy} 6(4): 371--398.
+
+\end{singlespace}

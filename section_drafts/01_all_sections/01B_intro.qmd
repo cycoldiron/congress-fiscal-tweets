@@ -36,6 +36,10 @@ Political discourse can influence public perceptions by directing public attenti
 
 ## Why Twitter?
 
-Twitter (now X) is a uniquely effective medium for this analysis. It is widely and consistently used by members of Congress and is a direct representation of each representative’s rhetorical intentions. Moreover, Tweets are standardized in format—meaning each post is timestamped, have the same character constraints, and are tied to verifiable individuals, allowing for large-scale and reproducible time-series analysis. Tweets, unlike floor speeches or hearings (which vary in length and frequency) are published daily by almost all congressional members. This provides a far more comprehensive dataset (in this case 3.6M tweets), giving us greater statistical power, and allowing us to draw stronger conclusions about key explanatory relationships.
+Twitter (now X) is a uniquely effective medium for this analysis. It is widely and consistently used by members of Congress and is a direct representation of each representative’s rhetorical intentions. Moreover, Tweets are standardized in format—meaning each post is timestamped, have the same character constraints, and are tied to verifiable individuals, allowing for large-scale and reproducible time-series analysis.
+
+Most importantly, tweets reach a far greater audience than other traditional forms of communication (e.g., floor speeches, hearings) making them a more impactful communication medium for politicial messaging. Based on estimates of average follower count (with median accounts followed by roughly 100k users) and typical impression rates, even an average tweet can reach thousands of viewers, with more viral posts reaching hundreds of thousands (even millions) of people.
+
+As a result, politicians are likely to be especially rhetorically conscious on Twitter given the platforms broad and immediate public exposure. In addition, tweets, unlike floor speeches or hearings (which vary in length and frequency) are published daily by almost all congressional members. This provides a comprehensive dataset (3.6M tweets), giving us greater statistical power, and allowing us to draw stronger conclusions about key explanatory relationships.
 
 \

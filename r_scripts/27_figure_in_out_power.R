@@ -35,10 +35,10 @@ df_long <- df_base %>%
 clip_top <- quantile(df_long$pct_deficit, 0.995, na.rm = TRUE)  # y cap for boxplot
 x_clip   <- quantile(df_long$pct_deficit, 0.995, na.rm = TRUE)  # x cap for density
 
-# Party medians for vertical reference lines on density plot
+# Party means for vertical reference lines on density plot
 meds <- df_long |>
   group_by(power_status, party) |>
-  summarise(med = median(pct_deficit, na.rm = TRUE), .groups = "drop")
+  summarise(med = mean(pct_deficit, na.rm = TRUE), .groups = "drop")
 
 # Helper theme: bold axis titles
 theme_axis_bold <- theme(
@@ -54,6 +54,7 @@ p_box_split <- ggplot(df_long, aes(x = party, y = pct_deficit, fill = party)) +
   facet_wrap(~ power_status, ncol = 2) +
   coord_cartesian(ylim = c(0, clip_top)) +
   scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+  scale_x_discrete(labels = c("Democratic" = "Democrats", "Republican" = "Republicans")) +
   scale_fill_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
@@ -62,11 +63,12 @@ p_box_split <- ggplot(df_long, aes(x = party, y = pct_deficit, fill = party)) +
     y = "% of Deficit Tweets",
     fill = NULL
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
-    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 17),
     legend.position = "none",
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(size = 17, face = "bold")
   ) +
   theme_axis_bold
 
@@ -85,13 +87,13 @@ p_dens_power <- ggplot(df_long, aes(x = pct_deficit, fill = party, color = party
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
     title    = "Distribution of Members' Deficit Tweet Share by Party, Split by Power (2017–2023)",
-    subtitle = "Dashed lines show party medians.",
+    subtitle = "Dashed lines show party means.",
     x = "% of Deficit Tweets",
     y = "Density",
     fill = "Party",
     color = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
     plot.title    = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
@@ -120,7 +122,7 @@ p_diff_faceted <- ggplot(df_diff, aes(x = diff_in_minus_out, fill = party)) +
     y = "Count of members",
     fill = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     panel.grid.minor = element_blank(),
@@ -145,7 +147,7 @@ p_diff_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, fill = party, color
     fill = "Party",
     color = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     panel.grid.minor = element_blank()
@@ -168,7 +170,7 @@ p_hist_party <- ggplot(df_base, aes(x = pct_debt_tweets, fill = party, color = p
     fill = "Party",
     color = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     panel.grid.minor = element_blank()
@@ -263,7 +265,7 @@ gt_tbl
 # ==== UPDATE: Overall density by party (Fig. 4 alt) ====
 meds4 <- df_base |>
   group_by(party) |>
-  summarise(med = median(pct_debt_tweets, na.rm = TRUE), .groups = "drop")
+  summarise(med = mean(pct_debt_tweets, na.rm = TRUE), .groups = "drop")
 
 x_clip4 <- quantile(df_base$pct_debt_tweets, 0.995, na.rm = TRUE)
 
@@ -278,6 +280,7 @@ p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill
     alpha = 0.4, scale = 0.85, linewidth = 0.8,
     bandwidth = 0.0007, from = 0,
     quantile_lines = TRUE, quantiles = 0.5,
+    quantile_fun = function(x, ...) mean(x, na.rm = TRUE),
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
   coord_cartesian(xlim = c(0, 0.025)) +
@@ -290,18 +293,18 @@ p_dens_party_overall <- ggplot(df_base, aes(x = pct_debt_tweets, y = party, fill
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
     title    = "Distribution of Members' Deficit Tweet Share by Party (2017–2023)",
-    subtitle = "Dashed lines show party medians.",
+    subtitle = "Dashed lines show party means.",
     x = "% of Deficit Tweets",
     y = NULL,
     fill = "Party", color = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
-    plot.title    = element_text(face = "bold", hjust = 0.5),
+    plot.title    = element_text(face = "bold", hjust = 0.5, size = 17),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
     panel.grid.minor = element_blank(),
     legend.position = "none",
-    axis.text.y     = element_text(face = "bold", size = 13)
+    axis.text.y     = element_text(face = "bold", size = 18)
   ) +
   theme_axis_bold
 
@@ -316,7 +319,7 @@ max_abs <- quantile(abs(df_diff$diff_in_minus_out), 0.995, na.rm = TRUE)
 
 meds_diff <- df_diff |>
   group_by(party) |>
-  summarise(med = median(diff_in_minus_out, na.rm = TRUE), .groups = "drop")
+  summarise(med = mean(diff_in_minus_out, na.rm = TRUE), .groups = "drop")
 
 lbl_diff <- data.frame(
   party = factor(c("Democratic", "Republican"), levels = c("Democratic", "Republican")),
@@ -329,6 +332,7 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
     alpha = 0.4, scale = 0.85, linewidth = 0.8,
     bandwidth = 0.0013,
     quantile_lines = TRUE, quantiles = 0.5,
+    quantile_fun = function(x, ...) mean(x, na.rm = TRUE),
     vline_linetype = 2, vline_color = "grey20", vline_width = 1.0
   ) +
   # --- directional arrows placed between the two ridges (y = 1.5) ---
@@ -340,7 +344,7 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
   annotate("text",
     x = 0.0135, y = 1.61,
     label = "Tweets more when in power",
-    size = 3.4, color = "grey35", hjust = 0.5, fontface = "bold"
+    size = 5, color = "grey35", hjust = 0.5, fontface = "bold"
   ) +
   annotate("segment",
     x = -0.005, xend = -0.022, y = 1.5, yend = 1.5,
@@ -350,7 +354,7 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
   annotate("text",
     x = -0.0135, y = 1.61,
     label = "Tweets more when out-of-power",
-    size = 3.4, color = "grey35", hjust = 0.5, fontface = "bold"
+    size = 5, color = "grey35", hjust = 0.5, fontface = "bold"
   ) +
   coord_cartesian(xlim = c(-0.025, 0.025)) +
   scale_x_continuous(labels = percent_format(accuracy = 0.1)) +
@@ -362,18 +366,18 @@ p_diff_dens_overlay <- ggplot(df_diff, aes(x = diff_in_minus_out, y = party, fil
   scale_color_manual(values = c(Democratic = dem_blue, Republican = rep_red)) +
   labs(
     title    = "Change in Deficit Tweet Share: In Power – Out of Power (2017–2023)",
-    subtitle = "Dashed lines show party medians.",
+    subtitle = "Dashed lines show party means.",
     x = "Percentage point difference",
     y = NULL,
     fill = "Party", color = "Party"
   ) +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 14) +
   theme(
-    plot.title    = element_text(face = "bold", hjust = 0.5),
+    plot.title    = element_text(face = "bold", hjust = 0.5, size = 17),
     plot.subtitle = element_text(hjust = 0.5, face = "italic"),
     panel.grid.minor = element_blank(),
     legend.position = "none",
-    axis.text.y     = element_text(face = "bold", size = 13)
+    axis.text.y     = element_text(face = "bold", size = 18)
   ) +
   theme_axis_bold
 

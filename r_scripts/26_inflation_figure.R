@@ -48,16 +48,17 @@ yr <- range(overall$sm_deficit, na.rm = TRUE)
 y_mid <- yr[1] + 0.6 * diff(yr)
 
 # theme (white background, centered caption, bold axes)
-base <- 13
+base <- 15
 theme_pub <- theme_minimal(base_size = base) +
   theme(
-    plot.title         = element_text(face = "bold", hjust = 0.5, size = base + 2),
+    plot.title         = element_text(face = "bold", hjust = 0.5, size = base + 4),
     axis.title.x       = element_text(face = "bold", margin = margin(t = 8)),
     axis.title.y       = element_text(face = "bold", margin = margin(r = 8)),
     axis.title.y.right = element_text(face = "bold", margin = margin(l = 8)),
     panel.grid.minor   = element_blank(),
     legend.position    = "top",
     legend.title       = element_blank(),
+    legend.text        = element_text(size = 17),
     panel.background   = element_rect(fill = "white", color = NA),
     plot.background    = element_rect(fill = "white", color = NA),
     plot.caption       = element_text(hjust = 0.5, size = base - 1)
@@ -70,7 +71,7 @@ p <- ggplot(overall, aes(x = month)) +
   geom_smooth(aes(y = inflation_scaled, color = "U.S. CPI inflation (YoY)"),
               method = "loess", se = FALSE, span = span_val, size = 1.2,
               linetype = "dashed") +
-  annotate("text", x = x_mid, y = y_mid, label = r_lab, fontface = "bold", size = 4) +
+  annotate("text", x = x_mid, y = y_mid, label = r_lab, fontface = "bold", size = 5) +
   scale_y_continuous(
     name = "% of Tweets Mentioning Deficit",
     sec.axis = sec_axis(~ (.-b)/a, name = "U.S. CPI Inflation (YoY)")
