@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter and the Politics of the Federal Deficit — Cy Coldiron</title>
+
+  <!-- Open Graph (LinkedIn/Twitter preview) -->
+  <meta property="og:title" content="Twitter and the Politics of the Federal Deficit">
+  <meta property="og:description" content="Senior thesis by Cy Coldiron (UC Santa Barbara). Large-scale empirical analysis of how congressional members use Twitter to communicate about the federal deficit — and why it tracks political power, not fiscal reality.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cycoldiron.github.io/congress-fiscal-tweets/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: #1a1a2e;
+      background: #f7f7f5;
+    }
+
+    a { color: #1a56a0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e4e4dc;
+      padding: 3.25rem 0 2.5rem;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      font-size: 2.05rem;
+      font-weight: 600;
+      line-height: 1.22;
+      color: #0d0d1a;
+      margin-bottom: 1.1rem;
+    }
+
+    .byline {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.6rem;
+      align-items: center;
+    }
+
+    .byline-sep { color: #ccc; }
+
+    /* ── Buttons ─────────────────────────────────────────────── */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.13s, border-color 0.13s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: #1a56a0;
+      color: #fff;
+      border: 1.5px solid #1a56a0;
+    }
+    .btn-primary:hover { background: #144180; border-color: #144180; text-decoration: none; }
+
+    .btn-outline {
+      background: #fff;
+      color: #1a56a0;
+      border: 1.5px solid #1a56a0;
+    }
+    .btn-outline:hover { background: #eef3fb; text-decoration: none; }
+
+    .btn svg { flex-shrink: 0; }
+
+    /* ── Main body ───────────────────────────────────────────── */
+    main {
+      padding: 2.75rem 0 3.5rem;
+    }
+
+    section {
+      margin-bottom: 2.6rem;
+    }
+
+    h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #0d0d1a;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1.5px solid #e4e4dc;
+    }
+
+    p { margin-bottom: 0.85rem; color: #333; font-size: 0.97rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      padding-left: 1.35rem;
+      color: #333;
+      font-size: 0.97rem;
+    }
+    ul li { margin-bottom: 0.55rem; }
+
+    strong { color: #111; }
+
+    /* ── Citation box ────────────────────────────────────────── */
+    .citation-box {
+      background: #fff;
+      border: 1px solid #e4e4dc;
+      border-left: 3px solid #1a56a0;
+      border-radius: 3px;
+      padding: 1rem 1.25rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.84rem;
+      color: #333;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: #fff;
+      border-top: 1px solid #e4e4dc;
+      padding: 1.4rem 0;
+      font-size: 0.82rem;
+      color: #999;
+      text-align: center;
+    }
+
+    footer a { color: #777; }
+    footer a:hover { color: #333; }
+    footer .sep { margin: 0 0.5rem; }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 520px) {
+      h1 { font-size: 1.6rem; }
+      header { padding: 2.25rem 0 1.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="eyebrow">Senior Thesis &nbsp;·&nbsp; UC Santa Barbara, Department of Economics</div>
+    <h1>Twitter and the Politics of the Federal Deficit</h1>
+    <div class="byline">
+      <strong><a href="https://www.linkedin.com/in/cycoldiron/">Cy Coldiron</a></strong>
+      <span class="byline-sep">·</span>
+      <span>University of California, Santa Barbara</span>
+      <span class="byline-sep">·</span>
+      <span>2025</span>
+    </div>
+    <div class="button-row">
+      <a class="btn btn-primary" href="thesis/coldiron_deficit_thesis.pdf" target="_blank">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View PDF
+      </a>
+      <a class="btn btn-outline" href="thesis/coldiron_deficit_thesis.pdf" download="coldiron_deficit_thesis.pdf">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+        Download PDF
+      </a>
+      <a class="btn btn-outline" href="https://github.com/cycoldiron/congress-fiscal-tweets" target="_blank">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub Repository
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        Economists and political observers have long noted a recurring pattern in American politics:
+        politicians change their messaging around the federal deficit depending on their relative
+        power status&mdash;advocating fiscal restraint (austerity) in opposition, while publicly
+        supporting fiscal stimulus once in power. This paper examines this claim by tracking U.S.
+        congressional members&rsquo; deficit-related tweets between 2017&ndash;2023. Using a
+        two-tier dictionary classification method, I identify tweets referencing the federal deficit
+        and estimate how deficit-related messaging varies across institutional, legislative, and
+        fiscal conditions using logistic regression. Deficit-tweeting is low overall (~0.7%) but
+        varies significantly depending on a representative&rsquo;s party affiliation and power
+        status: Republicans tweet about the deficit five times as often when in the minority, while
+        Democrats&rsquo; rates remain comparatively stable across majority/minority status.
+        Republican leaders&rsquo; deficit tweeting rates closely track those of rank-and-file
+        members, while Democratic leadership shows more heterogeneous patterns. Notably, the fiscal
+        size of legislation has no measurable effect on deficit tweeting rates. Results confirm that
+        deficit rhetoric is largely a function of a member&rsquo;s relative political power and
+        party affiliation&mdash;not underlying fiscal conditions&mdash;suggesting that elected
+        officials use deficit messaging to advance partisan communication goals and legislative
+        agendas.
+      </p>
+    </section>
+
+    <section>
+      <h2>Citation</h2>
+      <div class="citation-box">Coldiron, C. (2025). Twitter and the Politics of the Federal Deficit.
+Senior Thesis, University of California, Santa Barbara,
+Department of Economics.
+https://cycoldiron.github.io/congress-fiscal-tweets/</div>
+    </section>
+
+    <section>
+      <h2>Replication</h2>
+      <p>
+        Data, code, and replication instructions are available in the
+        <a href="https://github.com/cycoldiron/congress-fiscal-tweets" target="_blank">GitHub repository</a>.
+        The pipeline uses Python for tweet classification and R for data construction,
+        regression modeling, and figure generation.
+      </p>
+      <p>
+        Raw tweet data sourced from the
+        <a href="https://github.com/alexlitel/congresstweets" target="_blank">Tweets of Congress</a>
+        project by Alex Litel. Please cite that archive if reusing the underlying tweet data.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <a href="https://github.com/cycoldiron/congress-fiscal-tweets" target="_blank">GitHub</a>
+    <span class="sep">&middot;</span>
+    <a href="https://www.linkedin.com/in/cycoldiron/" target="_blank">LinkedIn</a>
+    <span class="sep">&middot;</span>
+    <a href="mailto:coldiron@ucsb.edu">coldiron@ucsb.edu</a>
+    <span class="sep">&middot;</span>
+    &copy; 2025 Cy Coldiron
+  </div>
+</footer>
+
+</body>
+</html>
