@@ -2,15 +2,11 @@
 
 **Cy Coldiron** · UC Santa Barbara, Department of Economics · `coldiron@ucsb.edu`
 
-[LinkedIn](https://www.linkedin.com/in/cycoldiron/)
-
 ---
 
 ## Overview
 
 This paper provides the first large-scale empirical analysis of how U.S. congressional members communicate about the **federal deficit** on Twitter. Using ~3.6 million tweets from 1,000+ congressional accounts between June 2017 and January 2023, I classify deficit-related tweets with a two-tier keyword method and estimate how tweeting rates vary across institutional, legislative, and fiscal conditions using logistic regression.
-
-The core finding: **deficit rhetoric tracks political power, not fiscal reality.** Republicans tweet about the deficit five times more often when out of power (minority under an opposing president), while Democrats remain comparatively stable regardless of their power status. The fiscal magnitude of legislation — measured by its 10-year CBO score — has no measurable effect on tweeting rates.
 
 ---
 
